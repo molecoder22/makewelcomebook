@@ -99,6 +99,11 @@
   .cover.cv-minimal h1{font-size:3.6em;font-weight:600}
   .cover.cv-minimal .mrule{width:64px;height:4px;background:var(--bk-accent);border-radius:2px;margin:1.6em 0}
   .cover.cv-minimal .bottom{text-align:left}
+  .cover.cv-art{background-size:cover;background-position:center;justify-content:center;text-align:center}
+  .cover.cv-art .top{padding-top:0}
+  .cover.cv-art .bottom{padding-bottom:0;margin-top:2.4em}
+  .page{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .signpage.has-art{background-size:cover;background-position:center}
   .wifibox{border:2px solid var(--bk-accent);border-radius:12px;padding:1.2em;display:flex;gap:1.2em;align-items:center;margin:1em 0}
   .wifibox .qr{width:31%;flex:none}
   .wifibox .qr svg{width:100%;height:auto;display:block}
@@ -172,7 +177,7 @@
           <div><label>Host name(s)</label><input type="text" id="f_host" placeholder="Anna & Tom"></div>
           <div><label>City / area</label><input type="text" id="f_city" placeholder="Lake Tahoe, CA"></div>
         </div>
-        <label>Book design <small>(24 themes — each with its own typography &amp; cover)</small></label>
+        <label>Book design <small>(34 themes — each with its own typography &amp; cover)</small></label>
         <div class="themepick" id="themes"></div>
       </div>
     </details>
@@ -306,7 +311,18 @@ const THEMES = {
   clay:      {label:"Clay",      accent:"#a5674e",soft:"#f4e6df",ink:"#30201a",paper:"#fdfaf8",serif:"'Fraunces',Georgia,serif",cover:"minimal"},
   meadow:    {label:"Meadow",    accent:"#7a8a2e",soft:"#eef1da",ink:"#272b13",paper:"#fdfef6",serif:"'EB Garamond',Georgia,serif",cover:"classic"},
   porcelain: {label:"Porcelain", accent:"#6e8c9e",soft:"#e9f0f4",ink:"#25303a",paper:"#fcfeff",serif:"'Marcellus',Georgia,serif",cover:"frame"},
-  cocoa:     {label:"Cocoa",     accent:"#8c5f42",soft:"#f1e6de",ink:"#2e2016",paper:"#fdfbf9",serif:"'Libre Baskerville',Georgia,serif",cover:"band"}
+  cocoa:     {label:"Cocoa",     accent:"#8c5f42",soft:"#f1e6de",ink:"#2e2016",paper:"#fdfbf9",serif:"'Libre Baskerville',Georgia,serif",cover:"band"},
+  /* premium art themes — Higgsfield backgrounds */
+  artBotanical:{label:"Botanical", accent:"#6f8b76",soft:"#eaf0ea",ink:"#2c352e",paper:"#fdfdf8",serif:"'Cormorant Garamond',Georgia,serif",cover:"art",art:"art/01-botanical.webp"},
+  artBoho:     {label:"Boho Sun",  accent:"#b05f3e",soft:"#f3e4d8",ink:"#3a2a1c",paper:"#f7ecdf",serif:"'Fraunces',Georgia,serif",cover:"art",art:"art/02-boho-arch.webp"},
+  artSeaside:  {label:"Seaside",   accent:"#5b87a5",soft:"#e4eef4",ink:"#24333d",paper:"#f9fcfd",serif:"'Lora',Georgia,serif",cover:"art",art:"art/03-coastal.webp"},
+  artWildflower:{label:"Wildflower",accent:"#a06a84",soft:"#f2e6ec",ink:"#35262e",paper:"#fdf9fb",serif:"'Playfair Display',Georgia,serif",cover:"art",art:"art/04-wildflowers.webp"},
+  artAmalfi:   {label:"Amalfi",    accent:"#b39027",soft:"#f7f0d8",ink:"#33301a",paper:"#fffef6",serif:"'DM Serif Display',Georgia,serif",cover:"art",art:"art/05-citrus.webp"},
+  artAlpine:   {label:"Alpine",    accent:"#708b7e",soft:"#e8efeb",ink:"#2a3430",paper:"#fafcfb",serif:"'Spectral',Georgia,serif",cover:"art",art:"art/06-mountain.webp"},
+  artPalm:     {label:"Palm",      accent:"#4e7d5b",soft:"#e3efe7",ink:"#24312a",paper:"#fbf8f2",serif:"'Marcellus',Georgia,serif",cover:"art",art:"art/07-tropical.webp"},
+  artCactus:   {label:"Cactus",    accent:"#a25b4b",soft:"#f5e3dd",ink:"#3a2620",paper:"#fdf6f3",serif:"'Fraunces',Georgia,serif",cover:"art",art:"art/08-desert.webp"},
+  artTuscany:  {label:"Tuscany",   accent:"#7d8b4f",soft:"#eef0dd",ink:"#2f331d",paper:"#fdfcf5",serif:"'EB Garamond',Georgia,serif",cover:"art",art:"art/09-vineyard.webp"},
+  artToile:    {label:"Toile",     accent:"#6d8fba",soft:"#e9eff7",ink:"#2b3648",paper:"#fffdf6",serif:"'Cormorant Garamond',Georgia,serif",cover:"art",art:"art/10-toile.webp"}
 };
 const LS_KEY="mwb_data_v1", LS_UNLOCK="mwb_unlocked";
 // unlock code is checked by prefix so the Stripe success URL can carry it
@@ -344,7 +360,7 @@ function collectRules(){
 (function(){
   const wrap=document.getElementById("themes");
   wrap.innerHTML=Object.entries(THEMES).map(([id,t])=>
-    `<button data-theme="${id}" title="${t.label}"><span class="sw" style="background:${t.accent}"></span>${t.label}</button>`).join("");
+    `<button data-theme="${id}" title="${t.label}"><span class="sw" style="${t.art?`background:url('${t.art}') center/cover`:`background:${t.accent}`}"></span>${t.label}</button>`).join("");
   wrap.querySelectorAll("button").forEach(b=>{
     b.addEventListener("click",()=>{ state.theme=b.dataset.theme; save(); markTheme(); render(); });
   });
@@ -417,6 +433,14 @@ function render(){
         <h1>${prop}</h1>
       </div>
       <div class="sub">${tagline}</div>
+      <div class="bottom">${byline}</div>
+    </div>`,
+    art:`<div class="page cover cv-art" style="background-image:url('${T.art||""}')">${wm}
+      <div class="top">
+        <div class="eyebrow">Welcome to</div>
+        <h1>${prop}</h1>
+        <div class="sub">${tagline}</div>
+      </div>
       <div class="bottom">${byline}</div>
     </div>`,
     minimal:`<div class="page cover cv-minimal">${wm}
@@ -528,13 +552,13 @@ function render(){
       <ellipse cx="16" cy="30" rx="3.5" ry="7" transform="rotate(20 16 30)"/>
     </g>
   </svg>`;
-  pages.push(`<div class="page signpage">${wm}
-    ${branch(false)}
+  pages.push(`<div class="page signpage${T.art?" has-art":""}"${T.art?` style="background-image:url('${T.art}')"`:""}>${wm}
+    ${T.art?"":branch(false)}
     <div class="eyebrow" style="letter-spacing:.3em;text-transform:uppercase;color:var(--bk-accent);font-weight:700;margin-top:1.4em">${prop}</div>
     <h2 style="font-size:3.4em;margin:.2em 0">welcome</h2>
     <p style="max-width:26em;opacity:.75;margin-top:.6em">Make yourself at home. Help yourself to anything in the kitchen — the welcome book on the counter has everything you need.</p>
     ${v("ssid","")?`<p style="margin-top:1.8em;font-size:1.05em">WiFi: <b>${esc(v("ssid",""))}</b> · Password: <b style="font-family:ui-monospace,Menlo,monospace">${esc(v("wifipass","—"))}</b></p>`:""}
-    <div style="margin-top:1.8em;width:100%;display:flex;justify-content:flex-end">${branch(true)}</div>
+    ${T.art?"":`<div style="margin-top:1.8em;width:100%;display:flex;justify-content:flex-end">${branch(true)}</div>`}
   </div>`);
 
   document.getElementById("pages").innerHTML=pages.join("");
