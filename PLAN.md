@@ -95,6 +95,13 @@ Must be answered before ads go live.
       from resethistamine)
 - [x] Decision: NEW separate Google Ads account (Mario's choice 2026-08-22 —
       full separation from histamine account; he creates it when site is live)
-- [ ] Deploy + domain + Stripe link
-- [ ] Google Ads campaign live
-- [ ] Etsy listing live
+- [x] Creative upgrade: 16 themes × distinct typography × 4 cover layouts;
+      sample mode at app.html?sample=1 (2026-08-22, verified in browser)
+- [x] Ads campaign spec written (ADS-CAMPAIGN.md), Etsy listing written
+      (ETSY-LISTING.md), Mario's steps written (DO-THIS-MARIO.md)
+- [x] Repo committed locally; site folder renamed site/ → docs/ for GitHub Pages
+- [ ] BLOCKED on Mario's one-word OK: publish repo to GitHub (permission
+      classifier requires user approval for public publish — correctly)
+- [ ] Deploy + domain + Stripe link (steps in DO-THIS-MARIO.md)
+- [ ] Google Ads campaign live (spec ready, gated on accountant answer)
+- [ ] Etsy listing live (copy ready)
