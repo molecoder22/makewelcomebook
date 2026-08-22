@@ -45,7 +45,7 @@ Headlines (no "Airbnb" in ad text — trademark policy):
 5. WiFi QR Sign Included
 6. Print-Ready Vacation Rental Book
 7. See Your Whole Book Before Paying
-8. 34 Designer Themes Included
+8. 50 Designer Book Designs Included
 9. Made For Short-Term Rental Hosts
 10. Guests Stop Asking For The WiFi
 

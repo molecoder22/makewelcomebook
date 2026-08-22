@@ -53,10 +53,19 @@
   .checks{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
   .checks label{display:flex;align-items:center;gap:8px;font-weight:400;font-size:.88rem;margin:0;cursor:pointer}
   .checks input{accent-color:var(--accent)}
-  .themepick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+  .themepick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
   .themepick button{border:2px solid var(--line);border-radius:10px;padding:8px 4px 7px;cursor:pointer;font:600 .72rem 'Inter',sans-serif;background:#fff;color:var(--ink)}
   .themepick button .sw{display:block;height:22px;border-radius:6px;margin-bottom:5px}
   .themepick button.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+  details.tsec{border:1px solid var(--line);border-radius:12px;margin-top:10px;padding:0 12px 12px;background:#fff}
+  details.tsec>summary{cursor:pointer;list-style:none;padding:12px 2px;font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  details.tsec>summary::-webkit-details-marker{display:none}
+  details.tsec>summary .arrow{margin-left:auto;color:var(--muted);transition:.2s;font-weight:400}
+  details.tsec[open]>summary .arrow{transform:rotate(180deg)}
+  details.tsec.premium{border-color:var(--accent);box-shadow:0 2px 12px rgba(180,89,60,.1)}
+  .freebadge{background:#c92f2f;color:#fff;font:800 .68rem 'Inter',sans-serif;letter-spacing:.06em;padding:3px 9px;border-radius:999px;text-transform:uppercase;animation:pulsebadge 1.6s ease-in-out infinite}
+  @keyframes pulsebadge{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+  .seccount{color:var(--muted);font-weight:500;font-size:.8rem}
   .hint{font-size:.8rem;color:var(--muted);margin-top:6px}
 
   /* ---------- preview column ---------- */
@@ -177,8 +186,17 @@
           <div><label>Host name(s)</label><input type="text" id="f_host" placeholder="Anna & Tom"></div>
           <div><label>City / area</label><input type="text" id="f_city" placeholder="Lake Tahoe, CA"></div>
         </div>
-        <label>Book design <small>(34 themes — each with its own typography &amp; cover)</small></label>
-        <div class="themepick" id="themes"></div>
+        <label>Book design <small>(50 designs — each with its own typography &amp; cover)</small></label>
+        <div id="themes">
+          <details class="tsec premium" open>
+            <summary>✨ Premium art designs <span class="freebadge">Now Free</span> <span class="seccount" id="cntPremium"></span> <span class="arrow">▾</span></summary>
+            <div class="themepick" id="themesPremium"></div>
+          </details>
+          <details class="tsec">
+            <summary>Basic designs <span class="seccount" id="cntBasic"></span> <span class="arrow">▾</span></summary>
+            <div class="themepick" id="themesBasic"></div>
+          </details>
+        </div>
       </div>
     </details>
 
@@ -322,7 +340,23 @@ const THEMES = {
   artPalm:     {label:"Palm",      accent:"#4e7d5b",soft:"#e3efe7",ink:"#24312a",paper:"#fbf8f2",serif:"'Marcellus',Georgia,serif",cover:"art",art:"art/07-tropical.webp"},
   artCactus:   {label:"Cactus",    accent:"#a25b4b",soft:"#f5e3dd",ink:"#3a2620",paper:"#fdf6f3",serif:"'Fraunces',Georgia,serif",cover:"art",art:"art/08-desert.webp"},
   artTuscany:  {label:"Tuscany",   accent:"#7d8b4f",soft:"#eef0dd",ink:"#2f331d",paper:"#fdfcf5",serif:"'EB Garamond',Georgia,serif",cover:"art",art:"art/09-vineyard.webp"},
-  artToile:    {label:"Toile",     accent:"#6d8fba",soft:"#e9eff7",ink:"#2b3648",paper:"#fffdf6",serif:"'Cormorant Garamond',Georgia,serif",cover:"art",art:"art/10-toile.webp"}
+  artToile:    {label:"Toile",     accent:"#6d8fba",soft:"#e9eff7",ink:"#2b3648",paper:"#fffdf6",serif:"'Cormorant Garamond',Georgia,serif",cover:"art",art:"art/10-toile.webp"},
+  artSakura:   {label:"Sakura",    accent:"#c4808f",soft:"#f8e8ec",ink:"#38262b",paper:"#fffbfc",serif:"'Cormorant Garamond',Georgia,serif",cover:"art",art:"art/11-sakura.webp"},
+  artWinter:   {label:"Winter Pine",accent:"#7f97a8",soft:"#e8eef3",ink:"#26313a",paper:"#f8fafc",serif:"'Spectral',Georgia,serif",cover:"art",art:"art/12-winter.webp"},
+  artSunset:   {label:"Sunset Bay", accent:"#c98356",soft:"#f7e8dd",ink:"#33261c",paper:"#fdf8f4",serif:"'Lora',Georgia,serif",cover:"art",art:"art/13-sunset.webp"},
+  artLakeside: {label:"Lakeside",  accent:"#6f958e",soft:"#e6efed",ink:"#26322f",paper:"#f9fcfb",serif:"'Libre Baskerville',Georgia,serif",cover:"art",art:"art/14-lakeside.webp"},
+  artOliveGrove:{label:"Olive Grove",accent:"#8a9271",soft:"#eef0e5",ink:"#2c2f22",paper:"#fbfcf7",serif:"'EB Garamond',Georgia,serif",cover:"art",art:"art/15-olivegrove.webp"},
+  artDeco2:    {label:"Art Deco",  accent:"#ab8c3c",soft:"#f4edd9",ink:"#2b2617",paper:"#fffdf6",serif:"'Playfair Display',Georgia,serif",cover:"art",art:"art/16-artdeco.webp"},
+  artTerrazzo: {label:"Terrazzo",  accent:"#cc8672",soft:"#f9e9e3",ink:"#33302b",paper:"#fffdf6",serif:"'Fraunces',Georgia,serif",cover:"art",art:"art/17-terrazzo.webp"},
+  artFern:     {label:"Rainforest",accent:"#4c6b52",soft:"#e2ebe4",ink:"#22302a",paper:"#f6faf7",serif:"'Marcellus',Georgia,serif",cover:"art",art:"art/18-fern.webp"},
+  artPeach:    {label:"Peach Orchard",accent:"#c07e50",soft:"#f8eadd",ink:"#33241a",paper:"#fffaf4",serif:"'Cormorant Garamond',Georgia,serif",cover:"art",art:"art/19-peach.webp"},
+  artNautical: {label:"Nautical",  accent:"#33507a",soft:"#e3e9f2",ink:"#1e2c42",paper:"#ffffff",serif:"'Libre Baskerville',Georgia,serif",cover:"art",art:"art/20-nautical.webp"},
+  artSunflower:{label:"Sunflower", accent:"#b3922c",soft:"#f7f0d7",ink:"#33301a",paper:"#fefdf3",serif:"'Lora',Georgia,serif",cover:"art",art:"art/21-sunflower.webp"},
+  artMorocco:  {label:"Marrakesh", accent:"#3f7f7a",soft:"#e0efee",ink:"#233230",paper:"#fdf8ec",serif:"'DM Serif Display',Georgia,serif",cover:"art",art:"art/22-morocco.webp"},
+  artAutumn:   {label:"Autumn",    accent:"#b06f2e",soft:"#f6ead9",ink:"#33260f",paper:"#fdfaf4",serif:"'Fraunces',Georgia,serif",cover:"art",art:"art/23-autumn.webp"},
+  artEveningSail:{label:"Evening Sail",accent:"#7d89a8",soft:"#e9ecf3",ink:"#2b3040",paper:"#fbf7f4",serif:"'Spectral',Georgia,serif",cover:"art",art:"art/24-eveningsail.webp"},
+  artLavenderField:{label:"Lavender Fields",accent:"#8579ad",soft:"#ece8f5",ink:"#2c2740",paper:"#fcfbff",serif:"'Cormorant Garamond',Georgia,serif",cover:"art",art:"art/25-lavenderfields.webp"},
+  artHerbGarden:{label:"Herb Garden",accent:"#63805a",soft:"#e8efe4",ink:"#283122",paper:"#fbfdf8",serif:"'EB Garamond',Georgia,serif",cover:"art",art:"art/26-herbgarden.webp"}
 };
 const LS_KEY="mwb_data_v1", LS_UNLOCK="mwb_unlocked";
 // unlock code is checked by prefix so the Stripe success URL can carry it
@@ -356,17 +390,25 @@ function collectRules(){
   state.rules=[...document.querySelectorAll("#rules input:checked")].map(c=>c.value);
   save(); render();
 }
-/* build theme picker from registry */
+/* build theme picker from registry — premium (art) and basic sections */
 (function(){
   const wrap=document.getElementById("themes");
-  wrap.innerHTML=Object.entries(THEMES).map(([id,t])=>
-    `<button data-theme="${id}" title="${t.label}"><span class="sw" style="${t.art?`background:url('${t.art}') center/cover`:`background:${t.accent}`}"></span>${t.label}</button>`).join("");
+  const btn=([id,t])=>`<button data-theme="${id}" title="${t.label}"><span class="sw" style="${t.art?`background:url('${t.art}') center/cover`:`background:${t.accent}`}"></span>${t.label}</button>`;
+  const entries=Object.entries(THEMES);
+  const prem=entries.filter(([,t])=>t.art), basic=entries.filter(([,t])=>!t.art);
+  document.getElementById("themesPremium").innerHTML=prem.map(btn).join("");
+  document.getElementById("themesBasic").innerHTML=basic.map(btn).join("");
+  document.getElementById("cntPremium").textContent=`${prem.length} designs · included with every book`;
+  document.getElementById("cntBasic").textContent=`${basic.length} designs`;
   wrap.querySelectorAll("button").forEach(b=>{
     b.addEventListener("click",()=>{ state.theme=b.dataset.theme; save(); markTheme(); render(); });
   });
   markTheme();
   function markTheme(){
-    wrap.querySelectorAll("button").forEach(x=>x.classList.toggle("active",x.dataset.theme===(state.theme||"terracotta")));
+    const cur=state.theme||"terracotta";
+    wrap.querySelectorAll("button").forEach(x=>x.classList.toggle("active",x.dataset.theme===cur));
+    const inBasic=THEMES[cur]&&!THEMES[cur].art;
+    if(inBasic) wrap.querySelectorAll("details.tsec")[1].open=true;
   }
   window._markTheme=markTheme;
 })();
