@@ -172,7 +172,7 @@
           <div><label>Host name(s)</label><input type="text" id="f_host" placeholder="Anna & Tom"></div>
           <div><label>City / area</label><input type="text" id="f_city" placeholder="Lake Tahoe, CA"></div>
         </div>
-        <label>Book design <small>(16 themes — each with its own typography &amp; cover)</small></label>
+        <label>Book design <small>(24 themes — each with its own typography &amp; cover)</small></label>
         <div class="themepick" id="themes"></div>
       </div>
     </details>
@@ -298,7 +298,15 @@ const THEMES = {
   slate:     {label:"Slate",     accent:"#5a6472",soft:"#e8ebef",ink:"#232830",paper:"#fbfcfd",serif:"'Libre Baskerville',Georgia,serif",cover:"band"},
   berry:     {label:"Berry",     accent:"#8e3b62",soft:"#f4e2ec",ink:"#331726",paper:"#fffbfd",serif:"'Playfair Display',Georgia,serif",cover:"band"},
   sand:      {label:"Sand",      accent:"#a08663",soft:"#f1e9dc",ink:"#322a1d",paper:"#fdfbf7",serif:"'Marcellus',Georgia,serif",cover:"minimal"},
-  espresso:  {label:"Espresso",  accent:"#6f4e37",soft:"#efe5dd",ink:"#2b1d12",paper:"#fdfaf7",serif:"'Crimson Pro',Georgia,serif",cover:"frame"}
+  espresso:  {label:"Espresso",  accent:"#6f4e37",soft:"#efe5dd",ink:"#2b1d12",paper:"#fdfaf7",serif:"'Crimson Pro',Georgia,serif",cover:"frame"},
+  blush:     {label:"Blush",     accent:"#c07f7f",soft:"#f8e9e9",ink:"#382626",paper:"#fffbfb",serif:"'Cormorant Garamond',Georgia,serif",cover:"classic"},
+  brass:     {label:"Ink & Brass",accent:"#8a6d2f",soft:"#f0ead8",ink:"#1c1a14",paper:"#fffef9",serif:"'Playfair Display',Georgia,serif",cover:"minimal"},
+  eucalyptus:{label:"Eucalyptus",accent:"#5e8272",soft:"#e6efe9",ink:"#22302a",paper:"#fafdfb",serif:"'Lora',Georgia,serif",cover:"frame"},
+  denim:     {label:"Denim",     accent:"#3a5a80",soft:"#e4ebf3",ink:"#1c2734",paper:"#fafcfe",serif:"'Spectral',Georgia,serif",cover:"band"},
+  clay:      {label:"Clay",      accent:"#a5674e",soft:"#f4e6df",ink:"#30201a",paper:"#fdfaf8",serif:"'Fraunces',Georgia,serif",cover:"minimal"},
+  meadow:    {label:"Meadow",    accent:"#7a8a2e",soft:"#eef1da",ink:"#272b13",paper:"#fdfef6",serif:"'EB Garamond',Georgia,serif",cover:"classic"},
+  porcelain: {label:"Porcelain", accent:"#6e8c9e",soft:"#e9f0f4",ink:"#25303a",paper:"#fcfeff",serif:"'Marcellus',Georgia,serif",cover:"frame"},
+  cocoa:     {label:"Cocoa",     accent:"#8c5f42",soft:"#f1e6de",ink:"#2e2016",paper:"#fdfbf9",serif:"'Libre Baskerville',Georgia,serif",cover:"band"}
 };
 const LS_KEY="mwb_data_v1", LS_UNLOCK="mwb_unlocked";
 // unlock code is checked by prefix so the Stripe success URL can carry it
@@ -506,6 +514,28 @@ function render(){
     <div class="cred">Password: <b>${esc(v("wifipass","—"))}</b></div>
     <p style="margin-top:1.6em;opacity:.6">Scan with your phone camera to connect</p>
   </div>`); }
+
+  /* decorative welcome sign printable (frame it by the door) */
+  const branch=(flip)=>`<svg viewBox="0 0 120 44" style="width:34%;${flip?"transform:scaleX(-1);":""}display:block" aria-hidden="true">
+    <g fill="none" stroke="var(--bk-accent)" stroke-width="1.6" stroke-linecap="round">
+      <path d="M4 40 Q 50 30 116 8"/>
+      <path d="M28 34 q -2 -12 6 -18"/><path d="M52 28 q -1 -12 8 -17"/><path d="M78 20 q 0 -11 9 -15"/>
+    </g>
+    <g fill="var(--bk-accent)" opacity=".8">
+      <ellipse cx="34" cy="15" rx="4.5" ry="9" transform="rotate(24 34 15)"/>
+      <ellipse cx="60" cy="10" rx="4" ry="8" transform="rotate(28 60 10)"/>
+      <ellipse cx="87" cy="4" rx="3.5" ry="7" transform="rotate(32 87 4)"/>
+      <ellipse cx="16" cy="30" rx="3.5" ry="7" transform="rotate(20 16 30)"/>
+    </g>
+  </svg>`;
+  pages.push(`<div class="page signpage">${wm}
+    ${branch(false)}
+    <div class="eyebrow" style="letter-spacing:.3em;text-transform:uppercase;color:var(--bk-accent);font-weight:700;margin-top:1.4em">${prop}</div>
+    <h2 style="font-size:3.4em;margin:.2em 0">welcome</h2>
+    <p style="max-width:26em;opacity:.75;margin-top:.6em">Make yourself at home. Help yourself to anything in the kitchen — the welcome book on the counter has everything you need.</p>
+    ${v("ssid","")?`<p style="margin-top:1.8em;font-size:1.05em">WiFi: <b>${esc(v("ssid",""))}</b> · Password: <b style="font-family:ui-monospace,Menlo,monospace">${esc(v("wifipass","—"))}</b></p>`:""}
+    <div style="margin-top:1.8em;width:100%;display:flex;justify-content:flex-end">${branch(true)}</div>
+  </div>`);
 
   document.getElementById("pages").innerHTML=pages.join("");
 }
