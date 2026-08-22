@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome Book Builder — Make Welcome Book</title>
+<meta name="description" content="Answer a few questions, get a beautiful print-ready welcome book for your vacation rental.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Cormorant+Garamond:wght@600;700&family=Libre+Baskerville:wght@400;700&family=DM+Serif+Display&family=Lora:wght@600;700&family=Marcellus&family=Spectral:wght@600;700&family=Crimson+Pro:wght@600;700&family=EB+Garamond:wght@600;700&display=swap" rel="stylesheet">
+<script src="vendor/qrcode.min.js"></script>
+<style>
+  :root{
+    --ink:#26221c; --paper:#faf7f2; --muted:#6f675c; --line:#e6dfd4;
+    --accent:#b4593c; --accent-soft:#f3e2da; --ok:#3d6b4f;
+    /* book theme vars (overridden per theme) */
+    --bk-accent:#b4593c; --bk-accent-soft:#f6e8e1; --bk-ink:#2b2117; --bk-paper:#fdfaf5; --bk-serif:'Fraunces',Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
+
+  header.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:50}
+  .brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--ink);text-decoration:none}
+  .brand span{color:var(--accent)}
+  .topbar .actions{display:flex;gap:10px;align-items:center}
+  .btn{display:inline-block;border:0;border-radius:10px;padding:11px 18px;font:600 .95rem 'Inter',sans-serif;cursor:pointer;text-decoration:none;transition:.15s}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{filter:brightness(1.08)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+  main.layout{display:grid;grid-template-columns:minmax(340px,480px) 1fr;gap:0;min-height:calc(100vh - 61px)}
+  @media(max-width:900px){main.layout{grid-template-columns:1fr}}
+
+  /* ---------- form column ---------- */
+  .formcol{padding:26px 26px 80px;border-right:1px solid var(--line);background:#fff;overflow-y:auto}
+  .formcol h1{font-family:'Fraunces',serif;font-size:1.5rem;margin-bottom:4px}
+  .formcol>p.lead{color:var(--muted);font-size:.95rem;margin-bottom:20px}
+  details.step{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;background:#fff}
+  details.step[open]{border-color:#d8cfc0;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+  details.step summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;align-items:center;gap:10px}
+  details.step summary::-webkit-details-marker{display:none}
+  details.step summary .num{background:var(--accent-soft);color:var(--accent);font-size:.8rem;font-weight:700;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:none}
+  details.step .fields{padding:2px 16px 16px}
+  label{display:block;font-size:.85rem;font-weight:600;margin:12px 0 5px}
+  label small{font-weight:400;color:var(--muted)}
+  input[type=text],input[type=time],textarea,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:9px;font:400 .95rem 'Inter',sans-serif;background:var(--paper);color:var(--ink)}
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+  textarea{min-height:74px;resize:vertical}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+  .checks label{display:flex;align-items:center;gap:8px;font-weight:400;font-size:.88rem;margin:0;cursor:pointer}
+  .checks input{accent-color:var(--accent)}
+  .themepick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+  .themepick button{border:2px solid var(--line);border-radius:10px;padding:8px 4px 7px;cursor:pointer;font:600 .72rem 'Inter',sans-serif;background:#fff;color:var(--ink)}
+  .themepick button .sw{display:block;height:22px;border-radius:6px;margin-bottom:5px}
+  .themepick button.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+  .hint{font-size:.8rem;color:var(--muted);margin-top:6px}
+
+  /* ---------- preview column ---------- */
+  .prevcol{padding:26px;overflow-y:auto;background:var(--paper)}
+  .prevhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+  .prevhead h2{font-family:'Fraunces',serif;font-size:1.15rem}
+  .prevhead .note{font-size:.82rem;color:var(--muted)}
+  #pages{display:flex;flex-direction:column;align-items:center;gap:22px}
+
+  /* the book page: A4 ratio */
+  .page{width:min(560px,100%);aspect-ratio:210/297;background:var(--bk-paper);color:var(--bk-ink);box-shadow:0 6px 24px rgba(38,34,28,.13);border-radius:4px;position:relative;overflow:hidden;padding:7.5% 8.5%;font-size:clamp(9px,1.55vw,13.5px);line-height:1.5}
+  .page .pgfoot{position:absolute;bottom:3.2%;left:0;right:0;text-align:center;font-size:.75em;color:var(--bk-ink);opacity:.45;letter-spacing:.12em;text-transform:uppercase}
+  .page h2.sec{font-family:var(--bk-serif);font-size:2em;font-weight:600;margin-bottom:.6em;color:var(--bk-ink)}
+  .page .rule{width:44px;height:3px;background:var(--bk-accent);border-radius:2px;margin:0 0 1.4em}
+  .page .kv{margin-bottom:1em}
+  .page .kv .k{font-size:.78em;letter-spacing:.14em;text-transform:uppercase;color:var(--bk-accent);font-weight:700;margin-bottom:.15em}
+  .page .kv .v{white-space:pre-wrap}
+  .page ul{padding-left:1.2em}
+  .page li{margin-bottom:.45em}
+  .cover{display:flex;flex-direction:column;justify-content:space-between;text-align:center;background:linear-gradient(160deg,var(--bk-accent-soft),var(--bk-paper) 60%)}
+  .cover .top{padding-top:14%}
+  .cover .eyebrow{letter-spacing:.28em;text-transform:uppercase;font-size:.8em;color:var(--bk-accent);font-weight:700}
+  .cover h1{font-family:var(--bk-serif);font-size:3.1em;font-weight:700;line-height:1.12;margin:.4em 0 .3em}
+  .cover .sub{color:var(--bk-ink);opacity:.75;font-size:1.05em}
+  .cover .bottom{padding-bottom:8%;font-size:.9em;opacity:.7}
+  .cover .crest{width:54px;height:54px;border-radius:50%;background:var(--bk-accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--bk-serif);font-size:1.6em;margin:0 auto 1em}
+  /* cover variants */
+  .cover.cv-frame{background:var(--bk-paper);justify-content:center}
+  .cover.cv-frame .inner{border:2px solid var(--bk-accent);outline:1px solid var(--bk-accent);outline-offset:5px;padding:14% 8%;margin:0 2%}
+  .cover.cv-frame .top{padding-top:0}
+  .cover.cv-frame .bottom{padding-bottom:0;margin-top:2.2em}
+  .cover.cv-band{background:var(--bk-paper);justify-content:center;gap:0}
+  .cover.cv-band .band{background:var(--bk-accent);color:#fff;margin:0 -12%;padding:2em 12%}
+  .cover.cv-band .band h1{margin:.15em 0;color:#fff}
+  .cover.cv-band .band .eyebrow{color:rgba(255,255,255,.85)}
+  .cover.cv-band .sub{margin-top:1.6em}
+  .cover.cv-band .bottom{padding-bottom:0;margin-top:2.6em}
+  .cover.cv-minimal{background:var(--bk-paper);text-align:left;justify-content:space-between}
+  .cover.cv-minimal .top{padding-top:8%}
+  .cover.cv-minimal h1{font-size:3.6em;font-weight:600}
+  .cover.cv-minimal .mrule{width:64px;height:4px;background:var(--bk-accent);border-radius:2px;margin:1.6em 0}
+  .cover.cv-minimal .bottom{text-align:left}
+  .wifibox{border:2px solid var(--bk-accent);border-radius:12px;padding:1.2em;display:flex;gap:1.2em;align-items:center;margin:1em 0}
+  .wifibox .qr{width:31%;flex:none}
+  .wifibox .qr svg{width:100%;height:auto;display:block}
+  .wifibox .creds{flex:1}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:1.4em}
+  .tipcard{border-left:3px solid var(--bk-accent);padding-left:.9em;margin-bottom:1em}
+  .tipcard .t{font-weight:700}
+  .tipcard .d{opacity:.8;font-size:.92em}
+  .backcover{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(20deg,var(--bk-accent-soft),var(--bk-paper) 65%)}
+  .backcover h2{font-family:var(--bk-serif);font-size:2.4em;font-weight:600;margin-bottom:.5em}
+  .backcover p{max-width:34em;opacity:.8}
+
+  /* wifi sign page */
+  .signpage{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .signpage .qr{width:46%;margin:1.6em 0}
+  .signpage .qr svg{width:100%;height:auto}
+  .signpage h2{font-family:var(--bk-serif);font-size:2.6em;font-weight:600}
+  .signpage .cred{font-size:1.25em;margin-top:.4em}
+  .signpage .cred b{font-family:ui-monospace,Menlo,monospace}
+
+  /* watermark / preview lock */
+  .wm{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center;z-index:5}
+  .wm span{transform:rotate(-28deg);font:700 2.2em 'Inter',sans-serif;color:rgba(180,89,60,.16);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+  body.unlocked .wm{display:none}
+
+  /* unlock bar */
+  .paybar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);padding:12px 22px;display:flex;align-items:center;justify-content:center;gap:16px;z-index:60;flex-wrap:wrap}
+  .paybar .msg{font-size:.92rem;color:var(--muted)}
+  .paybar .msg b{color:var(--ink)}
+  body.unlocked .paybar{display:none}
+  .unlockedbar{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--ok);color:#fff;padding:12px 22px;text-align:center;z-index:60;font-weight:600}
+  body.unlocked .unlockedbar{display:block}
+
+  /* ---------- print ---------- */
+  @media print{
+    header.topbar,.formcol,.prevhead,.paybar,.unlockedbar{display:none!important}
+    body{background:#fff}
+    main.layout{display:block}
+    .prevcol{padding:0;overflow:visible}
+    #pages{gap:0}
+    .page{width:100%;aspect-ratio:auto;height:100vh;box-shadow:none;border-radius:0;page-break-after:always;font-size:13pt;padding:18mm 20mm}
+    body:not(.unlocked) #pages{display:none}
+    body:not(.unlocked) .printlock{display:block!important;font:600 14pt 'Inter',sans-serif;padding:40mm 20mm;text-align:center}
+  }
+  .printlock{display:none}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html">Make<span>Welcome</span>Book</a>
+  <div class="actions">
+    <button class="btn btn-ghost" id="btnSample">Fill sample data</button>
+    <button class="btn btn-primary" id="btnPrint">Download PDF</button>
+  </div>
+</header>
+
+<main class="layout">
+  <!-- ============ FORM ============ -->
+  <section class="formcol" id="form">
+    <h1>Build your welcome book</h1>
+    <p class="lead">Answer the questions — the book on the right updates as you type. Everything is saved in your browser automatically.</p>
+
+    <details class="step" open>
+      <summary><span class="num">1</span> Your place &amp; style</summary>
+      <div class="fields">
+        <label>Property name <small>(as guests know it)</small></label>
+        <input type="text" id="f_propname" placeholder="The Cedar Cottage">
+        <label>Welcome line <small>(one friendly sentence)</small></label>
+        <input type="text" id="f_tagline" placeholder="We're so glad you're here — make yourself at home.">
+        <div class="row2">
+          <div><label>Host name(s)</label><input type="text" id="f_host" placeholder="Anna & Tom"></div>
+          <div><label>City / area</label><input type="text" id="f_city" placeholder="Lake Tahoe, CA"></div>
+        </div>
+        <label>Book design <small>(16 themes — each with its own typography &amp; cover)</small></label>
+        <div class="themepick" id="themes"></div>
+      </div>
+    </details>
+
+    <details class="step">
+      <summary><span class="num">2</span> WiFi</summary>
+      <div class="fields">
+        <div class="row2">
+          <div><label>Network name (SSID)</label><input type="text" id="f_ssid" placeholder="CedarCottage_Guest"></div>
+          <div><label>Password</label><input type="text" id="f_wifipass" placeholder="welcome2026"></div>
+        </div>
+        <p class="hint">We generate a QR code — guests scan it and connect automatically. It also becomes a printable sign.</p>
+      </div>
+    </details>
+
+    <details class="step">
+      <summary><span class="num">3</span> Check-in</summary>
+      <div class="fields">
+        <div class="row2">
+          <div><label>Check-in from</label><input type="time" id="f_checkin" value="15:00"></div>
+          <div><label>Check-out by</label><input type="time" id="f_checkout" value="11:00"></div>
+        </div>
+        <label>How to get in <small>(lockbox, smart lock, keys…)</small></label>
+        <textarea id="f_entry" placeholder="The lockbox is to the right of the front door. Code: 4821. Please put the keys back when you leave."></textarea>
+        <label>Parking</label>
+        <textarea id="f_parking" placeholder="Free parking in the driveway for 2 cars. Please don't block the sidewalk."></textarea>
+      </div>
+    </details>
+
+    <details class="step">
+      <summary><span class="num">4</span> House rules</summary>
+      <div class="fields">
+        <div class="checks" id="rules">
+          <label><input type="checkbox" value="No smoking anywhere on the property" checked> No smoking</label>
+          <label><input type="checkbox" value="No parties or events"> No parties</label>
+          <label><input type="checkbox" value="Please remove shoes indoors"> Shoes off inside</label>
+          <label><input type="checkbox" value="No pets, please"> No pets</label>
+          <label><input type="checkbox" value="Quiet hours: 10 PM – 8 AM" checked> Quiet hours 10–8</label>
+          <label><input type="checkbox" value="Please don't move furniture"> Don't move furniture</label>
+        </div>
+        <label>Your own rules <small>(one per line)</small></label>
+        <textarea id="f_rules_custom" placeholder="Please run the dishwasher before check-out"></textarea>
+      </div>
+    </details>
+
+    <details class="step">
+      <summary><span class="num">5</span> How things work</summary>
+      <div class="fields">
+        <label>Appliances &amp; quirks <small>(one per line, like "Coffee machine: pods are in the drawer below")</small></label>
+        <textarea id="f_appliances" style="min-height:110px" placeholder="TV: use the black remote, press SOURCE for Netflix
+Heating: thermostat in the hallway, please keep under 23°C
+Washer: detergent is under the sink"></textarea>
+        <label>Trash &amp; recycling</label>
+        <textarea id="f_trash" placeholder="Bins are behind the gate. Collection day is Tuesday — blue bin for recycling."></textarea>
+      </div>
+    </details>
+
+    <details class="step">
+      <summary><span class="num">6</span> Your favorite places</summary>
+      <div class="fields">
+        <label>Local tips <small>(one per line: Name — why you love it)</small></label>
+        <textarea id="f_tips" style="min-height:130px" placeholder="Luna Café — best breakfast in town, 5 min walk
+Trattoria Rosa — our favorite dinner spot, book ahead
+Green Trail — beautiful 1-hour lake hike from the back gate
+SuperFresh Market — closest grocery, open till 22:00"></textarea>
+      </div>
+    </details>
+
+    <details class="step">
+      <summary><span class="num">7</span> Important info</summary>
+      <div class="fields">
+        <label>Property address</label>
+        <input type="text" id="f_address" placeholder="12 Cedar Lane, Lake Tahoe, CA 96150">
+        <label>Your phone / contact</label>
+        <input type="text" id="f_phone" placeholder="+1 555 0132 — WhatsApp works too">
+        <label>Emergency notes <small>(nearest hospital, fire extinguisher, water shut-off…)</small></label>
+        <textarea id="f_emergency" placeholder="Emergency number: 911
+Nearest hospital: Barton Memorial, 10 min drive
+Fire extinguisher: kitchen cupboard under the sink"></textarea>
+        <label>Check-out steps <small>(one per line)</small></label>
+        <textarea id="f_checkoutlist" placeholder="Load and start the dishwasher
+Take out the trash
+Close all windows
+Leave keys in the lockbox"></textarea>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ PREVIEW ============ -->
+  <section class="prevcol">
+    <div class="prevhead">
+      <h2>Live preview</h2>
+      <span class="note">A4 pages — “Download PDF” opens your print dialog, choose “Save as PDF”.</span>
+    </div>
+    <div id="pages"></div>
+    <p class="printlock">Your welcome book is ready — unlock it on the website to print. 🙂</p>
+  </section>
+</main>
+
+<div class="paybar">
+  <span class="msg"><b>Free preview.</b> Unlock printing &amp; remove the watermark — <b>$29 one-time</b>, free re-edits forever.</span>
+  <a class="btn btn-primary" id="btnPay" href="#">Unlock my book</a>
+</div>
+<div class="unlockedbar">✓ Unlocked — thank you! Edit any time; your book stays yours.</div>
+
+<script>
+"use strict";
+/* ---------- state ---------- */
+const FIELDS = ["propname","tagline","host","city","ssid","wifipass","checkin","checkout","entry","parking","rules_custom","appliances","trash","tips","address","phone","emergency","checkoutlist"];
+const THEMES = {
+  terracotta:{label:"Terracotta",accent:"#b4593c",soft:"#f6e8e1",ink:"#2b2117",paper:"#fdfaf5",serif:"'Fraunces',Georgia,serif",cover:"classic"},
+  coastal:   {label:"Coastal",   accent:"#3e6d8e",soft:"#e3edf4",ink:"#1e2a33",paper:"#fbfdfe",serif:"'Lora',Georgia,serif",cover:"classic"},
+  forest:    {label:"Forest",    accent:"#3d6b4f",soft:"#e4efe7",ink:"#22291f",paper:"#fbfdf9",serif:"'Libre Baskerville',Georgia,serif",cover:"classic"},
+  noir:      {label:"Noir",      accent:"#1f1f1f",soft:"#ececec",ink:"#171717",paper:"#ffffff",serif:"'Playfair Display',Georgia,serif",cover:"minimal"},
+  champagne: {label:"Champagne", accent:"#b08d4f",soft:"#f5ecdc",ink:"#33291a",paper:"#fffdf8",serif:"'Cormorant Garamond',Georgia,serif",cover:"frame"},
+  lavender:  {label:"Lavender",  accent:"#7a6aa6",soft:"#ece7f5",ink:"#2a2438",paper:"#fdfcff",serif:"'Lora',Georgia,serif",cover:"classic"},
+  olive:     {label:"Olive",     accent:"#6b6b3a",soft:"#eeeedd",ink:"#2a2a18",paper:"#fcfcf5",serif:"'EB Garamond',Georgia,serif",cover:"band"},
+  rosewood:  {label:"Rosewood",  accent:"#9e4a5a",soft:"#f6e3e7",ink:"#331c22",paper:"#fffafb",serif:"'Playfair Display',Georgia,serif",cover:"frame"},
+  midnight:  {label:"Midnight",  accent:"#27374d",soft:"#e2e8f0",ink:"#16202e",paper:"#f8fafc",serif:"'Spectral',Georgia,serif",cover:"minimal"},
+  amber:     {label:"Amber",     accent:"#c1762a",soft:"#f9ead6",ink:"#33240f",paper:"#fffcf6",serif:"'Fraunces',Georgia,serif",cover:"band"},
+  sage:      {label:"Sage",      accent:"#71906d",soft:"#e9f0e8",ink:"#263024",paper:"#fbfdfb",serif:"'Cormorant Garamond',Georgia,serif",cover:"minimal"},
+  lagoon:    {label:"Lagoon",    accent:"#2e7d74",soft:"#e0f0ee",ink:"#1b2e2b",paper:"#f9fdfc",serif:"'DM Serif Display',Georgia,serif",cover:"classic"},
+  slate:     {label:"Slate",     accent:"#5a6472",soft:"#e8ebef",ink:"#232830",paper:"#fbfcfd",serif:"'Libre Baskerville',Georgia,serif",cover:"band"},
+  berry:     {label:"Berry",     accent:"#8e3b62",soft:"#f4e2ec",ink:"#331726",paper:"#fffbfd",serif:"'Playfair Display',Georgia,serif",cover:"band"},
+  sand:      {label:"Sand",      accent:"#a08663",soft:"#f1e9dc",ink:"#322a1d",paper:"#fdfbf7",serif:"'Marcellus',Georgia,serif",cover:"minimal"},
+  espresso:  {label:"Espresso",  accent:"#6f4e37",soft:"#efe5dd",ink:"#2b1d12",paper:"#fdfaf7",serif:"'Crimson Pro',Georgia,serif",cover:"frame"}
+};
+const LS_KEY="mwb_data_v1", LS_UNLOCK="mwb_unlocked";
+// unlock code is checked by prefix so the Stripe success URL can carry it
+const UNLOCK_CODE="MWB-UNLOCK-2026";
+const PAY_LINK="#stripe-payment-link-placeholder"; // replaced at deploy
+
+let state = load();
+function load(){ try{ return JSON.parse(localStorage.getItem(LS_KEY))||{} }catch(e){ return {} } }
+function save(){ localStorage.setItem(LS_KEY, JSON.stringify(state)) }
+
+/* ---------- unlock handling ---------- */
+(function(){
+  const p=new URLSearchParams(location.search);
+  if(p.get("paid")===UNLOCK_CODE) localStorage.setItem(LS_UNLOCK,"1");
+  if(localStorage.getItem(LS_UNLOCK)==="1") document.body.classList.add("unlocked");
+  document.getElementById("btnPay").href=PAY_LINK;
+})();
+
+/* ---------- bind form ---------- */
+FIELDS.forEach(f=>{
+  const el=document.getElementById("f_"+f); if(!el) return;
+  if(state[f]!==undefined) el.value=state[f];
+  el.addEventListener("input",()=>{ state[f]=el.value; save(); render(); });
+});
+document.querySelectorAll("#rules input").forEach(cb=>{
+  if(state.rules && state.rules.includes(cb.value)) cb.checked=true;
+  if(state.rules===undefined && cb.defaultChecked) cb.checked=true;
+  cb.addEventListener("change",collectRules);
+});
+function collectRules(){
+  state.rules=[...document.querySelectorAll("#rules input:checked")].map(c=>c.value);
+  save(); render();
+}
+/* build theme picker from registry */
+(function(){
+  const wrap=document.getElementById("themes");
+  wrap.innerHTML=Object.entries(THEMES).map(([id,t])=>
+    `<button data-theme="${id}" title="${t.label}"><span class="sw" style="background:${t.accent}"></span>${t.label}</button>`).join("");
+  wrap.querySelectorAll("button").forEach(b=>{
+    b.addEventListener("click",()=>{ state.theme=b.dataset.theme; save(); markTheme(); render(); });
+  });
+  markTheme();
+  function markTheme(){
+    wrap.querySelectorAll("button").forEach(x=>x.classList.toggle("active",x.dataset.theme===(state.theme||"terracotta")));
+  }
+  window._markTheme=markTheme;
+})();
+
+/* ---------- helpers ---------- */
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const lines=s=>String(s??"").split("\n").map(x=>x.trim()).filter(Boolean);
+function v(f,fallback){ const val=(state[f]??"").trim(); return val||fallback; }
+function fmtTime(t){ if(!t) return ""; const [h,m]=t.split(":").map(Number); const am=h<12; const hh=((h+11)%12)+1; return hh+(m?":"+String(m).padStart(2,"0"):"")+" "+(am?"AM":"PM"); }
+function wifiQR(){
+  const ssid=v("ssid",""), pass=v("wifipass","");
+  if(!ssid) return "";
+  const escq=x=>x.replace(/([\\;,:"])/g,"\\$1");
+  try{
+    const qr=qrcode(0,"M");
+    qr.addData(`WIFI:T:${pass?"WPA":"nopass"};S:${escq(ssid)};P:${escq(pass)};;`);
+    qr.make();
+    return qr.createSvgTag({cellSize:4,margin:2,scalable:true});
+  }catch(e){ return ""; }
+}
+const wm='<div class="wm"><span>Preview · makewelcomebook.com</span></div>';
+
+/* ---------- render book ---------- */
+function render(){
+  const T=THEMES[state.theme||"terracotta"]||THEMES.terracotta;
+  const r=document.documentElement.style;
+  r.setProperty("--bk-accent",T.accent); r.setProperty("--bk-accent-soft",T.soft);
+  r.setProperty("--bk-ink",T.ink); r.setProperty("--bk-paper",T.paper);
+  r.setProperty("--bk-serif",T.serif);
+
+  const prop=esc(v("propname","Your Property Name"));
+  const host=esc(v("host","Your Hosts"));
+  const city=esc(v("city",""));
+  const foot=`<div class="pgfoot">${prop}</div>`;
+  const pages=[];
+
+  /* cover — layout depends on theme's cover variant */
+  const tagline=esc(v("tagline","We're so glad you're here — make yourself at home."));
+  const initial=esc((v("propname","W")).trim()[0]||"W");
+  const byline=`Your hosts, ${host}${city?" · "+city:""}`;
+  const covers={
+    classic:`<div class="page cover">${wm}
+      <div class="top">
+        <div class="crest">${initial}</div>
+        <div class="eyebrow">Welcome to</div>
+        <h1>${prop}</h1>
+        <div class="sub">${tagline}</div>
+      </div>
+      <div class="bottom">${byline}</div>
+    </div>`,
+    frame:`<div class="page cover cv-frame">${wm}
+      <div class="inner">
+        <div class="top">
+          <div class="eyebrow">Welcome to</div>
+          <h1>${prop}</h1>
+          <div class="sub">${tagline}</div>
+        </div>
+        <div class="bottom">${byline}</div>
+      </div>
+    </div>`,
+    band:`<div class="page cover cv-band">${wm}
+      <div class="band">
+        <div class="eyebrow">Welcome to</div>
+        <h1>${prop}</h1>
+      </div>
+      <div class="sub">${tagline}</div>
+      <div class="bottom">${byline}</div>
+    </div>`,
+    minimal:`<div class="page cover cv-minimal">${wm}
+      <div class="top">
+        <div class="eyebrow">Welcome to</div>
+        <h1>${prop}</h1>
+        <div class="mrule"></div>
+        <div class="sub">${tagline}</div>
+      </div>
+      <div class="bottom">${byline}</div>
+    </div>`
+  };
+  pages.push(covers[T.cover]||covers.classic);
+
+  /* wifi + welcome */
+  const qr=wifiQR();
+  pages.push(`<div class="page">${wm}
+    <h2 class="sec">Getting connected</h2><div class="rule"></div>
+    ${qr?`<div class="wifibox"><div class="qr">${qr}</div>
+      <div class="creds">
+        <div class="kv"><div class="k">Network</div><div class="v">${esc(v("ssid",""))}</div></div>
+        <div class="kv"><div class="k">Password</div><div class="v">${esc(v("wifipass","—"))}</div></div>
+        <div class="kv"><div class="v" style="opacity:.7">Point your phone camera at the code to connect automatically.</div></div>
+      </div></div>`
+      :`<div class="kv"><div class="k">WiFi</div><div class="v">Add your network name in step 2 and the QR code appears here.</div></div>`}
+    <div class="kv"><div class="k">Need us?</div><div class="v">${esc(v("phone","Your contact number"))}</div></div>
+    <div class="kv"><div class="k">Address</div><div class="v">${esc(v("address","Your property address"))}</div></div>
+    ${foot}
+  </div>`);
+
+  /* check-in / out */
+  pages.push(`<div class="page">${wm}
+    <h2 class="sec">Arriving &amp; leaving</h2><div class="rule"></div>
+    <div class="twocol">
+      <div class="kv"><div class="k">Check-in from</div><div class="v" style="font-size:1.5em;font-weight:700">${fmtTime(v("checkin","15:00"))}</div></div>
+      <div class="kv"><div class="k">Check-out by</div><div class="v" style="font-size:1.5em;font-weight:700">${fmtTime(v("checkout","11:00"))}</div></div>
+    </div>
+    <div class="kv"><div class="k">Getting in</div><div class="v">${esc(v("entry","How to get in — lockbox, smart lock, keys…"))}</div></div>
+    <div class="kv"><div class="k">Parking</div><div class="v">${esc(v("parking","Where to park"))}</div></div>
+    ${lines(state.checkoutlist).length?`<div class="kv"><div class="k">Before you go</div><ul>${lines(state.checkoutlist).map(l=>`<li>${esc(l)}</li>`).join("")}</ul></div>`:""}
+    ${foot}
+  </div>`);
+
+  /* house rules */
+  const rules=(state.rules|| [...document.querySelectorAll("#rules input:checked")].map(c=>c.value)).concat(lines(state.rules_custom));
+  pages.push(`<div class="page">${wm}
+    <h2 class="sec">House rules</h2><div class="rule"></div>
+    <ul style="font-size:1.1em">${(rules.length?rules:["Add your rules in step 4"]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+    <p style="margin-top:1.5em;opacity:.7">Thank you for treating our home with care — it means the world to us. 💛</p>
+    ${foot}
+  </div>`);
+
+  /* how things work */
+  const app=lines(state.appliances);
+  pages.push(`<div class="page">${wm}
+    <h2 class="sec">How things work</h2><div class="rule"></div>
+    ${app.length?app.map(l=>{const i=l.indexOf(":");const t=i>0?l.slice(0,i):l;const d=i>0?l.slice(i+1).trim():"";
+      return `<div class="tipcard"><div class="t">${esc(t)}</div>${d?`<div class="d">${esc(d)}</div>`:""}</div>`}).join("")
+      :`<p style="opacity:.6">Add appliance notes in step 5 — coffee machine, TV, heating…</p>`}
+    ${v("trash","")?`<div class="kv" style="margin-top:1em"><div class="k">Trash &amp; recycling</div><div class="v">${esc(v("trash",""))}</div></div>`:""}
+    ${foot}
+  </div>`);
+
+  /* local tips */
+  const tips=lines(state.tips);
+  pages.push(`<div class="page">${wm}
+    <h2 class="sec">Our favorite places</h2><div class="rule"></div>
+    ${tips.length?tips.map(l=>{const m=l.split(/\s+[—-]\s+/);return `<div class="tipcard"><div class="t">${esc(m[0])}</div>${m[1]?`<div class="d">${esc(m.slice(1).join(" — "))}</div>`:""}</div>`}).join("")
+      :`<p style="opacity:.6">Add your local tips in step 6 — guests love honest recommendations.</p>`}
+    ${foot}
+  </div>`);
+
+  /* important info */
+  pages.push(`<div class="page">${wm}
+    <h2 class="sec">Good to know</h2><div class="rule"></div>
+    <div class="kv"><div class="k">Address</div><div class="v">${esc(v("address","Your property address"))}</div></div>
+    <div class="kv"><div class="k">Contact us</div><div class="v">${esc(v("phone","Your phone"))}</div></div>
+    <div class="kv"><div class="k">In an emergency</div><div class="v">${esc(v("emergency","Emergency numbers and safety info"))}</div></div>
+    ${foot}
+  </div>`);
+
+  /* back cover */
+  pages.push(`<div class="page backcover">${wm}
+    <h2>Enjoy your stay ✨</h2>
+    <p>If anything isn't perfect, message us first — we'll fix it fast. And if you loved your stay, a kind review helps our small ${city?city+" ":""}rental more than you know.</p>
+    <p style="margin-top:2em;font-family:var(--bk-serif);font-size:1.3em">— ${host}</p>
+  </div>`);
+
+  /* wifi sign printable */
+  if(qr){ pages.push(`<div class="page signpage">${wm}
+    <div class="eyebrow" style="letter-spacing:.28em;text-transform:uppercase;color:var(--bk-accent);font-weight:700">${prop}</div>
+    <h2>WiFi</h2>
+    <div class="qr">${qr}</div>
+    <div class="cred">Network: <b>${esc(v("ssid",""))}</b></div>
+    <div class="cred">Password: <b>${esc(v("wifipass","—"))}</b></div>
+    <p style="margin-top:1.6em;opacity:.6">Scan with your phone camera to connect</p>
+  </div>`); }
+
+  document.getElementById("pages").innerHTML=pages.join("");
+}
+
+/* ---------- actions ---------- */
+document.getElementById("btnPrint").addEventListener("click",()=>{
+  if(localStorage.getItem(LS_UNLOCK)!=="1"){
+    document.getElementById("btnPay").scrollIntoView({behavior:"smooth",block:"center"});
+    document.querySelector(".paybar").animate([{transform:"scale(1)"},{transform:"scale(1.03)"},{transform:"scale(1)"}],{duration:300});
+    return;
+  }
+  window.print();
+});
+function applySample(){
+  state={
+    propname:"The Cedar Cottage",tagline:"We're so glad you're here — make yourself at home.",
+    host:"Anna & Tom",city:"Lake Tahoe, CA",ssid:"CedarCottage_Guest",wifipass:"welcome2026",
+    checkin:"15:00",checkout:"11:00",
+    entry:"The lockbox is to the right of the front door. Code: 4821. Please put the keys back inside when you leave.",
+    parking:"Free parking in the driveway for 2 cars. Please don't block the sidewalk.",
+    rules:["No smoking anywhere on the property","Quiet hours: 10 PM – 8 AM","Please remove shoes indoors"],
+    rules_custom:"Please don't feed the deer (they will never leave!)",
+    appliances:"TV: use the black remote, press SOURCE for Netflix\nCoffee machine: pods are in the drawer below\nHeating: thermostat in the hallway — please keep under 23°C\nHot tub: cover off, press JETS, cover back on after",
+    trash:"Bins are behind the gate. Collection is Tuesday morning — blue bin for recycling.",
+    tips:"Luna Café — best breakfast in town, 5 min walk\nTrattoria Rosa — our favorite dinner spot, book ahead\nGreen Trail — beautiful 1-hour lake hike from the back gate\nSuperFresh Market — closest grocery, open till 22:00",
+    address:"12 Cedar Lane, Lake Tahoe, CA 96150",phone:"+1 555 0132 — WhatsApp works too",
+    emergency:"Emergency number: 911\nNearest hospital: Barton Memorial, 10 min drive\nFire extinguisher: kitchen cupboard under the sink",
+    checkoutlist:"Load and start the dishwasher\nTake out the trash\nClose all windows\nLeave keys in the lockbox",
+    theme:state.theme||"terracotta"
+  };
+  save();
+  FIELDS.forEach(f=>{const el=document.getElementById("f_"+f); if(el&&state[f]!==undefined) el.value=state[f];});
+  document.querySelectorAll("#rules input").forEach(cb=>cb.checked=state.rules.includes(cb.value));
+  if(window._markTheme) window._markTheme();
+  render();
+}
+document.getElementById("btnSample").addEventListener("click",applySample);
+
+/* ?sample=1 shows a finished example — but never overwrites a visitor's own book */
+(function(){
+  const p=new URLSearchParams(location.search);
+  if(p.get("sample")==="1" && !(state.propname||"").trim()){
+    applySample();
+    setTimeout(()=>{ const pv=document.querySelector(".prevcol"); if(pv) pv.scrollIntoView({behavior:"smooth"}); },150);
+  }
+})();
+
+collectRules(); render();
+</script>
+</body>
+</html>
