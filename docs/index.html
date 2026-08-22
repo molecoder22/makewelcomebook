@@ -7,7 +7,7 @@
 <meta name="description" content="Answer a few questions, get a beautiful print-ready welcome book for your Airbnb or vacation rental. WiFi QR sign included. $29 one-time — no subscription, no Canva.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:wght@600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root{--ink:#26221c;--paper:#faf7f2;--muted:#6f675c;--line:#e6dfd4;--accent:#b4593c;--accent-soft:#f3e2da;--ok:#3d6b4f}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -29,19 +29,22 @@
   .hero p.sub{font-size:1.13rem;color:var(--muted);margin-bottom:26px;max-width:34em}
   .hero .cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
   .hero .cta .small{font-size:.85rem;color:var(--muted)}
-  .heroart{position:relative;min-height:380px}
-  .bookmock{position:absolute;width:62%;aspect-ratio:210/297;background:#fdfaf5;border-radius:6px;box-shadow:0 18px 44px rgba(38,34,28,.22);padding:9%;font-size:clamp(8px,1.15vw,12px)}
-  .bookmock.b1{left:0;top:6%;transform:rotate(-4deg);background:linear-gradient(160deg,#f6e8e1,#fdfaf5 60%);display:flex;flex-direction:column;text-align:center;justify-content:center}
-  .bookmock.b2{right:0;top:18%;transform:rotate(3deg)}
-  .bookmock .eyebrow{letter-spacing:.26em;text-transform:uppercase;font-size:.72em;color:var(--accent);font-weight:700}
-  .bookmock h3{font-family:'Fraunces',serif;font-size:2.3em;margin:.35em 0}
-  .bookmock .crest{width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1.3em;margin:0 auto 1em}
-  .bookmock .k{font-size:.7em;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:1.1em 0 .1em}
-  .bookmock .qrph{width:34%;aspect-ratio:1;background:
-    conic-gradient(#26221c 0 25%,transparent 0 50%,#26221c 0 75%,transparent 0) 0 0/44% 44% no-repeat,
-    conic-gradient(transparent 0 25%,#26221c 0 50%,transparent 0 75%,#26221c 0) 100% 100%/44% 44% no-repeat,
-    repeating-linear-gradient(90deg,#26221c 0 6%,transparent 0 12%) 50% 50%/70% 70% no-repeat;
-    opacity:.85;margin:.8em 0}
+  .heroart{position:relative;min-height:420px}
+  @media(max-width:840px){.heroart{min-height:340px;margin-top:8px}}
+  .bcover{position:absolute;aspect-ratio:210/297;background-size:cover;background-position:center;border-radius:6px;box-shadow:0 16px 40px rgba(38,34,28,.25);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10% 7%;font-size:clamp(7px,1vw,11px);transition:transform .25s}
+  .bcover:hover{transform:translateY(-6px) rotate(0deg) scale(1.02);z-index:9}
+  .bcover .eyebrow{letter-spacing:.28em;text-transform:uppercase;font-size:.75em;font-weight:700}
+  .bcover h3{font-size:2.15em;font-weight:700;line-height:1.15;margin:.35em 0 .4em}
+  .bcover .by{font-size:.85em;opacity:.65}
+  .bcover.c1{width:42%;left:-2%;top:11%;transform:rotate(-9deg);z-index:1;color:#3a2a1c}
+  .bcover.c1 .eyebrow{color:#b05f3e}
+  .bcover.c1 h3{font-family:'Fraunces',serif}
+  .bcover.c2{width:48%;left:27%;top:0;transform:rotate(-1deg);z-index:3;color:#2b3648}
+  .bcover.c2 .eyebrow{color:#6d8fba}
+  .bcover.c2 h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.5em}
+  .bcover.c3{width:42%;right:-2%;top:15%;transform:rotate(9deg);z-index:2;color:#2c352e}
+  .bcover.c3 .eyebrow{color:#6f8b76}
+  .bcover.c3 h3{font-family:'Playfair Display',Georgia,serif}
 
   .strip{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 0}
   .strip .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;text-align:center}
@@ -112,17 +115,20 @@
       <p class="small" style="color:var(--muted);font-size:.85rem;margin-top:12px">Free to try · pay only to download · $29 one-time · 34 designer themes</p>
     </div>
     <div class="heroart" aria-hidden="true">
-      <div class="bookmock b2">
-        <div class="k">Network</div><div>CedarCottage_Guest</div>
-        <div class="qrph"></div>
-        <div class="k">Password</div><div>welcome2026</div>
-        <div class="k" style="margin-top:1.6em">Check-in from</div><div style="font-size:1.4em;font-weight:700">3 PM</div>
+      <div class="bcover c1" style="background-image:url('art/02-boho-arch.webp')">
+        <div class="eyebrow">Welcome to</div>
+        <h3>Desert Rose Villa</h3>
+        <div class="by">Your hosts, Maya &amp; Leo</div>
       </div>
-      <div class="bookmock b1">
-        <div class="crest">C</div>
+      <div class="bcover c3" style="background-image:url('art/01-botanical.webp')">
         <div class="eyebrow">Welcome to</div>
         <h3>The Cedar Cottage</h3>
-        <div style="opacity:.7">We're so glad you're here —<br>make yourself at home.</div>
+        <div class="by">Your hosts, Anna &amp; Tom</div>
+      </div>
+      <div class="bcover c2" style="background-image:url('art/10-toile.webp')">
+        <div class="eyebrow">Welcome to</div>
+        <h3>The Garden House</h3>
+        <div class="by">Your host, Marie</div>
       </div>
     </div>
   </section>
