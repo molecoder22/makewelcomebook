@@ -77,12 +77,23 @@
   .prevhead h2{font-family:'Fraunces',serif;font-size:1.15rem}
   .prevhead .note{font-size:.82rem;color:var(--muted)}
   #pages{display:flex;flex-direction:column;align-items:center;gap:22px}
-  /* book-style pager */
-  .pagenav{display:flex;align-items:center;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+  /* book-style pager with thumbnail rail */
+  .pagenav{display:flex;align-items:center;gap:10px;margin-bottom:12px}
   .pagenav .pnav{border:1px solid var(--line);background:#fff;border-radius:9px;width:34px;height:32px;font-size:1.05rem;cursor:pointer;color:var(--ink);flex:none}
   .pagenav .pnav:hover{border-color:var(--accent);color:var(--accent)}
-  .pagenav .pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 11px;font:600 .72rem 'Inter',sans-serif;cursor:pointer;color:var(--muted)}
-  .pagenav .pill.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .pgcount{font:600 .8rem 'Inter',sans-serif;color:var(--muted)}
+  .pglabel{font:600 .85rem 'Inter',sans-serif;color:var(--ink)}
+  .prevbody{display:flex;gap:18px;justify-content:center;align-items:flex-start}
+  #pages{flex:0 1 560px;min-width:0}
+  #thumbs{display:flex;flex-direction:column;gap:10px;flex:none}
+  .thumb{width:90px;height:127px;overflow:hidden;border:2px solid var(--line);border-radius:6px;cursor:pointer;background:#fff;flex:none;position:relative}
+  .thumb:hover{border-color:var(--accent)}
+  .thumb.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+  .thumb .tinner{width:560px;transform:scale(0.153);transform-origin:top left;pointer-events:none}
+  .thumb .tinner .page{box-shadow:none;border-radius:0;width:560px}
+  .thumb .wm{display:none}
+  .thumb em{position:absolute;bottom:2px;right:5px;font:700 9px 'Inter',sans-serif;font-style:normal;color:var(--muted);background:rgba(255,255,255,.85);border-radius:4px;padding:0 3px}
+  @media(max-width:1150px){#thumbs{display:none}}
   @media screen{ #pages .page:not(.pg-on){display:none} }
 
   /* the book page: A4 ratio */
@@ -176,7 +187,8 @@
 
   /* ---------- print ---------- */
   @media print{
-    header.topbar,.formcol,.prevhead,.pagenav,.paybar,.unlockedbar{display:none!important}
+    header.topbar,.formcol,.prevhead,.pagenav,#thumbs,.paybar,.unlockedbar{display:none!important}
+    .prevbody{display:block}
     body{background:#fff}
     main.layout{display:block}
     .prevcol{padding:0;overflow:visible}
@@ -362,7 +374,10 @@ Leave keys in the lockbox"></textarea>
       <span class="note">Flip through your pages below — “Download PDF” saves all of them (choose “Save as PDF” in the dialog).</span>
     </div>
     <div class="pagenav" id="pagenav"></div>
-    <div id="pages"></div>
+    <div class="prevbody">
+      <div id="pages"></div>
+      <div id="thumbs" aria-label="Page thumbnails"></div>
+    </div>
     <p class="printlock">Your welcome book is ready — unlock it on the website to print. 🙂</p>
   </section>
 </main>
@@ -496,22 +511,28 @@ function collectRules(){
 
 /* book-style pager */
 let curPage=0;
+let pageLabels=[];
 function showPage(i){
   const pgs=document.querySelectorAll("#pages .page");
   if(!pgs.length) return;
   curPage=Math.max(0,Math.min(i,pgs.length-1));
   pgs.forEach((p,k)=>p.classList.toggle("pg-on",k===curPage));
-  document.querySelectorAll("#pagenav .pill").forEach((p,k)=>p.classList.toggle("on",k===curPage));
+  document.querySelectorAll("#thumbs .thumb").forEach((t,k)=>t.classList.toggle("on",k===curPage));
+  const c=document.getElementById("pgCount"); if(c) c.textContent=`${curPage+1} / ${pgs.length}`;
+  const l=document.getElementById("pgLabel"); if(l) l.textContent=pageLabels[curPage]||"";
   const pc=document.querySelector(".prevcol"); if(pc) pc.scrollTo({top:0});
 }
-function buildPageNav(labels){
+function buildPageNav(labels,pageHtml){
+  pageLabels=labels;
   const nav=document.getElementById("pagenav");
-  nav.innerHTML=`<button class="pnav" id="pgPrev" title="Previous page">‹</button>`+
-    labels.map((l,i)=>`<button class="pill" data-pg="${i}">${l}</button>`).join("")+
-    `<button class="pnav" id="pgNext" title="Next page">›</button>`;
-  nav.querySelectorAll(".pill").forEach(b=>b.addEventListener("click",()=>showPage(+b.dataset.pg)));
+  nav.innerHTML=`<button class="pnav" id="pgPrev" title="Previous page">‹</button>
+    <span class="pgcount" id="pgCount"></span><span class="pglabel" id="pgLabel"></span>
+    <button class="pnav" id="pgNext" title="Next page">›</button>`;
   document.getElementById("pgPrev").addEventListener("click",()=>showPage(curPage-1));
   document.getElementById("pgNext").addEventListener("click",()=>showPage(curPage+1));
+  const th=document.getElementById("thumbs");
+  th.innerHTML=pageHtml.map((h,i)=>`<div class="thumb" data-pg="${i}" title="${labels[i]||""}"><div class="tinner">${h}</div><em>${i+1}</em></div>`).join("");
+  th.querySelectorAll(".thumb").forEach(t=>t.addEventListener("click",()=>showPage(+t.dataset.pg)));
   showPage(curPage);
 }
 
@@ -775,7 +796,7 @@ function render(){
   else if(fmt==="sign"){ out=[onePage]; outLabels=["Your sign"]; }
   else { out=pages.concat([onePage]); outLabels=labels.concat(["All-in-one"]); }
   document.getElementById("pages").innerHTML=out.join("");
-  buildPageNav(outLabels);
+  buildPageNav(outLabels,out);
 }
 
 /* ---------- actions ---------- */
