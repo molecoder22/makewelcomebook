@@ -125,6 +125,9 @@
   .op-block.wifi{display:flex;gap:.8em;align-items:center}
   .op-block.wifi .qr{width:36%;flex:none}
   .op-block.wifi .qr svg{width:100%;height:auto;display:block}
+  .miniBtn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 12px;font:600 .78rem 'Inter',sans-serif;cursor:pointer;color:var(--muted)}
+  .miniBtn:hover{border-color:var(--accent);color:var(--accent)}
+  input[type=color]{width:46px;height:36px;padding:2px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer}
   .formatpick{display:flex;gap:8px;margin-top:8px}
   .formatpick button{flex:1;border:2px solid var(--line);border-radius:10px;padding:9px 6px;cursor:pointer;font:600 .78rem 'Inter',sans-serif;background:#fff;color:var(--ink)}
   .formatpick button.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);color:var(--accent)}
@@ -222,6 +225,39 @@
             <div class="themepick" id="themesBasic"></div>
           </details>
         </div>
+      </div>
+    </details>
+
+    <details class="step">
+      <summary><span class="num">✎</span> Fine-tune style <small style="font-weight:400;color:var(--muted)">&nbsp;(optional)</small></summary>
+      <div class="fields">
+        <label>Heading font <small>(overrides the design's font)</small></label>
+        <select id="c_font">
+          <option value="">Theme default</option>
+          <option value="'Fraunces',Georgia,serif">Fraunces — warm &amp; friendly</option>
+          <option value="'Playfair Display',Georgia,serif">Playfair Display — elegant</option>
+          <option value="'Cormorant Garamond',Georgia,serif">Cormorant Garamond — refined</option>
+          <option value="'Libre Baskerville',Georgia,serif">Libre Baskerville — classic</option>
+          <option value="'DM Serif Display',Georgia,serif">DM Serif Display — bold</option>
+          <option value="'Lora',Georgia,serif">Lora — calm</option>
+          <option value="'Marcellus',Georgia,serif">Marcellus — roman</option>
+          <option value="'Spectral',Georgia,serif">Spectral — literary</option>
+          <option value="'Crimson Pro',Georgia,serif">Crimson Pro — bookish</option>
+          <option value="'EB Garamond',Georgia,serif">EB Garamond — timeless</option>
+        </select>
+        <div class="row2">
+          <div><label>Accent color</label>
+            <div style="display:flex;gap:8px;align-items:center">
+              <input type="color" id="c_accent"><button class="miniBtn" id="c_accent_reset" type="button">Reset</button>
+            </div>
+          </div>
+          <div><label>Text color</label>
+            <div style="display:flex;gap:8px;align-items:center">
+              <input type="color" id="c_ink"><button class="miniBtn" id="c_ink_reset" type="button">Reset</button>
+            </div>
+          </div>
+        </div>
+        <p class="hint">Applies to the whole book on top of the design you picked. Reset brings back the design's own colors.</p>
       </div>
     </details>
 
@@ -438,6 +474,15 @@ function collectRules(){
   window._markTheme=markTheme;
 })();
 
+/* fine-tune style controls */
+(function(){
+  const bind=(id,key)=>{const el=document.getElementById(id); if(!el) return;
+    el.addEventListener(el.tagName==="SELECT"?"change":"input",()=>{ state[key]=el.value||undefined; if(!el.value) delete state[key]; save(); render(); });};
+  bind("c_font","custFont"); bind("c_accent","custAccent"); bind("c_ink","custInk");
+  const reset=(id,key)=>{const b=document.getElementById(id); if(b) b.addEventListener("click",()=>{ delete state[key]; save(); render(); });};
+  reset("c_accent_reset","custAccent"); reset("c_ink_reset","custInk");
+})();
+
 /* format picker */
 (function(){
   const wrap=document.getElementById("formats");
@@ -473,6 +518,14 @@ function render(){
   r.setProperty("--bk-accent",T.accent); r.setProperty("--bk-accent-soft",T.soft);
   r.setProperty("--bk-ink",T.ink); r.setProperty("--bk-paper",T.paper);
   r.setProperty("--bk-serif",T.serif);
+  /* fine-tune overrides on top of the theme */
+  if(state.custFont) r.setProperty("--bk-serif",state.custFont);
+  if(state.custAccent){ r.setProperty("--bk-accent",state.custAccent); r.setProperty("--bk-accent-soft",state.custAccent+"26"); }
+  if(state.custInk) r.setProperty("--bk-ink",state.custInk);
+  const cf=document.getElementById("c_font"), ca=document.getElementById("c_accent"), ci=document.getElementById("c_ink");
+  if(cf&&document.activeElement!==cf) cf.value=state.custFont||"";
+  if(ca&&document.activeElement!==ca) ca.value=state.custAccent||T.accent;
+  if(ci&&document.activeElement!==ci) ci.value=state.custInk||T.ink;
 
   const prop=esc(v("propname","Your Property Name"));
   const host=esc(v("host","Your Hosts"));
