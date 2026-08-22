@@ -190,6 +190,16 @@
     <h1>Build your welcome book</h1>
     <p class="lead">Answer the questions — the book on the right updates as you type. Everything is saved in your browser automatically.</p>
 
+    <div style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 16px 16px;margin-bottom:12px">
+      <label style="margin-top:0">What are you making? <small>(you can change any time)</small></label>
+      <div class="formatpick" id="formats">
+        <button data-format="set" class="active">Complete set</button>
+        <button data-format="book">Book only</button>
+        <button data-format="sign">One-page sign</button>
+      </div>
+      <p class="hint">One-page sign = everything on a single frameable page (like the ones on Pinterest) — welcome, WiFi QR, check-in &amp; rules. Complete set = the full book plus all signs.</p>
+    </div>
+
     <details class="step" open>
       <summary><span class="num">1</span> Your place &amp; style</summary>
       <div class="fields">
@@ -212,13 +222,6 @@
             <div class="themepick" id="themesBasic"></div>
           </details>
         </div>
-        <label>Pages <small>(what you'll print)</small></label>
-        <div class="formatpick" id="formats">
-          <button data-format="set" class="active">Complete set</button>
-          <button data-format="book">Book only</button>
-          <button data-format="sign">One-page sign</button>
-        </div>
-        <p class="hint">One-page sign = everything on a single frameable page (like the ones on Pinterest) — welcome, WiFi QR, check-in &amp; rules.</p>
       </div>
     </details>
 
