@@ -106,6 +106,17 @@ Must be answered before ads go live.
       HTTPS enforcement pending cert (background job running).
       NOTE: GoDaddy no longer has free email forwarding — plan: free ImprovMX
       (Mario signs up 1 min, Claude adds MX records). hello@ not receiving yet.
-- [ ] Stripe payment link (steps in DO-THIS-MARIO.md step 3) — NEXT
+- [x] Stripe LIVE 2026-08-22: separate MakeWelcomeBook account (Mario created),
+      product "Welcome Book Unlock" $29, payment link
+      buy.stripe.com/9B6bJ15ypcBe0hReB36oo00 wired into site, activation clean
+- [x] HTTPS live + enforced (Let's Encrypt, valid to 2026-11-20; "not secure"
+      Mario saw was his browser's cached cert-bypass — fixed by Chrome restart)
+- [x] Product expanded same day: 50 designs (26 Higgsfield premium free + 24
+      basic, two-section picker), page formats (set/book/one-page sign),
+      fine-tune fonts+colors, sticky follow-along preview, real-cover hero
+- [ ] NEXT GATE: accountant živnosť answer → then new Google Ads account →
+      build campaign from ADS-CAMPAIGN.md (paused) → Mario approves spend
+- [ ] Optional QA: $29 self-purchase + refund
+- [ ] Free email: Mario signs up improvmx.com (1 min) → Claude adds MX records
 - [ ] Google Ads campaign live (spec ready, gated on accountant answer)
 - [ ] Etsy listing live (copy ready)

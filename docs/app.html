@@ -77,6 +77,13 @@
   .prevhead h2{font-family:'Fraunces',serif;font-size:1.15rem}
   .prevhead .note{font-size:.82rem;color:var(--muted)}
   #pages{display:flex;flex-direction:column;align-items:center;gap:22px}
+  /* book-style pager */
+  .pagenav{display:flex;align-items:center;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+  .pagenav .pnav{border:1px solid var(--line);background:#fff;border-radius:9px;width:34px;height:32px;font-size:1.05rem;cursor:pointer;color:var(--ink);flex:none}
+  .pagenav .pnav:hover{border-color:var(--accent);color:var(--accent)}
+  .pagenav .pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 11px;font:600 .72rem 'Inter',sans-serif;cursor:pointer;color:var(--muted)}
+  .pagenav .pill.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  @media screen{ #pages .page:not(.pg-on){display:none} }
 
   /* the book page: A4 ratio */
   .page{width:min(560px,100%);aspect-ratio:210/297;background:var(--bk-paper);color:var(--bk-ink);box-shadow:0 6px 24px rgba(38,34,28,.13);border-radius:4px;position:relative;overflow:hidden;padding:7.5% 8.5%;font-size:clamp(9px,1.55vw,13.5px);line-height:1.5}
@@ -169,7 +176,7 @@
 
   /* ---------- print ---------- */
   @media print{
-    header.topbar,.formcol,.prevhead,.paybar,.unlockedbar{display:none!important}
+    header.topbar,.formcol,.prevhead,.pagenav,.paybar,.unlockedbar{display:none!important}
     body{background:#fff}
     main.layout{display:block}
     .prevcol{padding:0;overflow:visible}
@@ -352,8 +359,9 @@ Leave keys in the lockbox"></textarea>
   <section class="prevcol">
     <div class="prevhead">
       <h2>Live preview</h2>
-      <span class="note">A4 pages — “Download PDF” opens your print dialog, choose “Save as PDF”.</span>
+      <span class="note">Flip through your pages below — “Download PDF” saves all of them (choose “Save as PDF” in the dialog).</span>
     </div>
+    <div class="pagenav" id="pagenav"></div>
     <div id="pages"></div>
     <p class="printlock">Your welcome book is ready — unlock it on the website to print. 🙂</p>
   </section>
@@ -486,6 +494,27 @@ function collectRules(){
   reset("c_accent_reset","custAccent"); reset("c_ink_reset","custInk");
 })();
 
+/* book-style pager */
+let curPage=0;
+function showPage(i){
+  const pgs=document.querySelectorAll("#pages .page");
+  if(!pgs.length) return;
+  curPage=Math.max(0,Math.min(i,pgs.length-1));
+  pgs.forEach((p,k)=>p.classList.toggle("pg-on",k===curPage));
+  document.querySelectorAll("#pagenav .pill").forEach((p,k)=>p.classList.toggle("on",k===curPage));
+  const pc=document.querySelector(".prevcol"); if(pc) pc.scrollTo({top:0});
+}
+function buildPageNav(labels){
+  const nav=document.getElementById("pagenav");
+  nav.innerHTML=`<button class="pnav" id="pgPrev" title="Previous page">‹</button>`+
+    labels.map((l,i)=>`<button class="pill" data-pg="${i}">${l}</button>`).join("")+
+    `<button class="pnav" id="pgNext" title="Next page">›</button>`;
+  nav.querySelectorAll(".pill").forEach(b=>b.addEventListener("click",()=>showPage(+b.dataset.pg)));
+  document.getElementById("pgPrev").addEventListener("click",()=>showPage(curPage-1));
+  document.getElementById("pgNext").addEventListener("click",()=>showPage(curPage+1));
+  showPage(curPage);
+}
+
 /* preview follows what you're editing */
 (function(){
   const PAGE_OF={propname:0,tagline:0,host:0,city:0,ssid:1,wifipass:1,checkin:2,checkout:2,entry:2,parking:2,checkoutlist:2,rules_custom:3,appliances:4,trash:4,tips:5,address:6,phone:6,emergency:6};
@@ -495,9 +524,7 @@ function collectRules(){
     if(e.target.closest("#themes")||["c_font","c_accent","c_ink","c_accent_reset","c_ink_reset"].includes(e.target.id)) idx=0;
     if(idx===undefined) return;
     if((state.format||"set")==="sign") idx=0;
-    const pc=document.querySelector(".prevcol"), pgs=document.querySelectorAll("#pages .page");
-    const el=pgs[Math.min(idx,pgs.length-1)];
-    if(el&&pc) pc.scrollTo({top: el.getBoundingClientRect().top - pc.getBoundingClientRect().top + pc.scrollTop - 24, behavior:"smooth"});
+    showPage(idx);
   });
 })();
 
@@ -740,8 +767,15 @@ function render(){
   </div>`;
 
   const fmt=state.format||"set";
-  const out = fmt==="book" ? pages.slice(0,8) : fmt==="sign" ? [onePage] : pages.concat([onePage]);
+  let labels=["Cover","WiFi","Arrivals","Rules","How-to","Tips","Info","Back"];
+  if(qr) labels.push("WiFi sign");
+  labels.push("Welcome sign");
+  let out, outLabels;
+  if(fmt==="book"){ out=pages.slice(0,8); outLabels=labels.slice(0,8); }
+  else if(fmt==="sign"){ out=[onePage]; outLabels=["Your sign"]; }
+  else { out=pages.concat([onePage]); outLabels=labels.concat(["All-in-one"]); }
   document.getElementById("pages").innerHTML=out.join("");
+  buildPageNav(outLabels);
 }
 
 /* ---------- actions ---------- */
