@@ -113,6 +113,21 @@
   .cover.cv-art .bottom{padding-bottom:0;margin-top:2.4em}
   .page{print-color-adjust:exact;-webkit-print-color-adjust:exact}
   .signpage.has-art{background-size:cover;background-position:center}
+  /* one-page all-in-one sign */
+  .onepage{display:flex;flex-direction:column;justify-content:space-between;text-align:center}
+  .onepage.has-art{background-size:cover;background-position:center}
+  .onepage h2.big{font-family:var(--bk-serif);font-size:3em;font-weight:600;margin:.1em 0 .15em}
+  .op-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9em 1.1em;margin:1.1em 0;text-align:left}
+  .op-block{background:rgba(255,255,255,.62);border:1.5px solid var(--bk-accent);border-radius:10px;padding:.8em .95em}
+  .op-block .bk{font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--bk-accent);font-weight:700;margin-bottom:.35em}
+  .op-block ul{padding-left:1.1em;margin:0}
+  .op-block li{margin-bottom:.25em;font-size:.92em}
+  .op-block.wifi{display:flex;gap:.8em;align-items:center}
+  .op-block.wifi .qr{width:36%;flex:none}
+  .op-block.wifi .qr svg{width:100%;height:auto;display:block}
+  .formatpick{display:flex;gap:8px;margin-top:8px}
+  .formatpick button{flex:1;border:2px solid var(--line);border-radius:10px;padding:9px 6px;cursor:pointer;font:600 .78rem 'Inter',sans-serif;background:#fff;color:var(--ink)}
+  .formatpick button.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent);color:var(--accent)}
   .wifibox{border:2px solid var(--bk-accent);border-radius:12px;padding:1.2em;display:flex;gap:1.2em;align-items:center;margin:1em 0}
   .wifibox .qr{width:31%;flex:none}
   .wifibox .qr svg{width:100%;height:auto;display:block}
@@ -197,6 +212,13 @@
             <div class="themepick" id="themesBasic"></div>
           </details>
         </div>
+        <label>Pages <small>(what you'll print)</small></label>
+        <div class="formatpick" id="formats">
+          <button data-format="set" class="active">Complete set</button>
+          <button data-format="book">Book only</button>
+          <button data-format="sign">One-page sign</button>
+        </div>
+        <p class="hint">One-page sign = everything on a single frameable page (like the ones on Pinterest) — welcome, WiFi QR, check-in &amp; rules.</p>
       </div>
     </details>
 
@@ -413,6 +435,16 @@ function collectRules(){
   window._markTheme=markTheme;
 })();
 
+/* format picker */
+(function(){
+  const wrap=document.getElementById("formats");
+  function mark(){ wrap.querySelectorAll("button").forEach(b=>b.classList.toggle("active",b.dataset.format===(state.format||"set"))); }
+  wrap.querySelectorAll("button").forEach(b=>{
+    b.addEventListener("click",()=>{ state.format=b.dataset.format; save(); mark(); render(); });
+  });
+  mark();
+})();
+
 /* ---------- helpers ---------- */
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const lines=s=>String(s??"").split("\n").map(x=>x.trim()).filter(Boolean);
@@ -603,7 +635,39 @@ function render(){
     ${T.art?"":`<div style="margin-top:1.8em;width:100%;display:flex;justify-content:flex-end">${branch(true)}</div>`}
   </div>`);
 
-  document.getElementById("pages").innerHTML=pages.join("");
+  /* one-page all-in-one sign (Pinterest style — everything on a single frameable page) */
+  const topRules=rules.slice(0,5);
+  const co=lines(state.checkoutlist).slice(0,3);
+  const onePage=`<div class="page onepage${T.art?" has-art":""}"${T.art?` style="background-image:url('${T.art}')"`:""}>${wm}
+    <div>
+      <div class="eyebrow" style="letter-spacing:.3em;text-transform:uppercase;color:var(--bk-accent);font-weight:700">${prop}</div>
+      <h2 class="big">welcome</h2>
+      <div style="opacity:.75;font-size:.95em">${esc(v("tagline","We're so glad you're here — make yourself at home."))}</div>
+    </div>
+    <div class="op-grid">
+      <div class="op-block wifi">${qr?`<div class="qr">${qr}</div>`:""}
+        <div><div class="bk">WiFi</div>
+        <div style="font-size:.92em">${esc(v("ssid","Network"))}</div>
+        <div style="font-size:.92em">Pass: <b style="font-family:ui-monospace,Menlo,monospace">${esc(v("wifipass","—"))}</b></div></div>
+      </div>
+      <div class="op-block"><div class="bk">Times</div>
+        <div style="font-size:.92em">Check-in from <b>${fmtTime(v("checkin","15:00"))}</b></div>
+        <div style="font-size:.92em">Check-out by <b>${fmtTime(v("checkout","11:00"))}</b></div>
+        <div style="font-size:.92em;margin-top:.35em">Need us? <b>${esc(v("phone","your host's phone"))}</b></div>
+      </div>
+      <div class="op-block"><div class="bk">House rules</div>
+        <ul>${(topRules.length?topRules:["Add rules in step 4"]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+      </div>
+      <div class="op-block"><div class="bk">Before you go</div>
+        ${co.length?`<ul>${co.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<div style="font-size:.92em;opacity:.7">Just close the door behind you — we'll handle the rest.</div>`}
+      </div>
+    </div>
+    <div style="font-size:.9em;opacity:.75">Enjoy your stay ✨ — ${host}</div>
+  </div>`;
+
+  const fmt=state.format||"set";
+  const out = fmt==="book" ? pages.slice(0,8) : fmt==="sign" ? [onePage] : pages.concat([onePage]);
+  document.getElementById("pages").innerHTML=out.join("");
 }
 
 /* ---------- actions ---------- */
