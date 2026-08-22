@@ -35,7 +35,10 @@
   @media(max-width:900px){main.layout{grid-template-columns:1fr}}
 
   /* ---------- form column ---------- */
-  .formcol{padding:26px 26px 80px;border-right:1px solid var(--line);background:#fff;overflow-y:auto}
+  .formcol{padding:26px 26px 80px;border-right:1px solid var(--line);background:#fff}
+  @media(min-width:901px){
+    .prevcol{position:sticky;top:61px;height:calc(100vh - 61px);overflow-y:auto;align-self:start}
+  }
   .formcol h1{font-family:'Fraunces',serif;font-size:1.5rem;margin-bottom:4px}
   .formcol>p.lead{color:var(--muted);font-size:.95rem;margin-bottom:20px}
   details.step{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;background:#fff}
@@ -481,6 +484,21 @@ function collectRules(){
   bind("c_font","custFont"); bind("c_accent","custAccent"); bind("c_ink","custInk");
   const reset=(id,key)=>{const b=document.getElementById(id); if(b) b.addEventListener("click",()=>{ delete state[key]; save(); render(); });};
   reset("c_accent_reset","custAccent"); reset("c_ink_reset","custInk");
+})();
+
+/* preview follows what you're editing */
+(function(){
+  const PAGE_OF={propname:0,tagline:0,host:0,city:0,ssid:1,wifipass:1,checkin:2,checkout:2,entry:2,parking:2,checkoutlist:2,rules_custom:3,appliances:4,trash:4,tips:5,address:6,phone:6,emergency:6};
+  document.getElementById("form").addEventListener("focusin",e=>{
+    let idx=PAGE_OF[(e.target.id||"").replace(/^f_/,"")];
+    if(e.target.closest("#rules")) idx=3;
+    if(e.target.closest("#themes")||["c_font","c_accent","c_ink","c_accent_reset","c_ink_reset"].includes(e.target.id)) idx=0;
+    if(idx===undefined) return;
+    if((state.format||"set")==="sign") idx=0;
+    const pc=document.querySelector(".prevcol"), pgs=document.querySelectorAll("#pages .page");
+    const el=pgs[Math.min(idx,pgs.length-1)];
+    if(el&&pc) pc.scrollTo({top: el.getBoundingClientRect().top - pc.getBoundingClientRect().top + pc.scrollTop - 24, behavior:"smooth"});
+  });
 })();
 
 /* format picker */
