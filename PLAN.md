@@ -100,8 +100,12 @@ Must be answered before ads go live.
 - [x] Ads campaign spec written (ADS-CAMPAIGN.md), Etsy listing written
       (ETSY-LISTING.md), Mario's steps written (DO-THIS-MARIO.md)
 - [x] Repo committed locally; site folder renamed site/ → docs/ for GitHub Pages
-- [ ] BLOCKED on Mario's one-word OK: publish repo to GitHub (permission
-      classifier requires user approval for public publish — correctly)
-- [ ] Deploy + domain + Stripe link (steps in DO-THIS-MARIO.md)
+- [x] LIVE 2026-08-22: repo github.com/molecoder22/makewelcomebook, GitHub
+      Pages from /docs, domain makewelcomebook.com bought by Mario, DNS set by
+      Claude via Chrome extension (4×A + www CNAME), site verified 200 OK.
+      HTTPS enforcement pending cert (background job running).
+      NOTE: GoDaddy no longer has free email forwarding — plan: free ImprovMX
+      (Mario signs up 1 min, Claude adds MX records). hello@ not receiving yet.
+- [ ] Stripe payment link (steps in DO-THIS-MARIO.md step 3) — NEXT
 - [ ] Google Ads campaign live (spec ready, gated on accountant answer)
 - [ ] Etsy listing live (copy ready)

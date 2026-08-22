@@ -327,7 +327,7 @@ const THEMES = {
 const LS_KEY="mwb_data_v1", LS_UNLOCK="mwb_unlocked";
 // unlock code is checked by prefix so the Stripe success URL can carry it
 const UNLOCK_CODE="MWB-UNLOCK-2026";
-const PAY_LINK="#stripe-payment-link-placeholder"; // replaced at deploy
+const PAY_LINK="https://buy.stripe.com/9B6bJ15ypcBe0hReB36oo00";
 
 let state = load();
 function load(){ try{ return JSON.parse(localStorage.getItem(LS_KEY))||{} }catch(e){ return {} } }
