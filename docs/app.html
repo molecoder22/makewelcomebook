@@ -873,20 +873,20 @@ document.getElementById("btnPrint").addEventListener("click",()=>{
 });
 function applySample(){
   state={
-    propname:"The Cedar Cottage",tagline:"We're so glad you're here — make yourself at home.",
-    host:"Anna & Tom",city:"Lake Tahoe, CA",ssid:"CedarCottage_Guest",wifipass:"welcome2026",
-    checkin:"15:00",checkout:"11:00",
-    entry:"The lockbox is to the right of the front door. Code: 4821. Please put the keys back inside when you leave.",
-    parking:"Free parking in the driveway for 2 cars. Please don't block the sidewalk.",
-    rules:["No smoking anywhere on the property","Quiet hours: 10 PM – 8 AM","Please remove shoes indoors"],
-    rules_custom:"Please don't feed the deer (they will never leave!)",
-    appliances:"TV: use the black remote, press SOURCE for Netflix\nCoffee machine: pods are in the drawer below\nHeating: thermostat in the hallway — please keep under 23°C\nHot tub: cover off, press JETS, cover back on after",
-    trash:"Bins are behind the gate. Collection is Tuesday morning — blue bin for recycling.",
-    tips:"Luna Café — best breakfast in town, 5 min walk\nTrattoria Rosa — our favorite dinner spot, book ahead\nGreen Trail — beautiful 1-hour lake hike from the back gate\nSuperFresh Market — closest grocery, open till 22:00",
-    address:"12 Cedar Lane, Lake Tahoe, CA 96150",phone:"+1 555 0132 — WhatsApp works too",
-    emergency:"Emergency number: 911\nNearest hospital: Barton Memorial, 10 min drive\nFire extinguisher: kitchen cupboard under the sink",
-    checkoutlist:"Load and start the dishwasher\nTake out the trash\nClose all windows\nLeave keys in the lockbox",
-    theme:state.theme||"terracotta"
+    propname:"The Hummingbird House",tagline:"Kick off your shoes, pour something cold — the desert does the rest.",
+    host:"Maya & Diego",city:"Joshua Tree, CA",ssid:"Hummingbird_Guest",wifipass:"cactusflower29",
+    checkin:"16:00",checkout:"10:00",
+    entry:"Smart lock on the turquoise front door — code 7321✓. It beeps twice, then push the handle down. If the desert sun ever fries the keypad (it happens), the spare key lives in the little birdhouse to the left of the door.",
+    parking:"Park anywhere on the gravel pad — two cars fit easily. Please don't drive past the wooden fence: that's protected tortoise habitat (really!).",
+    rules:["No smoking anywhere on the property","Quiet hours: 10 PM – 8 AM"],
+    rules_custom:"Hot tub closes at 11 PM — sound travels forever in the desert\nKeep doors closed at dusk, or you'll be hosting actual hummingbirds\nPlease don't touch the cholla cactus. Trust us on this one.",
+    appliances:"Swamp cooler: green switch by the kitchen door — give it 10 minutes, it wins every time\nFire pit: propane, the key hangs on the mantel — please turn off before bed\nRecord player: drop the needle gently, the vinyl crate is alphabetized (mostly)\nHot tub: fold the lid back, press JETS once — 102°F is our sweet spot\nOutdoor shower: yes it works, and yes, it's incredible at sunset",
+    trash:"Bins are behind the ocotillo fence. Pickup is Thursday at dawn — the critters out here can open anything, so please latch the lid.",
+    tips:"La Copine — worth the 25-minute drive, get the shrimp roll (closed Tue & Wed)\nPappy & Harriet's — legendary BBQ and live music, book ahead or arrive hungry at 5\nJoshua Tree Coffee Company — the town's best espresso, roasted right next door\nCholla Cactus Garden — go at golden hour, stay on the path\nKeys View — the whole Coachella Valley at your feet, bring a jacket\nSky's The Limit Observatory — Saturday stargazing is free and genuinely unreal",
+    address:"61780 Quail Springs Rd, Joshua Tree, CA 92252",phone:"+1 760 555 0164 — text first, cell signal naps out here",
+    emergency:"Emergency: 911\nHi-Desert Medical Center — 15 min, in Yucca Valley\nFire extinguisher: kitchen wall + garage\nFlashlights in every nightstand — power blips during monsoon season",
+    checkoutlist:"Start the dishwasher\nBag the trash into the latched bins\nFire pit and hot tub off\nClose all windows — dust storms are sneaky\nJust pull the turquoise door shut, it locks itself",
+    theme:"artCactus"
   };
   save();
   FIELDS.forEach(f=>{const el=document.getElementById("f_"+f); if(el&&state[f]!==undefined) el.value=state[f];});

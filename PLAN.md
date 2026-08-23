@@ -121,12 +121,19 @@ Must be answered before ads go live.
       Search-only, clicks bidding w/ €1.00 max CPC, €8/day, US+UK+CA+AU,
       English, 10 exact-match keywords, 1 RSA (8 headlines/4 descriptions),
       AI Max off. Google estimate: 43 clicks/wk @ €1.02 avg CPC.
-- [ ] Before enabling: (1) accountant živnosť answer — THE GATE,
-      (2) add negative keywords (free, diy, jobs…) at campaign level,
-      (3) AI Max "text customization + final URL expansion" re-enabled itself
-          in review — turn OFF in campaign settings,
-      (4) create Purchase conversion action + put gtag AW-18406718312 on site
-          (fire on ?paid= unlock only), (5) Mario's explicit "go"
+- [x] LEGAL CALL (Mario, 2026-08-24): OK to operate up to €2,200/year revenue
+      without živnosť — his decision, gate cleared by him.
+- [x] ★ CAMPAIGN ACTIVATED 2026-08-24 ★ — 15 negative keywords added, AI Max
+      confirmed fully off (review screen had shown stale info), base gtag
+      AW-18406718312 installed on site, campaign ENABLED ("Eligible (limited)"
+      — low-volume advisory normal for exact match). Ads serve after Google's
+      standard ad review (~1 day).
+- [ ] Finish precise conversion wiring: create/locate Purchase conversion
+      action event label, fire gtag conversion only on ?paid= unlock
+- [ ] Monitor day 1/3/7: spend, CTR, search-terms report. KILL RULE ACTIVE:
+      €120 spent with zero Stripe sales → pause everything.
+- [ ] Revenue watch: Mario's €2,200/year threshold — track Stripe totals
+      (both stores) and warn well before crossing
 - [ ] Optional QA: $29 self-purchase + refund
 - [ ] Free email: Mario signs up improvmx.com (1 min) → Claude adds MX records
 - [ ] Google Ads campaign live (spec ready, gated on accountant answer)
