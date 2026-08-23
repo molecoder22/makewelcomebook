@@ -114,8 +114,19 @@ Must be answered before ads go live.
 - [x] Product expanded same day: 50 designs (26 Higgsfield premium free + 24
       basic, two-section picker), page formats (set/book/one-page sign),
       fine-tune fonts+colors, sticky follow-along preview, real-cover hero
-- [ ] NEXT GATE: accountant živnosť answer → then new Google Ads account →
-      build campaign from ADS-CAMPAIGN.md (paused) → Mario approves spend
+- [x] Google Ads account created 2026-08-23: 917-571-4419 "MakeWelcomeBook"
+      (old closed acct 624-317-1903 was the billing blocker; billing+identity
+      done by Mario; advertiser name: Mário Otruba). Google tag: AW-18406718312
+- [x] Campaign "WB-Search-Templates" BUILT & PAUSED (id 24166614210):
+      Search-only, clicks bidding w/ €1.00 max CPC, €8/day, US+UK+CA+AU,
+      English, 10 exact-match keywords, 1 RSA (8 headlines/4 descriptions),
+      AI Max off. Google estimate: 43 clicks/wk @ €1.02 avg CPC.
+- [ ] Before enabling: (1) accountant živnosť answer — THE GATE,
+      (2) add negative keywords (free, diy, jobs…) at campaign level,
+      (3) AI Max "text customization + final URL expansion" re-enabled itself
+          in review — turn OFF in campaign settings,
+      (4) create Purchase conversion action + put gtag AW-18406718312 on site
+          (fire on ?paid= unlock only), (5) Mario's explicit "go"
 - [ ] Optional QA: $29 self-purchase + refund
 - [ ] Free email: Mario signs up improvmx.com (1 min) → Claude adds MX records
 - [ ] Google Ads campaign live (spec ready, gated on accountant answer)
