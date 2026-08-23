@@ -481,7 +481,12 @@ function save(){ localStorage.setItem(LS_KEY, JSON.stringify(state)) }
 /* ---------- unlock handling ---------- */
 (function(){
   const p=new URLSearchParams(location.search);
-  if(p.get("paid")===UNLOCK_CODE) localStorage.setItem(LS_UNLOCK,"1");
+  if(p.get("paid")===UNLOCK_CODE){
+    if(!localStorage.getItem(LS_UNLOCK) && typeof gtag==="function"){
+      gtag('event','conversion',{'send_to':'AW-18406718312/CvZwCL-C1uYcEOj2gMlE','value':29.0,'currency':'USD','transaction_id':'mwb_'+Date.now()});
+    }
+    localStorage.setItem(LS_UNLOCK,"1");
+  }
   if(localStorage.getItem(LS_UNLOCK)==="1") document.body.classList.add("unlocked");
   document.getElementById("btnPay").href=PAY_LINK;
 })();
