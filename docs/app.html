@@ -95,6 +95,13 @@
   .thumb em{position:absolute;bottom:2px;right:5px;font:700 9px 'Inter',sans-serif;font-style:normal;color:var(--muted);background:rgba(255,255,255,.85);border-radius:4px;padding:0 3px}
   @media(max-width:1150px){#thumbs{display:none}}
   @media screen{ #pages .page:not(.pg-on){display:none} }
+  /* movable text blocks */
+  #pages [data-mv]{position:relative;touch-action:none}
+  @media screen{
+    #pages [data-mv]{cursor:move}
+    #pages [data-mv]:hover{outline:1.5px dashed var(--bk-accent);outline-offset:3px;border-radius:4px}
+  }
+  .thumb [data-mv]{cursor:default}
 
   /* the book page: A4 ratio */
   .page{width:min(560px,100%);aspect-ratio:210/297;background:var(--bk-paper);color:var(--bk-ink);box-shadow:0 6px 24px rgba(38,34,28,.13);border-radius:4px;position:relative;overflow:hidden;padding:7.5% 8.5%;font-size:clamp(9px,1.55vw,13.5px);line-height:1.5}
@@ -280,6 +287,9 @@
           </div>
         </div>
         <p class="hint">Applies to the whole book on top of the design you picked. Reset brings back the design's own colors.</p>
+        <label>Moved text</label>
+        <button class="miniBtn" id="c_pos_reset" type="button">Put all text back to original position</button>
+        <p class="hint">You can drag any text block directly on the preview page to move it.</p>
       </div>
     </details>
 
@@ -507,6 +517,8 @@ function collectRules(){
   bind("c_font","custFont"); bind("c_accent","custAccent"); bind("c_ink","custInk");
   const reset=(id,key)=>{const b=document.getElementById(id); if(b) b.addEventListener("click",()=>{ delete state[key]; save(); render(); });};
   reset("c_accent_reset","custAccent"); reset("c_ink_reset","custInk");
+  const pr=document.getElementById("c_pos_reset");
+  if(pr) pr.addEventListener("click",()=>{ delete state.pos; save(); render(); });
 })();
 
 /* book-style pager */
@@ -535,6 +547,35 @@ function buildPageNav(labels,pageHtml){
   th.querySelectorAll(".thumb").forEach(t=>t.addEventListener("click",()=>showPage(+t.dataset.pg)));
   showPage(curPage);
 }
+
+/* drag-to-move text blocks */
+(function(){
+  const pagesEl=document.getElementById("pages");
+  let drag=null;
+  pagesEl.addEventListener("pointerdown",e=>{
+    const el=e.target.closest("[data-mv]"); if(!el) return;
+    const page=el.closest(".page"); if(!page||!page.classList.contains("pg-on")) return;
+    e.preventDefault();
+    const r=page.getBoundingClientRect();
+    const key=el.dataset.mv;
+    const cur=(state.pos&&state.pos[key])||{x:0,y:0};
+    drag={el,key,r,sx:e.clientX,sy:e.clientY,ox:cur.x,oy:cur.y,nx:cur.x,ny:cur.y};
+    try{el.setPointerCapture(e.pointerId)}catch(_){}
+  });
+  pagesEl.addEventListener("pointermove",e=>{
+    if(!drag) return;
+    drag.nx=drag.ox+(e.clientX-drag.sx)/drag.r.width*100;
+    drag.ny=drag.oy+(e.clientY-drag.sy)/drag.r.height*100;
+    drag.el.style.left=drag.nx+"%"; drag.el.style.top=drag.ny+"%";
+  });
+  pagesEl.addEventListener("pointerup",()=>{
+    if(!drag) return;
+    state.pos=state.pos||{};
+    state.pos[drag.key]={x:+drag.nx.toFixed(2),y:+drag.ny.toFixed(2)};
+    save(); drag=null; render();
+  });
+  pagesEl.addEventListener("pointercancel",()=>{drag=null; render();});
+})();
 
 /* preview follows what you're editing */
 (function(){
@@ -576,6 +617,11 @@ function wifiQR(){
   }catch(e){ return ""; }
 }
 const wm='<div class="wm"><span>Preview · makewelcomebook.com</span></div>';
+/* movable-text helper: data attribute + saved offset (percent of page) */
+function mv(key){
+  const p=state.pos&&state.pos[key];
+  return ` data-mv="${key}"${p?` style="left:${p.x}%;top:${p.y}%"`:""}`;
+}
 
 /* ---------- render book ---------- */
 function render(){
@@ -605,48 +651,48 @@ function render(){
   const byline=`Your hosts, ${host}${city?" · "+city:""}`;
   const covers={
     classic:`<div class="page cover">${wm}
-      <div class="top">
+      <div class="top"${mv("cv-top")}>
         <div class="crest">${initial}</div>
         <div class="eyebrow">Welcome to</div>
         <h1>${prop}</h1>
         <div class="sub">${tagline}</div>
       </div>
-      <div class="bottom">${byline}</div>
+      <div class="bottom"${mv("cv-by")}>${byline}</div>
     </div>`,
     frame:`<div class="page cover cv-frame">${wm}
       <div class="inner">
-        <div class="top">
+        <div class="top"${mv("cv-top")}>
           <div class="eyebrow">Welcome to</div>
           <h1>${prop}</h1>
           <div class="sub">${tagline}</div>
         </div>
-        <div class="bottom">${byline}</div>
+        <div class="bottom"${mv("cv-by")}>${byline}</div>
       </div>
     </div>`,
     band:`<div class="page cover cv-band">${wm}
-      <div class="band">
+      <div class="band"${mv("cv-top")}>
         <div class="eyebrow">Welcome to</div>
         <h1>${prop}</h1>
       </div>
-      <div class="sub">${tagline}</div>
-      <div class="bottom">${byline}</div>
+      <div class="sub"${mv("cv-sub")}>${tagline}</div>
+      <div class="bottom"${mv("cv-by")}>${byline}</div>
     </div>`,
     art:`<div class="page cover cv-art" style="background-image:url('${T.art||""}')">${wm}
-      <div class="top">
+      <div class="top"${mv("cv-top")}>
         <div class="eyebrow">Welcome to</div>
         <h1>${prop}</h1>
         <div class="sub">${tagline}</div>
       </div>
-      <div class="bottom">${byline}</div>
+      <div class="bottom"${mv("cv-by")}>${byline}</div>
     </div>`,
     minimal:`<div class="page cover cv-minimal">${wm}
-      <div class="top">
+      <div class="top"${mv("cv-top")}>
         <div class="eyebrow">Welcome to</div>
         <h1>${prop}</h1>
         <div class="mrule"></div>
         <div class="sub">${tagline}</div>
       </div>
-      <div class="bottom">${byline}</div>
+      <div class="bottom"${mv("cv-by")}>${byline}</div>
     </div>`
   };
   pages.push(covers[T.cover]||covers.classic);
@@ -750,10 +796,10 @@ function render(){
   </svg>`;
   pages.push(`<div class="page signpage${T.art?" has-art":""}"${T.art?` style="background-image:url('${T.art}')"`:""}>${wm}
     ${T.art?"":branch(false)}
-    <div class="eyebrow" style="letter-spacing:.3em;text-transform:uppercase;color:var(--bk-accent);font-weight:700;margin-top:1.4em">${prop}</div>
-    <h2 style="font-size:3.4em;margin:.2em 0">welcome</h2>
-    <p style="max-width:26em;opacity:.75;margin-top:.6em">Make yourself at home. Help yourself to anything in the kitchen — the welcome book on the counter has everything you need.</p>
-    ${v("ssid","")?`<p style="margin-top:1.8em;font-size:1.05em">WiFi: <b>${esc(v("ssid",""))}</b> · Password: <b style="font-family:ui-monospace,Menlo,monospace">${esc(v("wifipass","—"))}</b></p>`:""}
+    <div class="eyebrow"${mv("ws-name")} style="letter-spacing:.3em;text-transform:uppercase;color:var(--bk-accent);font-weight:700;margin-top:1.4em">${prop}</div>
+    <h2${mv("ws-welcome")} style="font-size:3.4em;margin:.2em 0">welcome</h2>
+    <p${mv("ws-text")} style="max-width:26em;opacity:.75;margin-top:.6em">Make yourself at home. Help yourself to anything in the kitchen — the welcome book on the counter has everything you need.</p>
+    ${v("ssid","")?`<p${mv("ws-wifi")} style="margin-top:1.8em;font-size:1.05em">WiFi: <b>${esc(v("ssid",""))}</b> · Password: <b style="font-family:ui-monospace,Menlo,monospace">${esc(v("wifipass","—"))}</b></p>`:""}
     ${T.art?"":`<div style="margin-top:1.8em;width:100%;display:flex;justify-content:flex-end">${branch(true)}</div>`}
   </div>`);
 
@@ -761,30 +807,30 @@ function render(){
   const topRules=rules.slice(0,5);
   const co=lines(state.checkoutlist).slice(0,3);
   const onePage=`<div class="page onepage${T.art?" has-art":""}"${T.art?` style="background-image:url('${T.art}')"`:""}>${wm}
-    <div>
+    <div${mv("op-head")}>
       <div class="eyebrow" style="letter-spacing:.3em;text-transform:uppercase;color:var(--bk-accent);font-weight:700">${prop}</div>
       <h2 class="big">welcome</h2>
       <div style="opacity:.75;font-size:.95em">${esc(v("tagline","We're so glad you're here — make yourself at home."))}</div>
     </div>
     <div class="op-grid">
-      <div class="op-block wifi">${qr?`<div class="qr">${qr}</div>`:""}
+      <div class="op-block wifi"${mv("op-wifi")}>${qr?`<div class="qr">${qr}</div>`:""}
         <div><div class="bk">WiFi</div>
         <div style="font-size:.92em">${esc(v("ssid","Network"))}</div>
         <div style="font-size:.92em">Pass: <b style="font-family:ui-monospace,Menlo,monospace">${esc(v("wifipass","—"))}</b></div></div>
       </div>
-      <div class="op-block"><div class="bk">Times</div>
+      <div class="op-block"${mv("op-times")}><div class="bk">Times</div>
         <div style="font-size:.92em">Check-in from <b>${fmtTime(v("checkin","15:00"))}</b></div>
         <div style="font-size:.92em">Check-out by <b>${fmtTime(v("checkout","11:00"))}</b></div>
         <div style="font-size:.92em;margin-top:.35em">Need us? <b>${esc(v("phone","your host's phone"))}</b></div>
       </div>
-      <div class="op-block"><div class="bk">House rules</div>
+      <div class="op-block"${mv("op-rules")}><div class="bk">House rules</div>
         <ul>${(topRules.length?topRules:["Add rules in step 4"]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
       </div>
-      <div class="op-block"><div class="bk">Before you go</div>
+      <div class="op-block"${mv("op-go")}><div class="bk">Before you go</div>
         ${co.length?`<ul>${co.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<div style="font-size:.92em;opacity:.7">Just close the door behind you — we'll handle the rest.</div>`}
       </div>
     </div>
-    <div style="font-size:.9em;opacity:.75">Enjoy your stay ✨ — ${host}</div>
+    <div${mv("op-foot")} style="font-size:.9em;opacity:.75">Enjoy your stay ✨ — ${host}</div>
   </div>`;
 
   const fmt=state.format||"set";
