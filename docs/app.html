@@ -102,6 +102,11 @@
     #pages [data-mv]:hover{outline:1.5px dashed var(--bk-accent);outline-offset:3px;border-radius:4px}
   }
   .thumb [data-mv]{cursor:default}
+  .tipPop{position:fixed;bottom:92px;right:22px;z-index:90;background:#26221c;color:#fff;padding:16px 18px;border-radius:14px;max-width:290px;font-size:.92rem;line-height:1.5;box-shadow:0 12px 34px rgba(0,0,0,.3);animation:tipIn .4s ease}
+  @keyframes tipIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .tipPop b{color:#f3c99b}
+  .tipPop button{margin-top:10px;background:var(--accent);color:#fff;border:0;border-radius:9px;padding:8px 16px;font:600 .85rem 'Inter',sans-serif;cursor:pointer}
+  @media(max-width:600px){.tipPop{left:16px;right:16px;max-width:none}}
 
   /* the book page: A4 ratio */
   .page{width:min(560px,100%);aspect-ratio:210/297;background:var(--bk-paper);color:var(--bk-ink);box-shadow:0 6px 24px rgba(38,34,28,.13);border-radius:4px;position:relative;overflow:hidden;padding:7.5% 8.5%;font-size:clamp(9px,1.55vw,13.5px);line-height:1.5}
@@ -153,6 +158,7 @@
   .op-block.wifi{display:flex;gap:.8em;align-items:center}
   .op-block.wifi .qr{width:36%;flex:none}
   .op-block.wifi .qr svg{width:100%;height:auto;display:block}
+  .op-block.op-wide{grid-column:1/-1}
   .miniBtn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 12px;font:600 .78rem 'Inter',sans-serif;cursor:pointer;color:var(--muted)}
   .miniBtn:hover{border-color:var(--accent);color:var(--accent)}
   input[type=color]{width:46px;height:36px;padding:2px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer}
@@ -229,7 +235,7 @@
         <button data-format="book">Book only</button>
         <button data-format="sign">One-page sign</button>
       </div>
-      <p class="hint">One-page sign = everything on a single frameable page (like the ones on Pinterest) — welcome, WiFi QR, check-in &amp; rules. Complete set = the full book plus all signs.</p>
+      <p class="hint">One-page sign = one frameable page with the essentials: welcome, WiFi QR, times, top rules, checkout list and your top 3 favorite places. Appliance guides and detailed info fit only in the book. Complete set = the full book plus all signs.</p>
     </div>
 
     <details class="step" open>
@@ -829,6 +835,9 @@ function render(){
       <div class="op-block"${mv("op-go")}><div class="bk">Before you go</div>
         ${co.length?`<ul>${co.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<div style="font-size:.92em;opacity:.7">Just close the door behind you — we'll handle the rest.</div>`}
       </div>
+      ${tips.length?`<div class="op-block op-wide"${mv("op-tips")}><div class="bk">Our favorite places</div>
+        <ul>${tips.slice(0,3).map(l=>`<li>${esc(l)}</li>`).join("")}</ul>
+      </div>`:""}
     </div>
     <div${mv("op-foot")} style="font-size:.9em;opacity:.75">Enjoy your stay ✨ — ${host}</div>
   </div>`;
@@ -886,6 +895,16 @@ document.getElementById("btnSample").addEventListener("click",applySample);
     applySample();
     setTimeout(()=>{ const pv=document.querySelector(".prevcol"); if(pv) pv.scrollIntoView({behavior:"smooth"}); },150);
   }
+})();
+
+/* one-time tip: movable text */
+(function(){
+  if(localStorage.getItem("mwb_tip_move")) return;
+  const d=document.createElement("div");
+  d.className="tipPop";
+  d.innerHTML=`💡 <b>Did you know?</b> You can <b>drag any text</b> on the preview page to move it wherever you like — grab the title, the WiFi box, anything. Your layout is saved automatically.<br><button type="button">Got it</button>`;
+  d.querySelector("button").addEventListener("click",()=>{ localStorage.setItem("mwb_tip_move","1"); d.remove(); });
+  document.body.appendChild(d);
 })();
 
 collectRules(); render();
