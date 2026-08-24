@@ -189,6 +189,19 @@ Must be answered before ads go live.
       basic-themes-masked-by-fine-tune bug, tiled screenshot-proof watermark,
       clean PDFs (@page margin 0), one-page sign shows ALL inputs.
       Mario confirmed real purchase flow works end to end.
+- [x] FULL FUNNEL AUDIT 2026-08-24 night ("run only ads and nothing more"):
+      walked ad->landing->builder->Stripe->unlock->download on mobile+desktop.
+      FIXED: theme picker loaded all 38 full arts (4.3MB) -> 160px thumbs
+      (101KB, 43x lighter); no favicon -> inline SVG W monogram both pages;
+      no OG/social tags -> og:title/desc/image + og.jpg (3-cover composite);
+      builder had NO legal links -> paybar now links Refunds/Terms/Privacy +
+      "14-day money-back"; copy "book on the right" -> neutral (mobile);
+      recompressed heaviest arts. VERIFIED: Stripe checkout clean ($29,
+      Apple Pay), zero failed site resources, mobile layout single-column OK,
+      landing mobile OK. Site is ads-ready hands-off.
+      REMAINING (Mario): ImprovMX signup so hello@ actually receives mail —
+      it's printed in terms/privacy/refunds; until then refund requests have
+      no working channel (Stripe dispute risk).
 - [ ] Optional QA: $29 self-purchase + refund
 - [ ] Free email: Mario signs up improvmx.com (1 min) → Claude adds MX records
 - [ ] Google Ads campaign live (spec ready, gated on accountant answer)
