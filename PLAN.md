@@ -203,6 +203,9 @@ Must be answered before ads go live.
       it's printed in terms/privacy/refunds; until then refund requests have
       no working channel (Stripe dispute risk).
 - [ ] Optional QA: $29 self-purchase + refund
-- [ ] Free email: Mario signs up improvmx.com (1 min) → Claude adds MX records
+- [x] EMAIL LIVE 2026-08-24: ImprovMX account (Mario's gmail; first attempt
+      with hello@ was a dead-end — confirmation loop), domain Active,
+      catch-all *@makewelcomebook.com → mario.otruba2003@gmail.com,
+      MX (mx1/mx2.improvmx.com) + SPF added at GoDaddy by Claude, all ✓
 - [ ] Google Ads campaign live (spec ready, gated on accountant answer)
 - [ ] Etsy listing live (copy ready)
