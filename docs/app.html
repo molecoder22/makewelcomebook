@@ -596,11 +596,37 @@ function collectRules(){
 /* book-style pager */
 let curPage=0;
 let pageLabels=[];
+/* auto-fit: text scales with page width; one-page sign shrinks until everything fits */
+function fitPage(pg){
+  if(!pg) return;
+  const base=pg.clientWidth*0.0241;
+  if(!base) return;
+  pg.style.fontSize=base.toFixed(2)+"px";
+  if(pg.classList.contains("onepage")){
+    for(let i=0;i<5&&pg.scrollHeight>pg.clientHeight+2;i++){
+      const cur=parseFloat(pg.style.fontSize);
+      pg.style.fontSize=(cur*Math.max(.6,pg.clientHeight/pg.scrollHeight)*.985).toFixed(2)+"px";
+    }
+    pg.dataset.fitf=(parseFloat(pg.style.fontSize)/base).toFixed(3);
+  }
+}
+window.addEventListener("resize",()=>fitPage(document.querySelector("#pages .page.pg-on")));
+window.addEventListener("beforeprint",()=>{
+  document.querySelectorAll("#pages .page").forEach(pg=>{
+    if(pg.classList.contains("onepage")){
+      let f=parseFloat(pg.dataset.fitf||0);
+      if(!f){ const n=pg.querySelectorAll(".op-block").length; f=n>=7?0.76:(n>=5?0.86:1); }
+      pg.style.fontSize=(13*f).toFixed(2)+"pt";
+    } else { pg.style.fontSize=""; }
+  });
+});
+window.addEventListener("afterprint",()=>fitPage(document.querySelector("#pages .page.pg-on")));
 function showPage(i){
   const pgs=document.querySelectorAll("#pages .page");
   if(!pgs.length) return;
   curPage=Math.max(0,Math.min(i,pgs.length-1));
   pgs.forEach((p,k)=>p.classList.toggle("pg-on",k===curPage));
+  fitPage(pgs[curPage]);
   document.querySelectorAll("#thumbs .thumb").forEach((t,k)=>t.classList.toggle("on",k===curPage));
   const c=document.getElementById("pgCount"); if(c) c.textContent=`${curPage+1} / ${pgs.length}`;
   const l=document.getElementById("pgLabel"); if(l) l.textContent=pageLabels[curPage]||"";
