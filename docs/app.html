@@ -115,6 +115,12 @@
   .tipPop b{color:#f3c99b}
   .tipPop button{margin-top:10px;background:var(--accent);color:#fff;border:0;border-radius:9px;padding:8px 16px;font:600 .85rem 'Inter',sans-serif;cursor:pointer}
   @media(max-width:600px){.tipPop{left:16px;right:16px;max-width:none}}
+  .tipPop .demo{position:relative;height:56px;background:rgba(255,255,255,.07);border:1.5px dashed rgba(255,255,255,.35);border-radius:10px;margin:10px 0 8px;overflow:hidden}
+  .tipPop .demo .chip{position:absolute;top:16px;left:14px;background:#f3c99b;color:#26221c;font:700 .78rem 'Inter',sans-serif;padding:4px 10px;border-radius:7px;animation:chipSlide 2.4s ease-in-out infinite}
+  .tipPop .demo .hand{position:absolute;top:20px;left:36px;font-size:22px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.4));animation:chipSlide 2.4s ease-in-out infinite}
+  @keyframes chipSlide{0%,12%{transform:translateX(0)}55%,68%{transform:translateX(120px)}100%{transform:translateX(0)}}
+  .mv-hint{outline:2.5px dashed var(--accent);outline-offset:5px;animation:mvPulse 1.3s ease-in-out infinite;cursor:grab}
+  @keyframes mvPulse{0%,100%{outline-color:var(--accent)}50%{outline-color:transparent}}
 
   /* the book page: A4 ratio */
   .page{width:min(560px,100%);aspect-ratio:210/297;background:var(--bk-paper);color:var(--bk-ink);box-shadow:0 6px 24px rgba(38,34,28,.13);border-radius:4px;position:relative;overflow:hidden;padding:7.5% 8.5%;font-size:clamp(9px,1.55vw,13.5px);line-height:1.5}
@@ -286,6 +292,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, documen
           <div><label>City / area</label><input type="text" id="f_city" placeholder="Lake Tahoe, CA"></div>
         </div>
         <label>Book design <small>(50 designs — each with its own typography &amp; cover)</small></label>
+        <label style="display:flex;gap:8px;align-items:center;cursor:pointer;margin:4px 0 10px;font-weight:400"><input type="checkbox" class="artallCb" style="width:auto"> Use the design's artwork on <b>every page</b> <small>(not just cover &amp; signs)</small></label>
         <div id="themes">
           <details class="tsec premium" open>
             <summary>✨ Premium art designs <span class="freebadge">Now Free</span> <span class="seccount" id="cntPremium"></span> <span class="arrow">▾</span></summary>
@@ -329,7 +336,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, documen
           </div>
         </div>
         <p class="hint">Applies to the whole book on top of the design you picked. Reset brings back the design's own colors.</p>
-        <label style="display:flex;gap:8px;align-items:center;margin-top:10px;cursor:pointer"><input type="checkbox" id="c_artall" style="width:auto"> Use the design's artwork on <b>every page</b></label>
+        <label style="display:flex;gap:8px;align-items:center;margin-top:10px;cursor:pointer"><input type="checkbox" id="c_artall" class="artallCb" style="width:auto"> Use the design's artwork on <b>every page</b></label>
         <p class="hint">Only for art designs. Off = artwork on cover &amp; signs only (inner pages stay plain for easy printing).</p>
         <label>Moved text</label>
         <button class="miniBtn" id="c_pos_reset" type="button">Put all text back to original position</button>
@@ -580,8 +587,10 @@ function collectRules(){
   reset("c_accent_reset","custAccent"); reset("c_ink_reset","custInk");
   const pr=document.getElementById("c_pos_reset");
   if(pr) pr.addEventListener("click",()=>{ delete state.pos; save(); render(); });
-  const aa=document.getElementById("c_artall");
-  if(aa){ aa.checked=!!state.artAll; aa.addEventListener("change",()=>{ if(aa.checked) state.artAll=true; else delete state.artAll; save(); render(); }); }
+  const aas=[...document.querySelectorAll(".artallCb")];
+  aas.forEach(cb=>{ cb.checked=!!state.artAll;
+    cb.addEventListener("change",()=>{ if(cb.checked) state.artAll=true; else delete state.artAll;
+      aas.forEach(x=>{ x.checked=cb.checked; }); save(); render(); }); });
 })();
 
 /* book-style pager */
@@ -976,9 +985,15 @@ document.getElementById("btnSample").addEventListener("click",applySample);
   if(localStorage.getItem("mwb_tip_move")) return;
   const d=document.createElement("div");
   d.className="tipPop";
-  d.innerHTML=`💡 <b>Did you know?</b> You can <b>drag any text</b> on the preview page to move it wherever you like — grab the title, the WiFi box, anything. Your layout is saved automatically.<br><button type="button">Got it</button>`;
-  d.querySelector("button").addEventListener("click",()=>{ localStorage.setItem("mwb_tip_move","1"); d.remove(); });
+  d.innerHTML=`<b>Quick tip — everything is draggable</b>
+  <div class="demo"><span class="chip">Your title</span><span class="hand">👆</span></div>
+  Try it: grab the <b>glowing title</b> on the page (or the WiFi box, anything) and slide it where you like. Saves automatically.<br><button type="button">Got it</button>`;
+  const dismiss=()=>{ localStorage.setItem("mwb_tip_move","1"); d.remove(); document.querySelectorAll(".mv-hint").forEach(x=>x.classList.remove("mv-hint")); };
+  d.querySelector("button").addEventListener("click",dismiss);
   document.body.appendChild(d);
+  const hint=()=>{ const t=document.querySelector("#pages .page.pg-on [data-mv]"); if(t) t.classList.add("mv-hint"); };
+  setTimeout(hint,600);
+  document.getElementById("pages").addEventListener("pointerdown",e=>{ if(e.target.closest("[data-mv]")) dismiss(); },true);
 })();
 
 collectRules(); render();
