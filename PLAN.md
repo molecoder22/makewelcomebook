@@ -134,8 +134,38 @@ Must be answered before ads go live.
 - [x] Diagnostics cleanup 2026-08-24 (Mario: "no shorts"): keywords 25→40
       exact-match (15 new under review), RSA expanded 8→15 headlines
       (ad strength Poor→Average, recalculating after save), 4 sitelinks added
-      (Example / Pricing / Start Free / WiFi QR — under review). Remaining
+      (Example / Pricing / Start Free / WiFi QR — approved same day). Remaining
       "limited" status = normal low-search-volume advisory on exact match.
+- [x] Playbook audit 2026-08-24 (Mario's "Google Ads Expert Brain" doc, A–Z):
+      * Location targeting: default "Presence or interest" trap FIXED →
+        Presence-only (US/UK/CA/AU) — biggest waste-cutter of the audit
+      * Networks: search partners + display expansion verified OFF
+      * Negatives 15→50 (broad, campaign level): bargain (cheap/discount/
+        coupon/promo code/voucher), jobs (hiring/salary/career/careers/resume),
+        info (how to make/how to write/wiki/wikipedia/reddit/definition/
+        meaning/sample/samples/blog), wrong-audience (wedding/baby/classroom/
+        teacher/school), platforms (youtube/facebook/amazon/ebay/canva),
+        media (image/images/photo/photos), cheapest
+      * 2nd RSA added to ad group (playbook: +6.6% conv from 2nd ad) —
+        15 headlines/4 descriptions, different angle (done-for-you/no-Canva/
+        one-time price), path /welcome-book/builder; deleted Google's
+        auto-suggested duplicate sitelinks before saving
+      * Callouts ×6 added: One-Time $29 Payment / 50 Designs Included /
+        Instant PDF Download / 14-Day Money-Back / No Design Skills Needed /
+        Free Re-Edits Forever
+      * Structured snippet added (EN, header "Types"): Welcome Book, WiFi QR
+        Sign, House Rules Sign, Check-Out Card, Review Card
+      * Conversion action verified: Primary, data-driven attribution,
+        per-transaction values (€1 fallback), 30-day click window,
+        status "awaiting conversions" (≤48 h, normal)
+      * Bidding decision: STAY on Max Clicks + €1.00 CPC cap for the
+        early-data phase (playbook Stage-1 fit; cap protects $29-product
+        economics). Switch to Maximize Conversions after first conversions /
+        ~2 weeks of click data; tCPA only at 15–30 conv/30d — likely never
+        at this scale, Max Conversions is the realistic ceiling.
+      * Known gaps (accepted): no Enhanced Conversions (no email captured
+        on-page at conversion; Stripe handles it), no Consent Mode v2 (not
+        targeting EEA), no brand campaign yet (zero brand search volume).
 - [ ] Monitor day 1/3/7: spend, CTR, search-terms report. KILL RULE ACTIVE:
       €120 spent with zero Stripe sales → pause everything.
 - [ ] Revenue watch: Mario's €2,200/year threshold — track Stripe totals
