@@ -50,3 +50,36 @@ premium or it hurts trust).
   subtle strip/corner of the same art.
 - Compress to ~200-400KB each (target: whole site under 5MB).
 - Landing page gets an "art themes" showcase row + count update.
+
+## Dark / Black premium set (2026-08-24, Mario's request — Pinterest dark-luxury trend)
+
+Numbering continues at 27. Global rules for THIS set (append to every prompt):
+
+> vertical portrait 3:4, dark elegant premium mood, large calm empty DARK area
+> in the center for light text overlay, edges decorated only, high resolution,
+> no text, no letters, no words, no watermark, no people
+
+1. **27-noirgold** — matte black background with a fine gold art deco line
+   frame and corner ornaments, gatsby elegance, minimal
+2. **28-midnightbotanical** — delicate gold line-art eucalyptus branches
+   framing the corners of a matte black background, luxurious, airy
+3. **29-darkfloral** — moody oil painting florals in deep burgundy and blush
+   along the bottom edge of a near-black background, dutch master still life
+4. **30-blackmarble** — black marble texture with subtle thin gold veins,
+   smooth calm center, luxury stationery
+5. **31-celestial** — deep navy-black night sky with tiny gold stars and a
+   thin crescent moon in the top corners, magical calm
+6. **32-charcoallinen** — dark charcoal woven linen texture with an elegant
+   thin cream double-line border frame, tailored menswear feel
+7. **33-darkacademia** — deep forest green background with vintage brass
+   botanical etchings in the corners, old library elegance
+8. **34-noirwave** — flowing thin gold japanese-style wave lines along the
+   bottom edge of a matte black background, zen minimal
+9. **35-ebonypalm** — dark emerald tropical palm leaves in the top corners of
+   a near-black background, subtle gold leaf edges, night resort luxury
+10. **36-chalkwreath** — hand-drawn white chalk botanical elements at the
+    edges of a matte black chalkboard background, charming cafe style
+11. **37-duskpeaks** — minimal dark mountain silhouettes at dusk along the
+    bottom edge, deep indigo to black gradient sky, faint gold horizon line
+12. **38-goldleaf** — scattered delicate gold leaf flakes along the top and
+    bottom edges of a matte black background, celebration luxury
