@@ -131,8 +131,8 @@ Must be answered before ads go live.
 - [x] Conversion wiring DONE 2026-08-24: Purchase action label
       AW-18406718312/CvZwCL-C1uYcEOj2gMlE fires once on ?paid= unlock ($29);
       tag verified live on site (gtag + dataLayer present)
-- [x] Diagnostics cleanup 2026-08-24 (Mario: "no shorts"): keywords 25→40
-      exact-match (15 new under review), RSA expanded 8→15 headlines
+- [x] Diagnostics cleanup 2026-08-24 (Mario: "no shorts"): keywords expanded to 25
+      exact-match (some overlaps deduped by Google), RSA expanded 8→15 headlines
       (ad strength Poor→Average, recalculating after save), 4 sitelinks added
       (Example / Pricing / Start Free / WiFi QR — approved same day). Remaining
       "limited" status = normal low-search-volume advisory on exact match.
@@ -158,6 +158,15 @@ Must be answered before ads go live.
       * Conversion action verified: Primary, data-driven attribution,
         per-transaction values (€1 fallback), 30-day click window,
         status "awaiting conversions" (≤48 h, normal)
+      * Keyword-ideas harvest 2026-08-24 pm: Google's "add new keywords"
+        recommendation (35 broad-match suggestions) NOT auto-applied — 13
+        genuinely-new phrasings added as EXACT match instead (guest guide /
+        guest welcome book / rental welcome book / welcome binder / vrbo
+        template / short term rental template / pdf variants), rest were
+        reorder-duplicates or blocked words (free/sample/examples). Now 38
+        exact keywords. Recommendation dismissed, incl. the search-partners
+        opt-in card (playbook: partners stay OFF). Never click "Apply all"
+        on keyword recommendations — always harvest to exact manually.
       * Bidding decision: STAY on Max Clicks + €1.00 CPC cap for the
         early-data phase (playbook Stage-1 fit; cap protects $29-product
         economics). Switch to Maximize Conversions after first conversions /
