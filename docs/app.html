@@ -157,8 +157,8 @@
   /* one-page all-in-one sign */
   .onepage{display:flex;flex-direction:column;justify-content:space-between;text-align:center}
   .onepage.has-art{background-size:cover;background-position:center}
-  .onepage h2.big{font-family:var(--bk-serif);font-size:3em;font-weight:600;margin:.1em 0 .15em}
-  .op-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9em 1.1em;margin:1.1em 0;text-align:left}
+  .onepage h2.big{font-family:var(--bk-serif);font-size:2.6em;font-weight:600;margin:.1em 0 .12em}
+  .op-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6em .8em;margin:.8em 0;text-align:left;font-size:.94em}
   .op-block{background:rgba(255,255,255,.62);border:1.5px solid var(--bk-accent);border-radius:10px;padding:.8em .95em}
   .op-block .bk{font-size:.72em;letter-spacing:.14em;text-transform:uppercase;color:var(--bk-accent);font-weight:700;margin-bottom:.35em}
   .op-block ul{padding-left:1.1em;margin:0}
@@ -194,8 +194,8 @@
   .signpage .cred b{font-family:ui-monospace,Menlo,monospace}
 
   /* watermark / preview lock */
-  .wm{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center;z-index:5}
-  .wm span{transform:rotate(-28deg);font:700 2.2em 'Inter',sans-serif;color:rgba(180,89,60,.16);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+  .wm{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center;z-index:5;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='230'%3E%3Ctext x='16' y='128' transform='rotate(-28 170 115)' font-family='Arial,sans-serif' font-size='20' font-weight='700' letter-spacing='2' fill='rgba(125,125,125,0.17)'%3EPREVIEW %C2%B7 makewelcomebook.com%3C/text%3E%3C/svg%3E");background-repeat:repeat}
+  .wm span{transform:rotate(-28deg);font:700 2.2em 'Inter',sans-serif;color:rgba(125,125,125,.22);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
   body.unlocked .wm{display:none}
 
   /* unlock bar */
@@ -207,8 +207,9 @@
   body.unlocked .unlockedbar{display:block}
 
   /* ---------- print ---------- */
+  @page{margin:0}
   @media print{
-    header.topbar,.formcol,.prevhead,.pagenav,#thumbs,.paybar,.unlockedbar{display:none!important}
+    header.topbar,.formcol,.prevhead,.pagenav,#thumbs,.paybar,.unlockedbar,.tipPop{display:none!important}
     .prevbody{display:block}
     body{background:#fff}
     main.layout{display:block}
@@ -517,7 +518,7 @@ function collectRules(){
   document.getElementById("cntPremium").textContent=`${prem.length} designs · included with every book`;
   document.getElementById("cntBasic").textContent=`${basic.length} designs`;
   wrap.querySelectorAll("button").forEach(b=>{
-    b.addEventListener("click",()=>{ state.theme=b.dataset.theme; save(); markTheme(); render(); });
+    b.addEventListener("click",()=>{ state.theme=b.dataset.theme; delete state.custFont; delete state.custAccent; delete state.custInk; save(); markTheme(); render(); });
   });
   markTheme();
   function markTheme(){
@@ -636,6 +637,7 @@ function wifiQR(){
   }catch(e){ return ""; }
 }
 const wm='<div class="wm"><span>Preview · makewelcomebook.com</span></div>';
+const cut=(s,n)=>s&&s.length>n?s.slice(0,n-1)+"\u2026":s;
 /* movable-text helper: data attribute + saved offset (percent of page) */
 function mv(key){
   const p=state.pos&&state.pos[key];
@@ -848,6 +850,18 @@ function render(){
       <div class="op-block"${mv("op-go")}><div class="bk">Before you go</div>
         ${co.length?`<ul>${co.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<div style="font-size:.92em;opacity:.7">Just close the door behind you — we'll handle the rest.</div>`}
       </div>
+      <div class="op-block"${mv("op-entry")}><div class="bk">Getting in &amp; parking</div>
+        <div style="font-size:.9em">${esc(cut(v("entry","Door code &amp; keys \u2014 add in step 3"),150))}</div>
+        ${v("parking","")?`<div style="font-size:.9em;margin-top:.3em"><b>Parking:</b> ${esc(cut(v("parking",""),110))}</div>`:""}
+      </div>
+      <div class="op-block"${mv("op-info")}><div class="bk">Good to know</div>
+        ${v("address","")?`<div style="font-size:.9em">${esc(v("address",""))}</div>`:""}
+        ${v("emergency","")?`<div style="font-size:.9em;margin-top:.3em">${lines(state.emergency).slice(0,2).map(esc).join(" \u00b7 ")}</div>`:""}
+        ${v("trash","")?`<div style="font-size:.9em;margin-top:.3em"><b>Trash:</b> ${esc(cut(v("trash",""),90))}</div>`:""}
+      </div>
+      ${app.length?`<div class="op-block op-wide"${mv("op-how")}><div class="bk">How things work</div>
+        <ul>${app.slice(0,3).map(l=>`<li>${esc(cut(l,110))}</li>`).join("")}</ul>
+      </div>`:""}
       ${tips.length?`<div class="op-block op-wide"${mv("op-tips")}><div class="bk">Our favorite places</div>
         <ul>${tips.slice(0,3).map(l=>`<li>${esc(l)}</li>`).join("")}</ul>
       </div>`:""}
@@ -869,6 +883,7 @@ function render(){
 
 /* ---------- actions ---------- */
 document.getElementById("btnPrint").addEventListener("click",()=>{
+  const tp=document.querySelector(".tipPop"); if(tp){ tp.remove(); localStorage.setItem("mwb_tip_move","1"); }
   if(localStorage.getItem(LS_UNLOCK)!=="1"){
     document.getElementById("btnPay").scrollIntoView({behavior:"smooth",block:"center"});
     document.querySelector(".paybar").animate([{transform:"scale(1)"},{transform:"scale(1.03)"},{transform:"scale(1)"}],{duration:300});
