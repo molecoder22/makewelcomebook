@@ -167,6 +167,17 @@
   .op-block.wifi .qr{width:36%;flex:none}
   .op-block.wifi .qr svg{width:100%;height:auto;display:block}
   .op-block.op-wide{grid-column:1/-1}
+  /* dark art themes: light text on dark backgrounds, dark cards, scannable QR */
+  .page.dk{color:#f2ecdf}
+  .page.dk h1,.page.dk h2{color:#f6f1e6}
+  .page.dk .sub,.page.dk p{color:rgba(246,241,230,.85)}
+  .page.dk .bottom{color:rgba(246,241,230,.78)}
+  .page.dk .eyebrow{color:var(--bk-accent)}
+  .onepage.dk .op-block{background:rgba(10,10,10,.55);color:#f2ecdf;border-color:var(--bk-accent)}
+  .onepage.dk .op-block .bk{color:var(--bk-accent)}
+  .signpage.dk .cred,.signpage.dk h2{color:#f2ecdf}
+  .page.dk .qr svg{background:#fff;padding:6px;border-radius:8px;box-sizing:border-box}
+  .page.dk .wm span{color:rgba(200,200,200,.28)}
   .miniBtn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 12px;font:600 .78rem 'Inter',sans-serif;cursor:pointer;color:var(--muted)}
   .miniBtn:hover{border-color:var(--accent);color:var(--accent)}
   input[type=color]{width:46px;height:36px;padding:2px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer}
@@ -468,7 +479,19 @@ const THEMES = {
   artAutumn:   {label:"Autumn",    accent:"#b06f2e",soft:"#f6ead9",ink:"#33260f",paper:"#fdfaf4",serif:"'Fraunces',Georgia,serif",cover:"art",art:"art/23-autumn.webp"},
   artEveningSail:{label:"Evening Sail",accent:"#7d89a8",soft:"#e9ecf3",ink:"#2b3040",paper:"#fbf7f4",serif:"'Spectral',Georgia,serif",cover:"art",art:"art/24-eveningsail.webp"},
   artLavenderField:{label:"Lavender Fields",accent:"#8579ad",soft:"#ece8f5",ink:"#2c2740",paper:"#fcfbff",serif:"'Cormorant Garamond',Georgia,serif",cover:"art",art:"art/25-lavenderfields.webp"},
-  artHerbGarden:{label:"Herb Garden",accent:"#63805a",soft:"#e8efe4",ink:"#283122",paper:"#fbfdf8",serif:"'EB Garamond',Georgia,serif",cover:"art",art:"art/26-herbgarden.webp"}
+  artHerbGarden:{label:"Herb Garden",accent:"#63805a",soft:"#e8efe4",ink:"#283122",paper:"#fbfdf8",serif:"'EB Garamond',Georgia,serif",cover:"art",art:"art/26-herbgarden.webp"},
+  artNoirGold:{label:"Noir Gold",accent:"#c9a227",soft:"#f5ead0",ink:"#2a2419",paper:"#fbf8f1",serif:"'Playfair Display',Georgia,serif",cover:"art",art:"art/27-noirgold.webp",dark:true},
+  artMidnightBotanical:{label:"Midnight Botanical",accent:"#b99745",soft:"#f3ecda",ink:"#292317",paper:"#fbf9f2",serif:"'Cormorant Garamond',Georgia,serif",cover:"art",art:"art/28-midnightbotanical.webp",dark:true},
+  artDarkFloral:{label:"Dark Floral",accent:"#8e3b52",soft:"#f4e3e8",ink:"#2b1f24",paper:"#fdf9fa",serif:"'Playfair Display',Georgia,serif",cover:"art",art:"art/29-darkfloral.webp",dark:true},
+  artBlackMarble:{label:"Black Marble",accent:"#b08d3f",soft:"#f2ead7",ink:"#28231a",paper:"#fbf9f4",serif:"'EB Garamond',Georgia,serif",cover:"art",art:"art/30-blackmarble.webp",dark:true},
+  artCelestial:{label:"Celestial Night",accent:"#b3a05e",soft:"#efeadb",ink:"#232433",paper:"#f9f9fc",serif:"'Cormorant Garamond',Georgia,serif",cover:"art",art:"art/31-celestial.webp",dark:true},
+  artCharcoalLinen:{label:"Charcoal Linen",accent:"#9c8b6c",soft:"#efe9dd",ink:"#2b2620",paper:"#faf8f4",serif:"'EB Garamond',Georgia,serif",cover:"art",art:"art/32-charcoallinen.webp",dark:true},
+  artDarkAcademia:{label:"Dark Academia",accent:"#7d9a6d",soft:"#e7efe2",ink:"#22301f",paper:"#f9fbf7",serif:"'Playfair Display',Georgia,serif",cover:"art",art:"art/33-darkacademia.webp",dark:true},
+  artNoirWave:{label:"Golden Wave",accent:"#c2a14e",soft:"#f3ecd8",ink:"#282212",paper:"#fbf9f2",serif:"'Cormorant Garamond',Georgia,serif",cover:"art",art:"art/34-noirwave.webp",dark:true},
+  artEbonyPalm:{label:"Ebony Palm",accent:"#5fae87",soft:"#e2f0e9",ink:"#1f2d26",paper:"#f7fbf9",serif:"'Playfair Display',Georgia,serif",cover:"art",art:"art/35-ebonypalm.webp",dark:true},
+  artChalkWreath:{label:"Chalkboard",accent:"#8a9199",soft:"#eaecee",ink:"#26282b",paper:"#fafbfc",serif:"'EB Garamond',Georgia,serif",cover:"art",art:"art/36-chalkwreath.webp",dark:true},
+  artDuskPeaks:{label:"Dusk Peaks",accent:"#c98a3d",soft:"#f6ead9",ink:"#27221c",paper:"#fbf8f4",serif:"'Cormorant Garamond',Georgia,serif",cover:"art",art:"art/37-duskpeaks.webp",dark:true},
+  artGoldLeaf:{label:"Gold Leaf",accent:"#caa435",soft:"#f5eed4",ink:"#292315",paper:"#fbf9f1",serif:"'Playfair Display',Georgia,serif",cover:"art",art:"art/38-goldleaf.webp",dark:true}
 };
 const LS_KEY="mwb_data_v1", LS_UNLOCK="mwb_unlocked";
 // unlock code is checked by prefix so the Stripe success URL can carry it
@@ -698,7 +721,7 @@ function render(){
       <div class="sub"${mv("cv-sub")}>${tagline}</div>
       <div class="bottom"${mv("cv-by")}>${byline}</div>
     </div>`,
-    art:`<div class="page cover cv-art" style="background-image:url('${T.art||""}')">${wm}
+    art:`<div class="page cover cv-art${T.dark?" dk":""}" style="background-image:url('${T.art||""}')">${wm}
       <div class="top"${mv("cv-top")}>
         <div class="eyebrow">Welcome to</div>
         <h1>${prop}</h1>
@@ -815,7 +838,7 @@ function render(){
       <ellipse cx="16" cy="30" rx="3.5" ry="7" transform="rotate(20 16 30)"/>
     </g>
   </svg>`;
-  pages.push(`<div class="page signpage${T.art?" has-art":""}"${T.art?` style="background-image:url('${T.art}')"`:""}>${wm}
+  pages.push(`<div class="page signpage${T.art?" has-art":""}${T.dark?" dk":""}"${T.art?` style="background-image:url('${T.art}')"`:""}>${wm}
     ${T.art?"":branch(false)}
     <div class="eyebrow"${mv("ws-name")} style="letter-spacing:.3em;text-transform:uppercase;color:var(--bk-accent);font-weight:700;margin-top:1.4em">${prop}</div>
     <h2${mv("ws-welcome")} style="font-size:3.4em;margin:.2em 0">welcome</h2>
@@ -827,7 +850,7 @@ function render(){
   /* one-page all-in-one sign (Pinterest style — everything on a single frameable page) */
   const topRules=rules.slice(0,5);
   const co=lines(state.checkoutlist).slice(0,3);
-  const onePage=`<div class="page onepage${T.art?" has-art":""}"${T.art?` style="background-image:url('${T.art}')"`:""}>${wm}
+  const onePage=`<div class="page onepage${T.art?" has-art":""}${T.dark?" dk":""}"${T.art?` style="background-image:url('${T.art}')"`:""}>${wm}
     <div${mv("op-head")}>
       <div class="eyebrow" style="letter-spacing:.3em;text-transform:uppercase;color:var(--bk-accent);font-weight:700">${prop}</div>
       <h2 class="big">welcome</h2>
