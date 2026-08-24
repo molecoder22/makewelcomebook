@@ -128,8 +128,14 @@ Must be answered before ads go live.
       AW-18406718312 installed on site, campaign ENABLED ("Eligible (limited)"
       — low-volume advisory normal for exact match). Ads serve after Google's
       standard ad review (~1 day).
-- [ ] Finish precise conversion wiring: create/locate Purchase conversion
-      action event label, fire gtag conversion only on ?paid= unlock
+- [x] Conversion wiring DONE 2026-08-24: Purchase action label
+      AW-18406718312/CvZwCL-C1uYcEOj2gMlE fires once on ?paid= unlock ($29);
+      tag verified live on site (gtag + dataLayer present)
+- [x] Diagnostics cleanup 2026-08-24 (Mario: "no shorts"): keywords 25→40
+      exact-match (15 new under review), RSA expanded 8→15 headlines
+      (ad strength Poor→Average, recalculating after save), 4 sitelinks added
+      (Example / Pricing / Start Free / WiFi QR — under review). Remaining
+      "limited" status = normal low-search-volume advisory on exact match.
 - [ ] Monitor day 1/3/7: spend, CTR, search-terms report. KILL RULE ACTIVE:
       €120 spent with zero Stripe sales → pause everything.
 - [ ] Revenue watch: Mario's €2,200/year threshold — track Stripe totals
