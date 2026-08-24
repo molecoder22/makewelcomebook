@@ -179,6 +179,16 @@ Must be answered before ads go live.
       €120 spent with zero Stripe sales → pause everything.
 - [ ] Revenue watch: Mario's €2,200/year threshold — track Stripe totals
       (both stores) and warn well before crossing
+- [x] DARK PREMIUM SET 2026-08-24 evening (Mario's request, Pinterest
+      dark-luxury trend): 12 new Higgsfield art themes (27-38: noir gold,
+      midnight botanical, dark floral, black marble, celestial, charcoal
+      linen, dark academia, golden wave, ebony palm, chalkboard, dusk peaks,
+      gold leaf) — 4K Nano Banana Pro, all QC'd first try. New dark:true
+      theme flag: light cover text, dark one-page cards, white-backed QR
+      (scannable on black). Now 62 designs / 38 premium. Same day: fixed
+      basic-themes-masked-by-fine-tune bug, tiled screenshot-proof watermark,
+      clean PDFs (@page margin 0), one-page sign shows ALL inputs.
+      Mario confirmed real purchase flow works end to end.
 - [ ] Optional QA: $29 self-purchase + refund
 - [ ] Free email: Mario signs up improvmx.com (1 min) → Claude adds MX records
 - [ ] Google Ads campaign live (spec ready, gated on accountant answer)
