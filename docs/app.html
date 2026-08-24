@@ -178,6 +178,16 @@
   .signpage.dk .cred,.signpage.dk h2{color:#f2ecdf}
   .page.dk .qr svg{background:#fff;padding:6px;border-radius:8px;box-sizing:border-box}
   .page.dk .wm span{color:rgba(200,200,200,.28)}
+  .page{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page.has-art{background-size:cover;background-position:center}
+  .page.inner-art .kv,.page.inner-art .tipcard{background:rgba(255,255,255,.6);border-radius:8px;padding:.55em .75em}
+  .page.inner-art.dk .kv,.page.inner-art.dk .tipcard{background:rgba(10,10,10,.52)}
+  .page.dk .sec{color:#f6f1e6}
+  .page.dk .kv .k{color:var(--bk-accent)}
+  .page.dk .kv .v,.page.dk li{color:#f2ecdf}
+  .page.dk .tipcard .t{color:#f6f1e6}
+  .page.dk .tipcard .d{color:rgba(246,241,230,.82)}
+  .page.dk .pgfoot{color:rgba(246,241,230,.6)}
   .miniBtn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 12px;font:600 .78rem 'Inter',sans-serif;cursor:pointer;color:var(--muted)}
   .miniBtn:hover{border-color:var(--accent);color:var(--accent)}
   input[type=color]{width:46px;height:36px;padding:2px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer}
@@ -232,6 +242,11 @@
   }
   .printlock{display:none}
 </style>
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "y7j8xs7wx9");
+</script>
 </head>
 <body>
 <header class="topbar">
@@ -313,6 +328,8 @@
           </div>
         </div>
         <p class="hint">Applies to the whole book on top of the design you picked. Reset brings back the design's own colors.</p>
+        <label style="display:flex;gap:8px;align-items:center;margin-top:10px;cursor:pointer"><input type="checkbox" id="c_artall" style="width:auto"> Use the design's artwork on <b>every page</b></label>
+        <p class="hint">Only for art designs. Off = artwork on cover &amp; signs only (inner pages stay plain for easy printing).</p>
         <label>Moved text</label>
         <button class="miniBtn" id="c_pos_reset" type="button">Put all text back to original position</button>
         <p class="hint">You can drag any text block directly on the preview page to move it.</p>
@@ -562,6 +579,8 @@ function collectRules(){
   reset("c_accent_reset","custAccent"); reset("c_ink_reset","custInk");
   const pr=document.getElementById("c_pos_reset");
   if(pr) pr.addEventListener("click",()=>{ delete state.pos; save(); render(); });
+  const aa=document.getElementById("c_artall");
+  if(aa){ aa.checked=!!state.artAll; aa.addEventListener("change",()=>{ if(aa.checked) state.artAll=true; else delete state.artAll; save(); render(); }); }
 })();
 
 /* book-style pager */
@@ -687,6 +706,9 @@ function render(){
   const host=esc(v("host","Your Hosts"));
   const city=esc(v("city",""));
   const foot=`<div class="pgfoot">${prop}</div>`;
+  const allArt=!!(T.art&&state.artAll);
+  const pgCls=allArt?` has-art inner-art${T.dark?" dk":""}`:"";
+  const pgSty=allArt?` style="background-image:url('${T.art}')"`:"";
   const pages=[];
 
   /* cover — layout depends on theme's cover variant */
@@ -743,7 +765,7 @@ function render(){
 
   /* wifi + welcome */
   const qr=wifiQR();
-  pages.push(`<div class="page">${wm}
+  pages.push(`<div class="page${pgCls}"${pgSty}>${wm}
     <h2 class="sec">Getting connected</h2><div class="rule"></div>
     ${qr?`<div class="wifibox"><div class="qr">${qr}</div>
       <div class="creds">
@@ -758,7 +780,7 @@ function render(){
   </div>`);
 
   /* check-in / out */
-  pages.push(`<div class="page">${wm}
+  pages.push(`<div class="page${pgCls}"${pgSty}>${wm}
     <h2 class="sec">Arriving &amp; leaving</h2><div class="rule"></div>
     <div class="twocol">
       <div class="kv"><div class="k">Check-in from</div><div class="v" style="font-size:1.5em;font-weight:700">${fmtTime(v("checkin","15:00"))}</div></div>
@@ -772,7 +794,7 @@ function render(){
 
   /* house rules */
   const rules=(state.rules|| [...document.querySelectorAll("#rules input:checked")].map(c=>c.value)).concat(lines(state.rules_custom));
-  pages.push(`<div class="page">${wm}
+  pages.push(`<div class="page${pgCls}"${pgSty}>${wm}
     <h2 class="sec">House rules</h2><div class="rule"></div>
     <ul style="font-size:1.1em">${(rules.length?rules:["Add your rules in step 4"]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
     <p style="margin-top:1.5em;opacity:.7">Thank you for treating our home with care — it means the world to us. 💛</p>
@@ -781,7 +803,7 @@ function render(){
 
   /* how things work */
   const app=lines(state.appliances);
-  pages.push(`<div class="page">${wm}
+  pages.push(`<div class="page${pgCls}"${pgSty}>${wm}
     <h2 class="sec">How things work</h2><div class="rule"></div>
     ${app.length?app.map(l=>{const i=l.indexOf(":");const t=i>0?l.slice(0,i):l;const d=i>0?l.slice(i+1).trim():"";
       return `<div class="tipcard"><div class="t">${esc(t)}</div>${d?`<div class="d">${esc(d)}</div>`:""}</div>`}).join("")
@@ -792,7 +814,7 @@ function render(){
 
   /* local tips */
   const tips=lines(state.tips);
-  pages.push(`<div class="page">${wm}
+  pages.push(`<div class="page${pgCls}"${pgSty}>${wm}
     <h2 class="sec">Our favorite places</h2><div class="rule"></div>
     ${tips.length?tips.map(l=>{const m=l.split(/\s+[—-]\s+/);return `<div class="tipcard"><div class="t">${esc(m[0])}</div>${m[1]?`<div class="d">${esc(m.slice(1).join(" — "))}</div>`:""}</div>`}).join("")
       :`<p style="opacity:.6">Add your local tips in step 6 — guests love honest recommendations.</p>`}
@@ -800,7 +822,7 @@ function render(){
   </div>`);
 
   /* important info */
-  pages.push(`<div class="page">${wm}
+  pages.push(`<div class="page${pgCls}"${pgSty}>${wm}
     <h2 class="sec">Good to know</h2><div class="rule"></div>
     <div class="kv"><div class="k">Address</div><div class="v">${esc(v("address","Your property address"))}</div></div>
     <div class="kv"><div class="k">Contact us</div><div class="v">${esc(v("phone","Your phone"))}</div></div>
@@ -809,7 +831,7 @@ function render(){
   </div>`);
 
   /* back cover */
-  pages.push(`<div class="page backcover">${wm}
+  pages.push(`<div class="page backcover${pgCls}"${pgSty}>${wm}
     <h2>Enjoy your stay ✨</h2>
     <p>If anything isn't perfect, message us first — we'll fix it fast. And if you loved your stay, a kind review helps our small ${city?city+" ":""}rental more than you know.</p>
     <p style="margin-top:2em;font-family:var(--bk-serif);font-size:1.3em">— ${host}</p>
