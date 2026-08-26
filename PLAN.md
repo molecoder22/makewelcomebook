@@ -177,6 +177,14 @@ Must be answered before ads go live.
         targeting EEA), no brand campaign yet (zero brand search volume).
 - [ ] Monitor day 1/3/7: spend, CTR, search-terms report. KILL RULE ACTIVE:
       €120 spent with zero Stripe sales → pause everything.
+      Day-3 data (Aug 23-26): 31 impr, 3 clicks, 9.7% CTR, €2.96 spent,
+      0 conv. Search-term mining: added [guest information book] (2/2 clicks,
+      100% CTR — buyer phrase we missed) as 39th keyword; blocked 4 waste
+      terms ([guest feedback book],[guest sign book],[visitor book],
+      [guest book for home visitors]) → 54 negatives. UK queries answering
+      first (holiday home/let). Delivery was capped by €1.00 max CPC (avg
+      CPC pinned at €0.99) → Mario authorized more spend 2026-08-26,
+      max CPC raised €1.00 → €1.50. Budget stays €8/day, kill rule stays.
 - [ ] Revenue watch: Mario's €2,200/year threshold — track Stripe totals
       (both stores) and warn well before crossing
 - [x] DARK PREMIUM SET 2026-08-24 evening (Mario's request, Pinterest
