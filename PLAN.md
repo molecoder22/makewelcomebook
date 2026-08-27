@@ -232,6 +232,16 @@ Must be answered before ads go live.
         overridden → moved all mobile overrides to the END of the stylesheet.
       Verified: 0 overflow, book visible without scrolling, buy button clear,
       desktop unchanged (tabs hidden, two columns, paybar normal).
+- [x] OFFER-ON-INTENT 2026-08-26 (Mario: let them build first, show price on
+      click): persistent price banner in the builder replaced with a slim
+      "Free to try — your book is saved as you type" + Unlock button
+      (paybar 141px → 89px on mobile, more room for the book). Full offer now
+      opens as a dialog on "Unlock my book" OR "Download PDF": $29 one-time,
+      5 benefit bullets, 14-day money-back, Stripe + legal links.
+      NOTE (deliberate, keeps us honest & Google-policy safe): price stays
+      visible in the ad copy and on the landing page, so nobody reaches the
+      builder without having seen $29 — this declutters the workspace, it is
+      NOT hidden pricing. Do not remove $29 from ads/landing.
 - [ ] Optional QA: $29 self-purchase + refund
 - [x] EMAIL LIVE 2026-08-24: ImprovMX account (Mario's gmail; first attempt
       with hello@ was a dead-end — confirmation loop), domain Active,
