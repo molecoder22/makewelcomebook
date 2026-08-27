@@ -29,7 +29,7 @@
   html{-webkit-text-size-adjust:100%}
   body{font-family:'Inter',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
 
-  header.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:50}
+  header.topbar{display:flex;align-items:center;justify-content:flex-end;padding:14px 22px;border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:50}
   .brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--ink);text-decoration:none}
   .brand span{color:var(--accent)}
   .topbar .actions{display:flex;gap:10px;align-items:center}
@@ -304,9 +304,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, documen
 </head>
 <body>
 <header class="topbar">
-  <a class="brand" href="index.html">Make<span>Welcome</span>Book</a>
   <div class="actions">
-    <button class="btn btn-ghost" id="btnSample">Fill sample data</button>
     <button class="btn btn-primary" id="btnPrint">Download PDF</button>
   </div>
 </header>
@@ -1071,14 +1069,18 @@ function applySample(){
   if(window._markTheme) window._markTheme();
   render();
 }
-document.getElementById("btnSample").addEventListener("click",()=>{ applySample(); if(matchMedia("(max-width:900px)").matches && window._showPrev) window._showPrev(true); });
+const _bs=document.getElementById("btnSample");
+if(_bs) _bs.addEventListener("click",()=>{ applySample(); if(matchMedia("(max-width:900px)").matches && window._showPrev) window._showPrev(true); });
 
 /* ?sample=1 shows a finished example — but never overwrites a visitor's own book */
 (function(){
   const p=new URLSearchParams(location.search);
   if(p.get("sample")==="1" && !(state.propname||"").trim()){
     applySample();
-    setTimeout(()=>{ const pv=document.querySelector(".prevcol"); if(pv) pv.scrollIntoView({behavior:"smooth"}); },150);
+    setTimeout(()=>{
+      if(matchMedia("(max-width:900px)").matches && window._showPrev){ window._showPrev(true); return; }
+      const pv=document.querySelector(".prevcol"); if(pv) pv.scrollIntoView({behavior:"smooth"});
+    },150);
   }
 })();
 
