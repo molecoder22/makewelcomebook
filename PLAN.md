@@ -185,6 +185,12 @@ Must be answered before ads go live.
       first (holiday home/let). Delivery was capped by €1.00 max CPC (avg
       CPC pinned at €0.99) → Mario authorized more spend 2026-08-26,
       max CPC raised €1.00 → €1.50. Budget stays €8/day, kill rule stays.
+      ★ 3-DAY SPEED SPRINT (Mario, 2026-08-26 eve): budget €8 → €16/day AND
+      max CPC €1.50 → €2.00, to buy data fast. Max exposure ~€48 over 3 days
+      (still < €120 kill line). Impressions already 31→47 after the €1.50
+      step. REVIEW DUE 2026-08-29: if spend approaches €60-70 with 0 sales,
+      revert to €8/day + €1.50 and shift focus to landing-page conversion
+      (Clarity recordings) rather than more traffic.
 - [ ] Revenue watch: Mario's €2,200/year threshold — track Stripe totals
       (both stores) and warn well before crossing
 - [x] DARK PREMIUM SET 2026-08-24 evening (Mario's request, Pinterest
