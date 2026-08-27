@@ -232,13 +232,28 @@
   .paybar .msg{font-size:.92rem;color:var(--muted)}
   .paybar .msg b{color:var(--ink)}
   body.unlocked .paybar{display:none}
+  /* ---------- offer dialog (shown on intent, not up-front) ---------- */
+  .offerwrap{position:fixed;inset:0;z-index:95;background:rgba(38,34,28,.55);display:flex;align-items:center;justify-content:center;padding:18px;animation:tipIn .18s ease}
+  .offerwrap[hidden]{display:none}
+  .offercard{position:relative;background:#fff;border-radius:16px;max-width:390px;width:100%;padding:26px 24px 20px;box-shadow:0 22px 60px rgba(38,34,28,.32);text-align:center}
+  .offercard h3{font-family:'Fraunces',serif;font-size:1.35rem;margin-bottom:8px}
+  .offercard .price{margin-bottom:14px}
+  .offercard .price b{font-size:2.1rem;color:var(--accent);font-family:'Fraunces',serif}
+  .offercard .price span{display:block;font-size:.86rem;color:var(--muted);margin-top:2px}
+  .offerlist{list-style:none;text-align:left;margin:0 auto 18px;max-width:280px;font-size:.93rem}
+  .offerlist li{padding:5px 0 5px 24px;position:relative}
+  .offerlist li::before{content:"\2713";position:absolute;left:0;color:var(--ok);font-weight:700}
+  .offerbuy{display:block;width:100%;padding:14px;font-size:1rem}
+  .offerfine{font-size:.76rem;color:var(--muted);margin-top:12px}
+  .offerfine a{color:inherit}
+  .offerx{position:absolute;top:8px;right:12px;background:none;border:0;font-size:1.6rem;line-height:1;color:var(--muted);cursor:pointer}
   .unlockedbar{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--ok);color:#fff;padding:12px 22px;text-align:center;z-index:60;font-weight:600}
   body.unlocked .unlockedbar{display:block}
 
   /* ---------- print ---------- */
   @page{margin:0}
   @media print{
-    header.topbar,.formcol,.prevhead,.pagenav,#thumbs,.paybar,.unlockedbar,.tipPop{display:none!important}
+    header.topbar,.formcol,.prevhead,.pagenav,#thumbs,.paybar,.unlockedbar,.tipPop,.offerwrap,.mtabs{display:none!important}
     .prevbody{display:block}
     body{background:#fff}
     main.layout{display:block}
@@ -476,8 +491,26 @@ Leave keys in the lockbox"></textarea>
 </main>
 
 <div class="paybar">
-  <span class="msg"><b>Free preview.</b> Unlock printing &amp; remove the watermark — <b>$29 one-time</b>, free re-edits forever. <small style="opacity:.75">14-day money-back · <a href="refunds.html" target="_blank" style="color:inherit">Refunds</a> · <a href="terms.html" target="_blank" style="color:inherit">Terms</a> · <a href="privacy.html" target="_blank" style="color:inherit">Privacy</a></small></span>
-  <a class="btn btn-primary" id="btnPay" href="#">Unlock my book</a>
+  <span class="msg">Free to try — your book is saved as you type.</span>
+  <button type="button" class="btn btn-primary" id="btnUnlock">Unlock my book</button>
+</div>
+
+<!-- offer, shown only when the visitor asks to unlock or download -->
+<div class="offerwrap" id="offer" hidden>
+  <div class="offercard" role="dialog" aria-modal="true" aria-labelledby="offerTitle">
+    <button type="button" class="offerx" id="offerClose" aria-label="Close">&times;</button>
+    <h3 id="offerTitle">Unlock your welcome book</h3>
+    <div class="price"><b>$29</b> <span>one-time · no subscription</span></div>
+    <ul class="offerlist">
+      <li>Remove the preview watermark</li>
+      <li>Print-ready PDF — every page &amp; sign</li>
+      <li>WiFi QR code sign included</li>
+      <li>Free re-edits forever</li>
+      <li>14-day money-back guarantee</li>
+    </ul>
+    <a class="btn btn-primary offerbuy" id="btnPay" href="#">Unlock for $29</a>
+    <p class="offerfine">Secure payment by Stripe · <a href="refunds.html" target="_blank">Refunds</a> · <a href="terms.html" target="_blank">Terms</a> · <a href="privacy.html" target="_blank">Privacy</a></p>
+  </div>
 </div>
 <nav class="mtabs" aria-label="View switcher">
   <button type="button" id="mtEdit" class="on">&#9998; Edit</button>
@@ -574,6 +607,14 @@ function save(){ localStorage.setItem(LS_KEY, JSON.stringify(state)) }
   }
   if(localStorage.getItem(LS_UNLOCK)==="1") document.body.classList.add("unlocked");
   document.getElementById("btnPay").href=PAY_LINK;
+  /* offer dialog: only shown when the visitor asks to unlock or download */
+  const offer=document.getElementById("offer");
+  window._openOffer=()=>{ offer.hidden=false; document.body.style.overflow="hidden"; };
+  const closeOffer=()=>{ offer.hidden=true; document.body.style.overflow=""; };
+  document.getElementById("btnUnlock").addEventListener("click",window._openOffer);
+  document.getElementById("offerClose").addEventListener("click",closeOffer);
+  offer.addEventListener("click",e=>{ if(e.target===offer) closeOffer(); });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!offer.hidden) closeOffer(); });
 })();
 
 /* ---------- bind form ---------- */
@@ -1002,8 +1043,7 @@ function render(){
 document.getElementById("btnPrint").addEventListener("click",()=>{
   const tp=document.querySelector(".tipPop"); if(tp){ tp.remove(); localStorage.setItem("mwb_tip_move","1"); }
   if(localStorage.getItem(LS_UNLOCK)!=="1"){
-    document.getElementById("btnPay").scrollIntoView({behavior:"smooth",block:"center"});
-    document.querySelector(".paybar").animate([{transform:"scale(1)"},{transform:"scale(1.03)"},{transform:"scale(1)"}],{duration:300});
+    if(window._openOffer) window._openOffer();
     return;
   }
   window.print();
