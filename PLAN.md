@@ -242,6 +242,18 @@ Must be answered before ads go live.
       visible in the ad copy and on the landing page, so nobody reaches the
       builder without having seen $29 — this declutters the workspace, it is
       NOT hidden pricing. Do not remove $29 from ads/landing.
+- [x] CLARITY VERIFIED 2026-08-27: tag live on BOTH pages (clarity.ms/tag/
+      y7j8xs7wx9 + clarity.js loading, window.clarity = function), 56 sessions
+      recorded, replays + AI session summaries working. Own IP 87.197.89.172
+      excluded in Settings→IP blocking so our testing stops polluting data
+      (re-add if Mario's IP changes; it is dynamic).
+      ★ FIRST REAL AD-VISITOR BEHAVIOUR (referrer google.com, UK, MobileSafari
+      /tablet): landed on the LANDING page, 14s and 38s, **0 clicks**, 1 page,
+      left without reaching the builder. Sample is tiny (2-3 real visits) so
+      it is a hint, not a verdict — but the drop-off is at the landing page,
+      not the builder. Watch this on Saturday: if the pattern holds with
+      20-35 clicks, fix the landing page (CTA prominence / intent mismatch:
+      "template" searchers may expect a free Canva file), not the builder.
 - [ ] Optional QA: $29 self-purchase + refund
 - [x] EMAIL LIVE 2026-08-24: ImprovMX account (Mario's gmail; first attempt
       with hello@ was a dead-end — confirmation loop), domain Active,
