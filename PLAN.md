@@ -216,6 +216,22 @@ Must be answered before ads go live.
       REMAINING (Mario): ImprovMX signup so hello@ actually receives mail —
       it's printed in terms/privacy/refunds; until then refund requests have
       no working channel (Stripe dispute risk).
+- [x] ★ MOBILE OVERHAUL 2026-08-26 (Mario: "90% of views are mobile, it
+      sucks on mobile"). Measured on 375px viewport, real bugs found+fixed:
+      * 49px HORIZONTAL OVERFLOW (page 424px wide on 375px screen) — header
+        and all copy were cut off. Cause: grid track min-width:auto +
+        unwrappable header. Fix: minmax(0,1fr) + min-width:0 + wrapping header.
+      * Preview was 3.1 SCREENS DOWN (form is 2740px tall) — ad visitors
+        never saw the product. Fix: sticky bottom tab bar [✎ Edit][📖 My book],
+        one tap to the live book; "My book" pulses when the book changes.
+        Sample-data button auto-flips to the book.
+      * Buy button was 34px CLIPPED behind the new tab bar → paybar lifted.
+      * Tip popup covered the form on load and the book in preview → now
+        compact, shows only in preview, dismisses on first drag.
+      * CASCADE BUG: mobile rules sat before base rules and were being
+        overridden → moved all mobile overrides to the END of the stylesheet.
+      Verified: 0 overflow, book visible without scrolling, buy button clear,
+      desktop unchanged (tabs hidden, two columns, paybar normal).
 - [ ] Optional QA: $29 self-purchase + refund
 - [x] EMAIL LIVE 2026-08-24: ImprovMX account (Mario's gmail; first attempt
       with hello@ was a dead-end — confirmation loop), domain Active,
