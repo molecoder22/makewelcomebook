@@ -254,6 +254,23 @@ Must be answered before ads go live.
       not the builder. Watch this on Saturday: if the pattern holds with
       20-35 clicks, fix the landing page (CTA prominence / intent mismatch:
       "template" searchers may expect a free Canva file), not the builder.
+- [x] ★★★ FIRST REAL SALE 2026-08-28, 03:53 CEST ★★★
+      Customer: Tarun Inuganti, Rancho Palos Verdes, California US (real
+      stranger, paid via Stripe Link, risk level Normal, guest checkout).
+      $29.00 USD → €24.89, Stripe fee €1.53, NET €23.36 (available Sep 2).
+      Google Ads recorded the conversion (tracking works end-to-end).
+      ECONOMICS Aug 23-28: spend €12.63 / 8 clicks / 97 impressions /
+      CTR 8.25% / avg CPC €1.58 / 1 conversion / cost-per-sale €12.63.
+      → PROFIT on first sale ≈ €10.73 (ROAS ~1.85x). Exact converting query
+      hidden by Google (low-volume privacy threshold, shown only in the
+      "other search terms" bucket: 4 clicks, €6.83, 25% CVR).
+      BREAK-EVEN MATH: at €1.58 CPC we need ≥6.8% conversion rate to break
+      even (14.8 clicks per sale = €23.36). Current 12.5% is above it but
+      based on ONE sale — expect it to fall. Watch this number.
+- [x] Stripe fix 2026-08-28: statement descriptor was "STCKD APP" (from the
+      other venture) → customers' card statements now read MAKEWELCOMEBOOK
+      (short: MWBOOK). Wrong descriptor = classic chargeback trigger.
+      TODO next: Stripe product description still says "all 34 themes" (now 62).
 - [ ] Optional QA: $29 self-purchase + refund
 - [x] EMAIL LIVE 2026-08-24: ImprovMX account (Mario's gmail; first attempt
       with hello@ was a dead-end — confirmation loop), domain Active,
