@@ -271,6 +271,24 @@ Must be answered before ads go live.
       other venture) → customers' card statements now read MAKEWELCOMEBOOK
       (short: MWBOOK). Wrong descriptor = classic chargeback trigger.
       TODO next: Stripe product description still says "all 34 themes" (now 62).
+- [x] BUYER SESSION WATCHED (Clarity, user hdsjwy, Aug 28 05:52, 08:30 min,
+      57 clicks, 5 pages, US / Chrome / DESKTOP). What he actually did:
+      arrived from Google → clicked "Build my welcome book" within seconds →
+      started typing at 00:15 → **paid $29 at 01:21 (81 seconds in!)** →
+      then spent ~5 min filling WiFi, contact, check-in, house rules, trash
+      day, local tips → downloaded multiple PDFs at 06:55 and 07:04 →
+      previewed page by page. Property: beach rental in Manhattan Beach CA,
+      hosts Tarun & Sheela. Chose premium art design "Seaside" AND switched
+      on the "artwork on every page" toggle (built the day before he bought).
+      LESSONS: (1) offer-on-intent did not slow him down — serious hosts
+      decide in ~80s; (2) the premium art section is what he used; (3) the
+      product held up: he completed a full book and downloaded it twice.
+      CONTRAST worth watching: every UK MOBILE visitor so far bounced in
+      4-38s with 0 clicks, while the US DESKTOP visitor converted. If that
+      pattern holds on Saturday, consider a device bid adjustment toward
+      desktop and a separate look at the mobile landing page.
+      NOTE: we cannot retrieve a customer's book — it lives only in their
+      browser (localStorage, no backend). Clarity replay is the only view.
 - [ ] Optional QA: $29 self-purchase + refund
 - [x] EMAIL LIVE 2026-08-24: ImprovMX account (Mario's gmail; first attempt
       with hello@ was a dead-end — confirmation loop), domain Active,
