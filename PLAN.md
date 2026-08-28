@@ -289,6 +289,27 @@ Must be answered before ads go live.
       desktop and a separate look at the mobile landing page.
       NOTE: we cannot retrieve a customer's book — it lives only in their
       browser (localStorage, no backend). Clarity replay is the only view.
+- [x] MOBILE LANDING FIXED 2026-08-28 (Mario's call: "0% of mobile converts,
+      don't wait for a bigger sample"). Diagnosis: not speed (0.7s, 435KB) and
+      not layout overflow (0px) — it was ORDER. Mobile got ~600px of serif
+      text before any product, with the cover fan cropped below it, while
+      desktop shows books beside the headline (which is why the desktop
+      visitor clicked in seconds and bought). Fix: on ≤600px the hero is now
+      product-first — book covers on top (visible at 102px), headline 4→3
+      lines, sub-copy trimmed (2 sentences hidden on mobile only), full-width
+      tap-friendly CTAs, covers repositioned inside the screen. CTA sits at
+      604px, still above the 812px fold. Desktop verified unchanged
+      (side-by-side hero, full copy).
+      NEXT MEASURE: watch Clarity mobile sessions — target is any click at
+      all from mobile; today's baseline is 0 clicks across 5 mobile visits.
+- [ ] SEO (agreed 2026-08-28: START AT 3 SALES). Plan when triggered:
+      (1) keyword-targeted articles on the same intents we buy ads for
+      ("airbnb welcome book template", "house manual template", "what to put
+      in a welcome book"), (2) each article ends in the builder CTA,
+      (3) sitemap.xml + robots.txt + Search Console, (4) the 62 designs are
+      a natural gallery page (long-tail image/design searches).
+      Rationale: SEO compounds and is free, but takes 2-4 months to show —
+      so it starts once the paid funnel is proven (3 sales), not before.
 - [ ] Optional QA: $29 self-purchase + refund
 - [x] EMAIL LIVE 2026-08-24: ImprovMX account (Mario's gmail; first attempt
       with hello@ was a dead-end — confirmation loop), domain Active,
