@@ -317,3 +317,34 @@ Must be answered before ads go live.
       MX (mx1/mx2.improvmx.com) + SPF added at GoDaddy by Claude, all ✓
 - [ ] Google Ads campaign live (spec ready, gated on accountant answer)
 - [ ] Etsy listing live (copy ready)
+
+## Ads checkpoint 2026-08-28 (evening) — DEVICE SPLIT IS THE STORY
+
+Window Aug 23-29 (sprint at €16/day, €2.00 max CPC since Aug 26):
+  208 impressions · 11 clicks · CTR 5.29% · avg CPC €1.69 · spend €18.58
+  1 conversion · cost/conversion €18.58 · net revenue €23.36 → profit ~€4.78
+
+DEVICE BREAKDOWN (the decisive number):
+  Desktop : 36 impr ·  4 clicks · CTR 11.11% · €7.83 · **1 sale** · CVR 25%
+  Mobile  : 168 impr ·  6 clicks · CTR  3.57% · €8.80 ·  0 sales  · CVR 0%
+  Tablet  :  4 impr ·  1 click  · CTR 25%    · €1.95 ·  0 sales
+
+Read: mobile = 81% of impressions and ~47% of spend, zero revenue. Desktop =
+17% of impressions and 100% of revenue, at 3x the CTR. Mario's instinct was
+right. BUT every mobile click so far landed on the OLD mobile page; the
+product-first mobile hero shipped 2026-08-28 ~1h before this checkpoint.
+
+NOT budget-limited: spending ~€3/day of a €16/day budget → raising budget does
+nothing; volume is capped by exact-match search volume, not money. Also means
+cutting mobile would NOT push more budget to desktop (desktop is volume-capped).
+
+DECISION: give the new mobile page a bounded test (through Sun 2026-08-31).
+If mobile is still 0 conversions after ~10-15 more mobile clicks, apply a
+-100% mobile bid adjustment. Note: device bid adjustment UI is not exposed for
+this campaign in the current Google Ads interface (no Devices section under
+campaign settings; Advanced bid adjustments only covers call interactions) —
+if we need it, do it via Google Ads Editor or by rebuilding bidding.
+
+OPEN ITEM (needs Mario, ~30 min, his ID): Google "advertiser verification"
+is pending. It unlocks logos in ads (+3.7% opt score) and Google eventually
+requires it. Claude must not submit identity documents — Mario does this.
