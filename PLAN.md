@@ -348,3 +348,19 @@ if we need it, do it via Google Ads Editor or by rebuilding bidding.
 OPEN ITEM (needs Mario, ~30 min, his ID): Google "advertiser verification"
 is pending. It unlocks logos in ads (+3.7% opt score) and Google eventually
 requires it. Claude must not submit identity documents — Mario does this.
+
+### Bid raise 2026-08-28 (Mario spotted it): max CPC €2.00 → €2.80
+Impression-share data proved the constraint was BID, not budget:
+  Search impression share 34.83% · lost to RANK 65.17% · lost to BUDGET 0.00%
+  Desktop (our only converting device) worst of all: IS 24.73%, lost to rank 75.27%
+So we were invisible for ~3 of every 4 desktop searches by our best buyers,
+while €16/day sat unspent. Budget stays €16 (still not binding).
+
+BREAK-EVEN GUARDRAIL (net revenue per sale €23.36):
+  blended CVR 9.09% → break-even CPC €2.12
+  desktop CVR 25%   → break-even CPC €5.84   ← where the headroom is
+  mobile CVR 0%     → every mobile click is currently pure cost
+TRIPWIRE: if by Sun 2026-08-31 avg CPC > €2.20 AND no second sale → drop cap
+back to €1.80 and cut mobile. If a desktop sale lands → hold or push higher.
+NEXT VOLUME LEVER (after bid): all keywords are EXACT match. Adding phrase
+match on the proven terms widens eligible searches without raising CPC.
