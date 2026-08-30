@@ -364,3 +364,28 @@ TRIPWIRE: if by Sun 2026-08-31 avg CPC > €2.20 AND no second sale → drop cap
 back to €1.80 and cut mobile. If a desktop sale lands → hold or push higher.
 NEXT VOLUME LEVER (after bid): all keywords are EXACT match. Adding phrase
 match on the proven terms widens eligible searches without raising CPC.
+
+### Geo correction 2026-08-28 — UK REMOVED, US prioritised
+Mario asked why we were on UK at all. Honest answer: the original plan (this
+file, "Channels") always said Geo = US, UK, CA, AU — my call at launch, to
+widen a very small exact-match pool. It was never US-only. The data now says
+that was the wrong call:
+
+  UK  : 152 impr (73%) ·  8 clicks · €12.63 (68% of spend) · 0 sales
+  USA :  40 impr (19%) ·  3 clicks · €5.95              · 1 sale (33% CVR)
+  CA  :  13 impr · 0 clicks · €0     AU: 3 impr · 0 clicks · €0
+
+WHY the UK ate the budget: cheaper auctions (UK avg CPC €1.58 vs US €1.98).
+With a €2.00 cap we were priced out of most US auctions and easily won UK
+ones, so Google spent where it could win — the wrong market.
+DEEPER CAUSE — INTENT MISMATCH: the UK search terms were "guest book",
+"guest book for holiday home / holiday let / home visitors", "visitor book".
+In British English a "guest book" is the PAPER BOOK VISITORS SIGN, not a host
+welcome manual. So most UK traffic wanted a different product entirely.
+
+ACTIONS: United Kingdom REMOVED from targeting; United States bid adjustment
+set to +50% (with the €2.80 cap → effective up to ~€4.20 in the US, still far
+under the €5.84 US break-even). CA and AU kept (zero spend so far, same
+North-American/English intent worth a cheap look).
+EXPECT: fewer total impressions, higher share in the market that actually buys.
+REVERSIBLE: re-add UK any time if we later target "welcome book"-only intent.
