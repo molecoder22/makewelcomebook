@@ -438,3 +438,44 @@ MEASURED ON THE LIVE SITE (typing "Seaside Cottage Retreat", 23 keystrokes):
                       pending render before printing ✓
 EXPECT: INP should fall from 780ms toward "good" (<200ms) as new sessions come in;
 dead clicks should drop. Re-check Clarity vitals in a few days.
+
+## Landing-page rebuild 2026-08-31 (Mario: "do all you can, best decisions")
+Target: the biggest measured leak — 1.09 pages/session, i.e. visitors land and
+never reach the builder. Decisions made and why:
+
+1. DESIGN GALLERY (new section, 24 real covers at 260px, 184KB total, lazy after
+   the first row). Rationale: Clarity shows engaged users explore themes for
+   minutes (one session: 42 min / 139 clicks). The designs are the magnet, and
+   they were invisible on the landing page. Copy: "62 designs — 38 premium art
+   designs included free."
+2. CTA AFTER EVERY SECTION: was 2 CTAs across a 9-screen page; now 7
+   (hero, after How-it-works, after gallery, after comparison, pricing, footer,
+   sticky). Intent can convert at any scroll depth.
+3. STICKY MOBILE CTA — always visible on ≤820px. Deliberately CSS-only, no JS
+   (see note below).
+4. CORRECTED STALE COUNTS: "50 designs"→62, "26 premium"→38.
+   Kept price honest at $29; NO fake "was $49" sale framing (false reference
+   pricing is illegal under EU Omnibus/FTC and breaches Google's
+   misrepresentation policy). Legit angle used instead: $29 once vs $99/year.
+
+BUGS FOUND AND FIXED DURING VERIFICATION
+ * Gallery cards rendered 105x368 instead of 105x149: the HTML height="368"
+   attribute beat the CSS aspect-ratio (aspect-ratio is ignored when both
+   width and height resolve). Fixed with height:auto. This was my own
+   regression, caught before it reached traffic.
+ * Sticky CTA first used a scroll listener, then IntersectionObserver — neither
+   fired in the preview pane (the pane pauses rAF/IO callbacks, which also
+   stops lazy images loading there). Rather than ship JS I could not verify,
+   switched to a CSS-only always-on bar. Simpler and cannot fail.
+
+VERIFIED: mobile 0 horizontal overflow, cards 0.707 ratio, 7 CTAs, sticky bar
+visible on mobile / hidden on desktop, desktop hero still side-by-side,
+gallery 9 columns on desktop, no console errors.
+
+DECIDED AGAINST FOR NOW (with reasons)
+ * Discount at the download step: both buyers paid full price without
+   hesitation (Tarun in 81s). Only 5 people have ever reached that step, so a
+   discount would cut margin on people who would have paid anyway. Revisit at
+   ~20 download-step sessions.
+ * Retention/email capture: Mario is right that this is a one-time purchase;
+   0% returning visitors is expected, not a problem to solve.
