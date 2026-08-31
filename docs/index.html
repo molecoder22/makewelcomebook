@@ -117,6 +117,26 @@
 
   footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:.85rem}
   footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  /* ---------- design gallery ---------- */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px;margin-top:6px}
+  .gallery img{width:100%;aspect-ratio:210/297;object-fit:cover;border-radius:6px;box-shadow:0 4px 14px rgba(38,34,28,.16);display:block;background:#efe8e0}
+  @media(max-width:600px){.gallery{grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}}
+  .midcta{text-align:center;margin-top:26px}
+  .midcta .btn{padding:15px 30px;font-size:1rem}
+  .midcta .note{display:block;margin-top:9px;font-size:.85rem;color:var(--muted)}
+  /* ---------- sticky mobile call to action ---------- */
+  .stickycta{display:none}
+  @media(max-width:820px){
+    .stickycta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:80;background:rgba(253,248,242,.97);
+      border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+      box-shadow:0 -6px 20px rgba(38,34,28,.10);transform:translateY(120%);transition:transform .25s ease}
+    .stickycta.on{transform:translateY(0)}
+    .stickycta a{display:block;text-align:center;padding:14px;border-radius:11px;background:var(--accent);color:#fff;
+      font:700 1rem 'Inter',sans-serif;text-decoration:none}
+    .stickycta small{display:block;text-align:center;color:var(--muted);font-size:.76rem;margin-top:6px}
+    body{padding-bottom:84px}
+  }
 </style>
 <script type="text/javascript">
 (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -172,7 +192,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, documen
 <div class="strip">
   <div class="wrap">
     <div><b>Fewer “what's the WiFi?” messages</b><span>Everything guests ask, answered before they ask.</span></div>
-    <div><b>Looks like a boutique hotel</b><span>50 designer designs, print-ready A4 pages.</span></div>
+    <div><b>Looks like a boutique hotel</b><span>62 designer designs, print-ready A4 pages.</span></div>
     <div><b>Yours forever</b><span>One payment. Edit and reprint any time, free.</span></div>
   </div>
 </div>
@@ -186,6 +206,10 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, documen
       <div class="step"><div class="n">2</div><b>Watch it build itself</b><p>Your book appears live as you type, in the design you pick. Change anything, any time.</p></div>
       <div class="step"><div class="n">3</div><b>Print or save as PDF</b><p>Download the full book plus a WiFi QR sign guests scan to connect. Put it on the counter — done.</p></div>
     </div>
+    <div class="midcta">
+      <a class="btn btn-primary" href="app.html">Start my welcome book →</a>
+      <span class="note">Takes about 10 minutes · nothing to install</span>
+    </div>
   </section>
 
   <section class="block" style="padding-top:0">
@@ -194,8 +218,43 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, documen
     <div class="includes">
       <div class="inc"><span class="tick">✓</span><div><b>Full book, one-page sign, or both — your choice</b><span>The complete book (cover, WiFi, check-in &amp; out, rules, local tips) or a single frameable all-in-one welcome sign.</span></div></div>
       <div class="inc"><span class="tick">✓</span><div><b>WiFi QR sign + decorative welcome sign</b><span>Guests scan to connect — plus a botanical welcome sign to frame by the door.</span></div></div>
-      <div class="inc"><span class="tick">✓</span><div><b>26 premium art designs — included FREE</b><span>Watercolor botanicals, Art Deco, Toile, Sakura, Marrakesh… plus 24 classic designs. Fine-tune fonts and colors if you like.</span></div></div>
+      <div class="inc"><span class="tick">✓</span><div><b>38 premium art designs — included FREE</b><span>Watercolor botanicals, Art Deco, Toile, Sakura, Marrakesh, plus a whole dark-luxury set — and 24 classic designs. Fine-tune fonts and colors if you like.</span></div></div>
       <div class="inc"><span class="tick">✓</span><div><b>Free edits forever</b><span>New WiFi password? New rules? Update and reprint whenever you like.</span></div></div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <h2 class="sect">Pick a design you'd be proud to leave out</h2>
+    <p class="sectsub">62 designs — 38 premium art designs included free. Here are a few:</p>
+    <div class="gallery">
+      <img src="art/thumbs/01-botanical.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/02-boho-arch.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/10-toile.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/27-noirgold.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/03-coastal.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/16-artdeco.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/07-tropical.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/11-sakura.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/30-blackmarble.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/04-wildflowers.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/22-morocco.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/31-celestial.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/09-vineyard.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/19-peach.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/33-darkacademia.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/20-nautical.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/05-citrus.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/38-goldleaf.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/08-desert.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/25-lavenderfields.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/29-darkfloral.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/06-mountain.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/36-chalkwreath.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+      <img src="art/thumbs/18-fern.webp" alt="Welcome book design" loading="lazy" width="104" height="147">
+    </div>
+    <div class="midcta">
+      <a class="btn btn-primary" href="app.html">Try them on your own book →</a>
+      <span class="note">Free to try · your book saves as you type · pay only to download</span>
     </div>
   </section>
 
@@ -208,6 +267,10 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, documen
       <div class="row"><div>Design skills needed</div><div class="them">Yes — hours in Canva</div><div class="them">Some</div><div class="us">None</div></div>
       <div class="row"><div>Cost</div><div class="them">$5–15 + your evening</div><div class="them">$99+ every year</div><div class="us">$29 once</div></div>
       <div class="row"><div>Works printed on the counter</div><div class="them">If you format it</div><div class="them">Phone-only mostly</div><div class="us">Yes, beautifully</div></div>
+    </div>
+    <div class="midcta">
+      <a class="btn btn-primary" href="app.html">Build mine for $29 once →</a>
+      <span class="note">One payment, no subscription · 14-day money-back guarantee</span>
     </div>
   </section>
 
@@ -256,5 +319,17 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, documen
   </div>
 </footer>
 
+<div class="stickycta" id="stickycta">
+  <a href="app.html">Build my welcome book →</a>
+  <small>Free to try · pay only to download</small>
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('stickycta'), hero=document.querySelector('.hero');
+  if(!bar||!hero) return;
+  function upd(){ bar.classList.toggle('on', hero.getBoundingClientRect().bottom < 0); }
+  addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); upd();
+})();
+</script>
 </body>
 </html>
