@@ -599,8 +599,11 @@ function save(){ localStorage.setItem(LS_KEY, JSON.stringify(state)) }
 /* ---------- unlock handling ---------- */
 (function(){
   const p=new URLSearchParams(location.search);
-  if(p.get("paid")===UNLOCK_CODE){
-    if(!localStorage.getItem(LS_UNLOCK) && typeof gtag==="function"){
+  const paidParam=p.get("paid");
+  /* MWB-UNLOCK-2026 = Stripe (fires the Google Ads conversion);
+     MWB-ETSY-2026   = Etsy buyers (unlocks, but no Ads conversion — not ad traffic) */
+  if(paidParam===UNLOCK_CODE || paidParam==="MWB-ETSY-2026"){
+    if(paidParam===UNLOCK_CODE && !localStorage.getItem(LS_UNLOCK) && typeof gtag==="function"){
       gtag('event','conversion',{'send_to':'AW-18406718312/CvZwCL-C1uYcEOj2gMlE','value':29.0,'currency':'USD','transaction_id':'mwb_'+Date.now()});
     }
     localStorage.setItem(LS_UNLOCK,"1");
