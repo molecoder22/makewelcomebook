@@ -566,3 +566,29 @@ dynamic images from the landing page).
 
 STILL OUTSTANDING (needs Mario, cannot be delegated): advertiser verification.
 No deadline shown in the account today, so it is insurance, not an emergency.
+
+## FREE-TRAFFIC RESEARCH 2026-08-31 (Mario asked; summary of findings)
+Ranked by expected value for THIS product (visual, $29 one-time, proven Etsy demand):
+ 1. ETSY — demand already proven (competitor: 8k reviews). Fees on $29 ≈
+    $0.20 listing + 6.5% + 3%+$0.25 processing ≈ $3.30 (~11%); no ad cost.
+    CAVEAT: Etsy digital listings deliver FILES; we sell an unlock. Deliverable
+    = PDF guide containing personal unlock link (common practice, slight grey
+    zone). Listing copy exists (ETSY-LISTING.md). Needs Mario: Etsy account.
+ 2. PINTEREST — the niche has its own trend page; product is 62 pinnable
+    designs. Industry consensus: first sales in 60-90 days of consistent
+    pinning; pins are evergreen (drive traffic for years). I can generate pin
+    images from art/ + captions. Needs Mario: Pinterest business account.
+ 3. FREE TOOL PAGE — "Free Airbnb WiFi QR Sign Generator" standalone page.
+    We already have client-side QR; the page ranks for "wifi sign airbnb free"
+    style searches, gives value free, upsells the $29 book. Classic free-tool
+    SEO magnet + backlink bait. I can build it solo.
+ 4. SEO ARTICLES — gated at 3 sales per earlier agreement (2/3 reached).
+    Targets: "what to put in an airbnb welcome book", "house manual template",
+    "airbnb welcome book template". 2-4 months to traffic. Groundwork done.
+ 5. REDDIT + FB HOST GROUPS — fast but manual and personal (accounts + genuine
+    participation = Mario). High ban risk for drive-by promo. Opportunistic.
+ 6. PRODUCT HUNT / directories — one-time spike + backlinks; do after the
+    free tool exists so there is something "launchable".
+RECOMMENDED ORDER: Etsy now → Pinterest account now (compounding clock starts)
+→ free WiFi-sign tool page (me, this week) → SEO articles at sale #3 →
+PH launch after tool page. Reddit/FB whenever Mario feels like being social.
