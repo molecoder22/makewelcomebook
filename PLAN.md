@@ -504,3 +504,14 @@ but the site is 9 days old with no backlinks, so ranking for competitive terms
 like "airbnb welcome book template" is unlikely this soon.
 NEXT (once data appears): read organic queries, then submit a sitemap when the
 SEO phase starts at 3 sales.
+
+## SEO groundwork done 2026-08-31 (technical only — content phase still gated at 3 sales)
+ * robots.txt — allows all crawlers, points to the sitemap
+ * sitemap.xml — 5 URLs (home, builder, terms, privacy, refunds), valid XML
+ * canonical tags on index.html and app.html (prevents duplicate-URL dilution
+   from ?sample=1 / ?paid= / ?v= query strings we use)
+ * sitemap SUBMITTED to Search Console → status "Úspech" (Success),
+   5 pages discovered, 0 errors
+This is indexing hygiene, not content marketing: it helps Google find and
+correctly attribute the pages we already have. The agreed SEO content work
+(articles, gallery landing page) still starts at sale #3.
