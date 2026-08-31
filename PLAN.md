@@ -409,3 +409,32 @@ ACTION: re-check tomorrow with today included; if it never registers, treat it
 as an organic sale (good news) rather than a tracking fault.
 
 SEO TRIGGER: 2 of 3 sales reached. One more and SEO work starts as agreed.
+
+## Clarity full read + performance fix 2026-08-31
+
+CLARITY (last 30 days, 109 sessions / 108 unique, own IP excluded):
+  pages per session 1.09 · scroll depth 47% · active time 44s
+  100% new users, 0% returning · dead clicks 8.26% (9 sessions)
+  rage clicks 1 · quick backs 2 · JavaScript errors 0
+  devices: Chrome desktop 44%, Chrome Mobile 39%, Mobile Safari 14% (~53% mobile)
+  referrers: direct/internal 50, google.com 21, buy.stripe.com 1 (a payer returning)
+  smart events: Download 5 sessions, Book 1 · top pages: / 56, app.html 49
+  WEB VITALS: LCP 1.1s good · CLS 0.015 good · **INP 780ms POOR**
+
+ROOT CAUSE FOUND: every keystroke ran save() + a FULL render() — rebuilding all
+11 pages and regenerating the WiFi QR — with no debounce. Typing a property name
+= ~23 full rebuilds. That is the poor INP and the 8.26% dead clicks.
+
+FIX SHIPPED: renderSoon() debounce (130ms) on text/colour inputs + WiFi QR cached
+by ssid+password. Selects/buttons still render instantly. Download flushes any
+pending render first, so a PDF can never be stale.
+
+MEASURED ON THE LIVE SITE (typing "Seaside Cottage Retreat", 23 keystrokes):
+  renders triggered   23 → 1
+  blocking time       ~200ms → 2ms  (0.1ms per keystroke)
+  one render costs    9.1ms · QR rebuild 7.4ms → 0ms when cached
+  correctness checks  preview updates after debounce ✓ · localStorage saves
+                      immediately ✓ · click Download mid-typing flushes the
+                      pending render before printing ✓
+EXPECT: INP should fall from 780ms toward "good" (<200ms) as new sessions come in;
+dead clicks should drop. Re-check Clarity vitals in a few days.
