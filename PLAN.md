@@ -546,3 +546,23 @@ IMPLICATIONS
  * The "See a finished example" sitelink earned its place — it brought this buyer.
  * Search Console still worth having, but the SEO question is now answered for
    sale #2: it was paid. Organic remains unproven.
+
+## Account health check 2026-08-31 (Mario spotted "Zameranie 1 kampane je nepotvrdené")
+Checked everything that can actually stop ads. RESULT: no real errors.
+ * Campaign status: Vhodné (Eligible), Active, serving — 3 clicks today
+ * Ads: both RSAs Eligible, strength Priemerná (Average)
+ * Keywords: all Eligible — zero disapprovals, zero low-search-volume flags
+ * Sitelinks/callouts/snippets: approved earlier, still serving
+ * Billing: balance €23.06 owed, next automatic charge 1 Sept — normal
+   post-pay behaviour, card on file, no payment failure
+
+WHAT THE MESSAGE ACTUALLY IS: "Targeting of 1 campaign is unconfirmed" sits on
+the OPTIMIZATION SCORE (86.1%), not on the campaign. It means Google has not
+re-confirmed the targeting since it changed — expected, because today I removed
+the UK and set a US +50% bid adjustment. It does not block or limit delivery.
+Optimization score is Google's advice metric, not a health metric; chasing it
+would push us into things we deliberately rejected (AI Max, broad match,
+dynamic images from the landing page).
+
+STILL OUTSTANDING (needs Mario, cannot be delegated): advertiser verification.
+No deadline shown in the account today, so it is insurance, not an emergency.
