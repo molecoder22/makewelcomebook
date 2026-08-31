@@ -515,3 +515,34 @@ SEO phase starts at 3 sales.
 This is indexing hygiene, not content marketing: it helps Google find and
 correctly attribute the pages we already have. The agreed SEO content work
 (articles, gallery landing page) still starts at sale #3.
+
+## CORRECTION 2026-08-31 (evening): sale #2 was PAID, not SEO — and it was a TABLET
+Mario spotted the conversion registering; confirmed by setting the Ads date
+range to today only (Google's default views end yesterday, which is why it
+looked missing earlier).
+
+TODAY (Aug 31): 68 impressions · 3 clicks · €8.03 · **1 conversion** · CVR 33%
+  Desktop : 23 impr · 1 click · €2.73 · 0 conv
+  Mobile  : 43 impr · 1 click · €2.52 · 0 conv
+  Tablet  :  2 impr · 1 click · €2.78 · **1 conv (100%)**
+
+So my earlier speculation that sale #2 might be organic was WRONG — it came
+from a paid tablet click. It also matches the Clarity session I had already
+watched (user 2y0yli, GoogleApp browser on tablet): arrived from Google,
+clicked the "See a finished example" sitelink, browsed themes at 03:40, came
+back at 13:25, built for 42 min / 139 clicks, downloaded the PDF preview twice,
+clicked out to Stripe at 42:26. That IS the buyer.
+
+RUNNING TOTALS (both sales ad-attributed):
+  ad spend €32.81 · net revenue €46.72 · PROFIT €13.91 · ROAS 1.42x
+  CPA €16.41 · 16 clicks · CVR 12.5%
+
+IMPLICATIONS
+ * The campaign is genuinely profitable, not accidentally so. Both sales paid.
+ * TABLET deserves attention: 2 tablet clicks so far, 1 sale. I had written
+   tablet off as negligible (4 impressions) — that was premature. The
+   "dead clicks" Clarity flagged were also on this tablet/GoogleApp browser,
+   which the render-debounce fix should have improved.
+ * The "See a finished example" sitelink earned its place — it brought this buyer.
+ * Search Console still worth having, but the SEO question is now answered for
+   sale #2: it was paid. Organic remains unproven.
