@@ -619,7 +619,7 @@ function save(){ localStorage.setItem(LS_KEY, JSON.stringify(state)) }
 FIELDS.forEach(f=>{
   const el=document.getElementById("f_"+f); if(!el) return;
   if(state[f]!==undefined) el.value=state[f];
-  el.addEventListener("input",()=>{ state[f]=el.value; save(); render(); });
+  el.addEventListener("input",()=>{ state[f]=el.value; save(); renderSoon(); });
 });
 document.querySelectorAll("#rules input").forEach(cb=>{
   if(state.rules && state.rules.includes(cb.value)) cb.checked=true;
@@ -656,7 +656,7 @@ function collectRules(){
 /* fine-tune style controls */
 (function(){
   const bind=(id,key)=>{const el=document.getElementById(id); if(!el) return;
-    el.addEventListener(el.tagName==="SELECT"?"change":"input",()=>{ state[key]=el.value||undefined; if(!el.value) delete state[key]; save(); render(); });};
+    el.addEventListener(el.tagName==="SELECT"?"change":"input",()=>{ state[key]=el.value||undefined; if(!el.value) delete state[key]; save(); (el.tagName==="SELECT"?render:renderSoon)(); });};
   bind("c_font","custFont"); bind("c_accent","custAccent"); bind("c_ink","custInk");
   const reset=(id,key)=>{const b=document.getElementById(id); if(b) b.addEventListener("click",()=>{ delete state[key]; save(); render(); });};
   reset("c_accent_reset","custAccent"); reset("c_ink_reset","custInk");
@@ -778,15 +778,19 @@ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 const lines=s=>String(s??"").split("\n").map(x=>x.trim()).filter(Boolean);
 function v(f,fallback){ const val=(state[f]??"").trim(); return val||fallback; }
 function fmtTime(t){ if(!t) return ""; const [h,m]=t.split(":").map(Number); const am=h<12; const hh=((h+11)%12)+1; return hh+(m?":"+String(m).padStart(2,"0"):"")+" "+(am?"AM":"PM"); }
+let _qrKey="", _qrSvg="";
 function wifiQR(){
   const ssid=v("ssid",""), pass=v("wifipass","");
   if(!ssid) return "";
+  const key=ssid+"\u0000"+pass;
+  if(key===_qrKey) return _qrSvg;           /* cached: skip the expensive rebuild */
   const escq=x=>x.replace(/([\\;,:"])/g,"\\$1");
   try{
     const qr=qrcode(0,"M");
     qr.addData(`WIFI:T:${pass?"WPA":"nopass"};S:${escq(ssid)};P:${escq(pass)};;`);
     qr.make();
-    return qr.createSvgTag({cellSize:4,margin:2,scalable:true});
+    _qrKey=key; _qrSvg=qr.createSvgTag({cellSize:4,margin:2,scalable:true});
+    return _qrSvg;
   }catch(e){ return ""; }
 }
 const wm='<div class="wm"><span>Preview · makewelcomebook.com</span></div>';
@@ -798,6 +802,9 @@ function mv(key){
 }
 
 /* ---------- render book ---------- */
+/* renderSoon(): coalesce bursts of keystrokes into one redraw (fixes poor INP) */
+let _rt=null;
+function renderSoon(){ if(_rt) clearTimeout(_rt); _rt=setTimeout(()=>{ _rt=null; render(); },130); }
 function render(){
   const T=THEMES[state.theme||"terracotta"]||THEMES.terracotta;
   const r=document.documentElement.style;
@@ -1039,6 +1046,7 @@ function render(){
 
 /* ---------- actions ---------- */
 document.getElementById("btnPrint").addEventListener("click",()=>{
+  if(_rt){ clearTimeout(_rt); _rt=null; render(); }
   const tp=document.querySelector(".tipPop"); if(tp){ tp.remove(); localStorage.setItem("mwb_tip_move","1"); }
   if(localStorage.getItem(LS_UNLOCK)!=="1"){
     if(window._openOffer) window._openOffer();
