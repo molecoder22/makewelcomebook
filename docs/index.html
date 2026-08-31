@@ -327,8 +327,14 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, documen
 (function(){
   var bar=document.getElementById('stickycta'), hero=document.querySelector('.hero');
   if(!bar||!hero) return;
-  function upd(){ bar.classList.toggle('on', hero.getBoundingClientRect().bottom < 0); }
-  addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); upd();
+  function show(on){ bar.classList.toggle('on', !!on); }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){ show(!e[0].isIntersecting); },{threshold:0})
+      .observe(hero);
+  } else {
+    var upd=function(){ show(hero.getBoundingClientRect().bottom < 0); };
+    document.addEventListener('scroll',upd,{passive:true}); upd();
+  }
 })();
 </script>
 </body>
