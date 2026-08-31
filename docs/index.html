@@ -130,8 +130,7 @@
   @media(max-width:820px){
     .stickycta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:80;background:rgba(253,248,242,.97);
       border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom));
-      box-shadow:0 -6px 20px rgba(38,34,28,.10);transform:translateY(120%);transition:transform .25s ease}
-    .stickycta.on{transform:translateY(0)}
+      box-shadow:0 -6px 20px rgba(38,34,28,.10)}
     .stickycta a{display:block;text-align:center;padding:14px;border-radius:11px;background:var(--accent);color:#fff;
       font:700 1rem 'Inter',sans-serif;text-decoration:none}
     .stickycta small{display:block;text-align:center;color:var(--muted);font-size:.76rem;margin-top:6px}
@@ -323,19 +322,5 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, documen
   <a href="app.html">Build my welcome book →</a>
   <small>Free to try · pay only to download</small>
 </div>
-<script>
-(function(){
-  var bar=document.getElementById('stickycta'), hero=document.querySelector('.hero');
-  if(!bar||!hero) return;
-  function show(on){ bar.classList.toggle('on', !!on); }
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(e){ show(!e[0].isIntersecting); },{threshold:0})
-      .observe(hero);
-  } else {
-    var upd=function(){ show(hero.getBoundingClientRect().bottom < 0); };
-    document.addEventListener('scroll',upd,{passive:true}); upd();
-  }
-})();
-</script>
 </body>
 </html>
