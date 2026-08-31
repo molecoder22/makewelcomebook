@@ -389,3 +389,23 @@ under the €5.84 US break-even). CA and AU kept (zero spend so far, same
 North-American/English intent worth a cheap look).
 EXPECT: fewer total impressions, higher share in the market that actually buys.
 REVERSIBLE: re-add UK any time if we later target "welcome book"-only intent.
+
+## ★★ SALE #2 — 2026-08-31, 12:09 ★★
+joyce@mostlymail.us · $29.00 · Stripe Link · Succeeded · net ≈ €23.36
+Running totals: 2 real sales (+ Mario's own test), net revenue ≈ €46.72.
+Ad spend: €24.78 (to Aug 30) + €5.51 today = €30.29 → PROFIT ≈ €16.43.
+
+WHY GOOGLE ADS SHOWS 0 CONVERSIONS FOR IT (checked, not guessed):
+ 1. Reporting window: Google's "last 30 days" ENDS YESTERDAY (Aug 30) — today's
+    conversions cannot appear there at all. Today-only view: 45 impr, 2 clicks,
+    €5.51, conversions still 0 (Google conversion reporting also lags hours).
+ 2. Only 2 ad clicks happened today. If Joyce arrived organically/direct there
+    is no ad click to attribute — Clarity now shows a growing number of sessions
+    with NO referrer (US, CA) plus google.com organic. Free traffic is starting.
+ 3. NOT a broken funnel: the Stripe Payment Link's confirmation page is
+    https://makewelcomebook.com/app.html?paid=MWB-UNLOCK-2026 — verified today,
+    so every payer is auto-redirected and unlocked. Joyce got her book.
+ACTION: re-check tomorrow with today included; if it never registers, treat it
+as an organic sale (good news) rather than a tracking fault.
+
+SEO TRIGGER: 2 of 3 sales reached. One more and SEO work starts as agreed.
