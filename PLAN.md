@@ -479,3 +479,28 @@ DECIDED AGAINST FOR NOW (with reasons)
    ~20 download-step sessions.
  * Retention/email capture: Mario is right that this is a one-time purchase;
    0% returning visitors is expected, not a problem to solve.
+
+## Google Search Console added 2026-08-31 (property: https://makewelcomebook.com/)
+Reason: Mario asked whether sale #2 came from SEO. Clarity cannot tell paid from
+organic (both show a google.com referrer) and Google Ads never logged a 2nd
+conversion, so the question was unanswerable — Search Console is the only
+instrument that reports organic queries/clicks. It was never set up (only
+stckd.app existed in the account).
+
+Verified by HTML meta tag added to index.html AND app.html:
+  <meta name="google-site-verification" content="DGiT9xLwGc2ZGHIzvMIWtdzmIsBRBSfOWMrPVwZc_Ns">
+DO NOT REMOVE these tags or verification is lost.
+
+DELIBERATE CHOICE: Google offered one-click verification via a DOMAIN property,
+but that flow grants Google access to Mario's GoDaddy DNS account. I did not
+authorise that on his behalf — used the self-hosted meta tag instead, which I
+control end to end. Trade-off: URL-prefix property does not cover
+www.makewelcomebook.com (our canonical is non-www, so this is fine).
+
+STATUS: "Data is processing, try again in about a day." So the SEO-vs-paid
+question for sale #2 cannot be answered yet — check the Performance report
+tomorrow. Known so far: the homepage IS indexed (confirmed via a site: search),
+but the site is 9 days old with no backlinks, so ranking for competitive terms
+like "airbnb welcome book template" is unlikely this soon.
+NEXT (once data appears): read organic queries, then submit a sitemap when the
+SEO phase starts at 3 sales.
