@@ -695,6 +695,27 @@ NOT done: website link in About (Etsy's link widget rejected input twice;
 low value, Etsy discourages off-site links). Pinterest kit shelved by Mario.
 Price note: EU viewers see $30.74 (Etsy adds Slovak VAT on display); US
 buyers see $24.99. Estimated net per sale ≈ $21.82 (Etsy's own estimate).
+★ HIGGSFIELD PRODUCT PHOTOS 2026-09-02 (Mario: "it looks terrible, really use
+Higgsfield"). Drove higgsfield.ai in his Chrome (Google SSO, his gmail),
+model Nano Banana Pro 4K, 4:3, with OUR real cover / sign uploaded as
+reference images so the mockups show the actual product:
+  1-main.jpg        booklet on marble counter, eucalyptus + coffee (cover text
+                    rendered perfectly by the model)
+  2-book-and-sign   booklet + framed sign on wood table, dried flowers
+  3-framed-sign     oak-framed sign on entryway console, olive tree, keys bowl
+  4-bedroom         booklet on nightstand, linen bed, lamp, succulent
+  5-8 = cover grids (light/dark), what-you-get, typographic headline (old main)
+LESSON: the model reproduces LARGE cover text faithfully but garbles small
+body text on the sign → fixed by compositing the real src-sign.jpg onto the
+frame with a perspective warp + polynomial-fit lighting (scratchpad
+composite_sign2.py; frame corners measured from ruler crops). The sign file
+has a 13px white page margin — crop to art bbox before warping.
+GOTCHAS: 1st generation was falsely flagged NSFW (credits refunded) — just
+re-run; the landing-page upload attached Higgsfield's pink mascot as the
+reference instead of our cover — always verify the thumbnail in the prompt
+bar before generating (each run costs 4 credits, ~60-90 s at 4K).
+Shop banner rebuilt from the marble photo (wordmark panel on the right).
+Originals: marketing/etsy/hf-4k/ (4800x3584) · v1 images in marketing/etsy/v1/.
 NEXT: watch Etsy Stats daily (views/favorites); first review matters most —
 after sale #1, message the buyer politely asking for a review. Consider a
 2nd listing variant (e.g. "WiFi QR sign + welcome book bundle") once the
