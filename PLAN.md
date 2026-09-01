@@ -609,3 +609,33 @@ PH launch after tool page. Reddit/FB whenever Mario feels like being social.
 WAITING ON MARIO: create Etsy shop + Pinterest business account; then I fill
 both via his browser (listing upload, pin scheduling ~3-5 pins/day, not all 38
 at once — Pinterest treats bulk-dumping as spam).
+
+## Daily check 2026-09-01 (morning) — all healthy, no sale #3 yet
+ADS last 7 days (Aug 25-31): 337 impr · 16 clicks · €34.29 · avg CPC €2.14.
+Today so far: 4 impr, 0 clicks (EU morning, normal — US asleep).
+Post-UK-cut device spend mix improved: desktop 50.3% of cost (was ~30%),
+mobile 35.9%, tablet 13.8%. August month closed at €35.54 total ad cost.
+BILLING VERIFIED: balance €25.54, Visa ••9123 on file, last €10 threshold
+payment succeeded Aug 27, next auto-charge today (1.9. or at €50) — no
+failures, nothing can silently stop ads. Red notification badge was only the
+"add images to ads" recommendation nudge, not an account issue.
+STRIPE: still 3 payments (Joyce, Tarun, Mario's test) · 0 refunds · 0 disputes.
+CLARITY last 3 days (27 sessions): pages/session 1.09 → 1.48 and active time
+44s → 3.4min — landing rebuild is measurably working; app.html is now the top
+page (18 vs 13 views), so visitors DO reach the builder now.
+JS ERRORS INVESTIGATED (11 errors, 11% of sessions — new since Aug 31):
+filtered the error sessions — ALL THREE are Joyce (the buyer) revisiting her
+unlocked book (entry app.html?paid=MWB-UNLOCK…) on her tablet in GoogleApp +
+MobileSafari. Error text is the generic cross-origin "Script error." which
+CANNOT come from our inline same-origin code — it's gtag/clarity inside her
+tablet WebView. Reproduced the builder on the live site (type → debounced
+render, page flips, unlock dialog): works, ZERO console errors. Not a
+regression from the debounce fix; her sessions show normal use (31 more min
+with her book). MONITOR: if "script error" starts appearing on NON-paid
+sessions or other devices, investigate again.
+INP: Clarity shows 1.4s "poor" but from ONE pageview (Joyce's tablet) — too
+small to judge the Aug 31 debounce fix yet; re-check ~Sep 3-4.
+SEARCH CONSOLE: still "data processing" (updated 7.5h ago) — organic
+performance unreadable until ~Sep 2.
+No actions needed today. Still waiting on Mario: (1) Etsy shop + Pinterest
+account, (2) Google advertiser verification.
