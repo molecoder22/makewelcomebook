@@ -5,6 +5,9 @@ Etsy buyers expect Etsy prices, so the Etsy offer is the SAME product sold as a
 and free marketplace traffic our Google budget doesn't pay for.
 
 **Price:** $24.99 (site stays $29 — Etsy's fees eat the difference anyway)
+**Delivery file to upload:** marketing/etsy/Your-Welcome-Book-Access.pdf
+**Listing images (in order):** marketing/etsy/1-main.jpg, 2-light-designs.jpg,
+3-dark-designs.jpg, 4-what-you-get.jpg, 5-sample-cover.jpg, 6-onepage-sign.jpg
 **Delivery file:** a 1-page PDF with a personal access link + short instructions.
 **Category:** Digital download · Tags (13 max, all used):**
 airbnb welcome book, welcome book template, airbnb host, vacation rental,
@@ -29,7 +32,7 @@ book. No design skills, no Canva account, no editing for hours.
   code, check-in & check-out, house rules, "how things work", local tips,
   emergency info)
 • Printable WiFi QR sign — guests point their camera and connect
-• 16 designer themes, each with its own typography and cover design
+• 62 designer designs — including 38 premium art designs (watercolor botanicals, Art Deco, French toile, and a full black & gold dark-luxury set)
 • Unlimited edits and reprints, forever — new WiFi password? Fixed in a minute
 • Works for Airbnb, VRBO, Booking.com — any short-term rental
 

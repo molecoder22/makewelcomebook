@@ -592,3 +592,20 @@ Ranked by expected value for THIS product (visual, $29 one-time, proven Etsy dem
 RECOMMENDED ORDER: Etsy now → Pinterest account now (compounding clock starts)
 → free WiFi-sign tool page (me, this week) → SEO articles at sale #3 →
 PH launch after tool page. Reddit/FB whenever Mario feels like being social.
+
+## Etsy + Pinterest launch kit BUILT 2026-09-01 (all in marketing/, gitignored — repo is public)
+ * App change (deployed): second unlock code MWB-ETSY-2026 accepted; fires NO
+   Google Ads conversion (marketplace sales must not pollute ad optimisation).
+   Stripe keeps MWB-UNLOCK-2026 + conversion event.
+ * marketing/etsy/Your-Welcome-Book-Access.pdf — branded delivery PDF with the
+   Etsy unlock link + 4-step instructions (this is what Etsy auto-delivers)
+ * marketing/etsy/1-main..6-onepage-sign.jpg — 6 listing images (cover fan,
+   light grid, dark grid, what-you-get collage from the REAL sample-book PDF,
+   sample cover, all-in-one sign)
+ * marketing/etsy/sample-book.pdf — full 13-page watermark-free sample
+ * marketing/pinterest/pin-01..38.jpg — 38 pins (1000x1500, 2:3) + pins.csv
+   with per-design titles/descriptions/links
+ * ETSY-LISTING.md updated (62 designs, file paths, $24.99 Etsy price)
+WAITING ON MARIO: create Etsy shop + Pinterest business account; then I fill
+both via his browser (listing upload, pin scheduling ~3-5 pins/day, not all 38
+at once — Pinterest treats bulk-dumping as spam).
