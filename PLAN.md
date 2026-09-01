@@ -639,3 +639,12 @@ SEARCH CONSOLE: still "data processing" (updated 7.5h ago) — organic
 performance unreadable until ~Sep 2.
 No actions needed today. Still waiting on Mario: (1) Etsy shop + Pinterest
 account, (2) Google advertiser verification.
+
+EVENING RE-CHECK 2026-09-01: ads today 21 impr · 2 clicks (both mobile) ·
+€5.58 · avg CPC €2.79 (right at the €2.80 cap) · 0 conversions. Stripe still
+3 payments — no sale #3. Clarity today: 9 sessions / 6 users, 60% scroll,
+0 JS errors (confirms the Aug 31 errors were a one-off from Joyce's tablet),
+app.html again top page (7 vs 2). Site: all 7 URLs 200 OK in ~0.2s, cert
+valid to Nov 20, landing + builder render clean, zero console errors.
+WATCH: avg CPC touching the cap with mobile-only clicks — if this repeats
+2-3 days with no sale, revisit the mobile question (tripwire from Aug 28).
