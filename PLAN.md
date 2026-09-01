@@ -667,3 +667,35 @@ EXPECT: impressions should rise 2-5x within ~2-3 days. NEXT: mine the
 search-terms report ~Sep 4-5 — phrase match WILL let in some junk; add
 negatives weekly. ROLLBACK: pause the 11 phrase keywords if CPA blows past
 ~€20 with no sale.
+
+## ★★ ETSY SHOP LIVE 2026-09-02 ★★ (Mario: "only Etsy, no Pinterest")
+Shop: https://www.etsy.com/shop/MakeWelcomeBook (name MakeWelcomeBook,
+English / Slovakia / USD, location Slovakia, tagline "Vacation rental welcome
+books, finished in 10 minutes", W-monogram icon + banner from our art).
+Listing: https://www.etsy.com/listing/4566989528/welcome-book-maker-for-airbnb-vacation
+  $24.99 · qty 999 · Digital · category Design Templates · auto-renew ·
+  featured on shop home · 13 tags · AI-generator disclosure ticked (the art
+  backgrounds are Higgsfield output — Etsy requires this and it is honest).
+  Digital files delivered: Your-Welcome-Book-Access.pdf (Etsy unlock link
+  MWB-ETSY-2026 + steps) AND sample-book.pdf (13-page real sample) — the
+  second file makes the download a real deliverable, not just a link.
+Account setup was Mario's part (bank IBAN/ID/card/2FA, $19 one-time fee).
+Registered with hello@makewelcomebook.com — Etsy verification codes land in
+Gmail SPAM via ImprovMX; read them from ImprovMX → domain → Logs if needed.
+IMAGES REBUILT (marketing/etsy/, old versions kept as old-*.jpg): the
+original 1-main/2-light/3-dark were raw art backgrounds with NO text — an
+Etsy shopper couldn't tell what the product was. New set via Pillow script
+(scratchpad build_etsy_assets.py; fonts Fraunces+Inter, brand tokens):
+  1-main.jpg 2000x1500 — headline + 3-cover fan (sample cover + 2 synthesized
+  titled covers) · 2/3 grids — 8 synthesized covers each with real-looking
+  property names · shop-icon.png 1000² · shop-banner.jpg 2400x600.
+Shop policies: Etsy locks digital items to "no returns" preset — our 14-day
+money-back still honored manually via refund if a buyer messages.
+NOT done: website link in About (Etsy's link widget rejected input twice;
+low value, Etsy discourages off-site links). Pinterest kit shelved by Mario.
+Price note: EU viewers see $30.74 (Etsy adds Slovak VAT on display); US
+buyers see $24.99. Estimated net per sale ≈ $21.82 (Etsy's own estimate).
+NEXT: watch Etsy Stats daily (views/favorites); first review matters most —
+after sale #1, message the buyer politely asking for a review. Consider a
+2nd listing variant (e.g. "WiFi QR sign + welcome book bundle") once the
+first shows views, since Etsy rewards multi-listing shops.
