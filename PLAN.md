@@ -648,3 +648,22 @@ app.html again top page (7 vs 2). Site: all 7 URLs 200 OK in ~0.2s, cert
 valid to Nov 20, landing + builder render clean, zero console errors.
 WATCH: avg CPC touching the cap with mobile-only clicks — if this repeats
 2-3 days with no sale, revisit the mobile question (tripwire from Aug 28).
+
+## ★ PHRASE MATCH ADDED 2026-09-02 (Mario: "we need to get clicks")
+Sept 1 final: 55 impr · 4 clicks · €11.07 · 0 conv (best volume day post-UK,
+but Mario saw zeros — Google default ranges exclude the current/previous day).
+Volume is the bottleneck (39 exact-match keywords = tiny eligible pool), so
+pulled the lever planned on Aug 28: added 11 PHRASE-match keywords on proven
+buyer terms to Reklamná skupina č. 1:
+  "welcome book template" · "airbnb welcome book" · "vacation rental welcome
+  book" · "airbnb house manual" · "house manual template" · "guest information
+  book" · "airbnb welcome guide" · "rental welcome book" · "welcome book for
+  vacation rental" · "airbnb guest guide" · "short term rental welcome book"
+Deliberately NOT phrased: [guest welcome book] (170 impr at only 1.76% CTR —
+widening a weak term wastes money; UK "guest book" intent lesson).
+Status on save: Nespracované/Prebieha kontrola (normal review, serves in
+hours). Budget stays €16/day, CPC cap €2.80, 54 negatives still guard.
+EXPECT: impressions should rise 2-5x within ~2-3 days. NEXT: mine the
+search-terms report ~Sep 4-5 — phrase match WILL let in some junk; add
+negatives weekly. ROLLBACK: pause the 11 phrase keywords if CPA blows past
+~€20 with no sale.
