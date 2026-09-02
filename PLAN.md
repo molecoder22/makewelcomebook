@@ -762,3 +762,28 @@ NOW PASSIVE for a few days per Mario. Daily checks only: Google Ads with date
 range "Včera" (Google's default ranges hide today/yesterday), Stripe payments,
 Etsy Stats (views/favorites), Clarity. Next active task: mine the search-terms
 report ~4–5 Sep for junk let in by the 11 phrase keywords.
+
+## DECISION 2026-09-02 (evening, Mario) — HOLD ONE DAY, THEN OPTIMIZE OR CUT
+Mario: "we wait till tomorrow, I will tell you check ads, then by data we have
+we will optimize everything; if no, we cut budget for 5 days and see more."
+NO CHANGES TONIGHT. Budget stays €16/day, phrase keywords stay live, mobile
+−50 % stays.
+State at the moment of this decision (2 Sep, day not finished):
+  All time 23 Aug – 2 Sep: 454 impr · 29 clicks · €68.11 · 2 conv · CPA €34.06
+  2 Sep so far: 53 impr · 8 clicks · CTR 15.09 % · €21.75 · avg CPC €2.72 ·
+    0 conv · impression share lost to BUDGET 21.88 % (first time ever non-zero)
+  Mobile took 6 of 8 clicks and €16.21 of €21.75 today (−50 % applied midday).
+  Clarity 3 d: 37 sessions, 5.7 min active, 0 rage clicks, JS errors = the same
+    Aug-31 buyer tablet sessions (not new). Dead clicks 18.92 % — look later.
+  Etsy all-time: 0 visits / 0 orders (shop <2 days old, stats lag 4 h).
+  Stripe: still 3 payments, 0 refunds, 0 disputes — no sale #3.
+  Budget left of the €250: ≈ €160.
+TIMING CAVEAT for tomorrow: on 3 Sep, "Včera" = 2 Sep, which is a COMPLETE day
+but only partly clean (mobile −50 % landed midday). The first FULLY clean day is
+3 Sep, readable on 4 Sep. Say this out loud before making the call.
+AGREED DECISION RULE:
+  * ≥1 sale on 2–3 Sep → keep €16/day and optimize (mine search terms, add
+    negatives, consider keyword-level bids on the two converters).
+  * 0 sales and cumulative spend over 2–3 Sep ≳ €35 → CUT the daily budget for
+    5 days (proposal: €16 → €8) and re-read on ~9 Sep.
+Mario pings when he wants the check; do not run it unprompted.
