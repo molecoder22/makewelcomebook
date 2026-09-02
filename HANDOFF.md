@@ -138,54 +138,36 @@ only non-Canva "finished result". Decision: list at real price $29 (our own
 site price = legitimate reference) and run a 30% Etsy sale → $20.30, still
 premium but inside the page's price band. NO fake reference prices ever.
 
-## RESUME POINT — EXACTLY WHERE THE LAST SESSION STOPPED
-The session ended mid-task (rate limit). Two dialogs were left open in Chrome
-and will be gone; redo them:
-1. ETSY SALE (not created yet): Shop Manager → Marketing → Sales and discounts
-   → "Run a sale" → Set up. Percentage off = 30, Everywhere, duration 30 days
-   from today, sale name e.g. LAUNCH30, apply to the single listing. Verify the
-   public listing shows $20.30 (US) / strike-through $29.
-2. GOOGLE ADS MOBILE BID ADJUSTMENT (not saved): campaign → Štatistiky a
-   reporty → "Kedy a kde sa reklamy zobrazili" → Zariadenia tab (URL
-   ads.google.com/aw/devices?ocid=8492560045&campaignId=24166614210) → Mobily
-   row → Úprava ponuky cell → set DECREASE (Znížiť) 50% → Uložiť. The
-   Zvýšiť/Znížiť dropdown resisted keyboard + ref clicks; try clicking the
-   visible option in the opened menu, or use Google Ads Editor. Rationale:
-   mobile = 315 impr/11 clicks/€21.66/0 conv all-time.
-3. GOOGLE ADS OPTIMIZATIONS STILL TO APPLY (decided, not done):
-   a. Add campaign negatives: phrase "guest book", "guestbook" (kills the 44%
-      waste; keep [guest information book] and "guest welcome book" — they don't
-      contain the contiguous phrase).
-   b. Pause keywords [vacation rental guest book] (low QS, 0 conv), [vacation
-      rental guest book template], and consider pausing [guest welcome book]
-      (188 impr, 1.76% CTR, 0 conv) — or leave one week under the new negatives.
-   c. Keep Max Clicks (only 2 conv — too few for Max Conversions). Keep €2.80
-      cap; US +50%. Keep CA/AU (negligible spend).
-   d. Mine search terms again ~Sep 4–5 (phrase match will add junk).
-4. WRITE THE GOOGLE ADS AUDIT REPORT for Mario (he asked: "can we scale, does
-   it make sense"). Use the data above. Conclusion: campaign is profitable but
-   capped by ~1.3k US searches/month; realistic optimized Google ceiling ≈ 5–8
-   sales/month (~€120–190 net); the "guest book" cleanup should cut CPA from
-   €27 toward ~€15. Deliver as a readable report (markdown in repo, e.g.
-   ADS-AUDIT-2026-09-02.md, or an Artifact page) + chat summary.
-5. ETSY OPTIMIZATION STATUS: title/price/tags/description DONE and published;
-   sale pending (item 1). Optional: second listing later (WiFi sign + book
-   bundle framing), FAQs/shop link skipped (Etsy widgets rejected input).
-   Pictures are final unless Mario objects.
-6. ANSWER MARIO'S QUESTION "can this make €1,000 profit/month?" honestly:
-   needs ~43 sales/month at €23.36 net (fewer if price/AOV rises). Google
-   Search max ≈ 6–8/mo. Etsy at maturity in this niche: plausible 15–40/mo
-   after reviews accumulate (top competitors have 4.6k–8k reviews; takes
-   months). Plus Pinterest (shelved by Mario), SEO articles (start at sale #3),
-   free WiFi-sign tool traffic, Bing Ads (needs his account), multi-property
-   tier ($49). Verdict: €1k/month is possible but only as a multi-channel,
-   3–6 month build, with Etsy as the main engine; not from Google Ads alone.
-   Also: €1k/month blows past his €2,200/year no-živnosť ceiling in ~2.5
-   months — he must settle the živnosť question with his accountant first.
-7. THEN: Mario said "when all done I check, we let it be passive for a few
-   days, then decide what next". So after 1–6: update PLAN.md, commit, give him
-   the summary, and stop. Daily passive checks only (Ads today/yesterday via
-   the "Včera" date range, Stripe payments, Etsy stats, Clarity).
+## RESUME POINT — UPDATED 2026-09-02 (late): ALL TASKS DONE, NOW PASSIVE
+Everything from the previous resume list is COMPLETE and verified:
+1. ✅ Etsy sale LAUNCH30: 30 % off, Everywhere, whole shop, 2 Sep – 1 Oct 2026.
+   Public listing verified: $29 → $20.30 for US buyers (Mario's Slovak view
+   shows $24.97 struck from $35.67 — same price with display VAT).
+2. ✅ Mobile bid adjustment −50 % on campaign 24166614210 (verified in the
+   Zariadenia table). The Zvýšiť/Znížiť control is a Material button-menu, not
+   a <select>: click the button, then click the SECOND tiny item in the popup.
+3. ✅ Campaign negatives "guest book" + "guestbook" (phrase), 54 → 56.
+   ✅ Paused [vacation rental guest book] and [vacation rental guest book
+   template] (both show "Pozastavené"). Max Clicks, €2.80 cap, US +50 %,
+   CA/AU, €16/day, AI Max/broad/partners OFF — all unchanged.
+4. ✅ ADS-AUDIT-2026-09-02.md written (repo root).
+5. ✅ Etsy optimization complete (title/price/tags/description/photos/sale).
+6. ✅ REALITY-CHECK-1000-EUR.md written (repo root).
+7. ✅ PLAN.md updated, committed, pushed.
+
+### CURRENT MODE: PASSIVE (Mario's instruction, a few days)
+Daily checks ONLY, no changes unless something breaks:
+ * Google Ads → campaign 24166614210 with date range "Včera" (Google's default
+   ranges hide today and yesterday, which is why Mario has seen zeros before).
+ * Stripe payments (3 so far: Mario's own test 8/24, Tarun 8/28, Joyce 8/31).
+ * Etsy Stats: views / favorites / orders; Etsy Messages for buyer questions.
+ * Clarity y7j8xs7wx9 for sessions and JS errors.
+NEXT ACTIVE TASK when Mario says go: mine the Ads search-terms report (~4–5
+Sep) for junk let in by the 11 phrase-match keywords, and add negatives.
+WATCH: post-cleanup CPA — target ≈ €15. Kill criterion: another €40 of spend
+with 0 sales → pause the campaign.
+IF A SALE LANDS: message the buyer politely and ask for a review (Etsy) — the
+first ten reviews are the single highest-leverage thing in the venture.
 
 ## HARD RULES / GUARDRAILS
 - NEVER "Airbnb" in brand/domain/ad text (trademark). Keyword/descriptive use
