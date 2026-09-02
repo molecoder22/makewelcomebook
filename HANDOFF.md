@@ -81,8 +81,11 @@ signing book in UK English), presence-only, AI Max / broad / partners OFF,
 template", "airbnb welcome book", "vacation rental welcome book", "airbnb house
 manual", "house manual template", "guest information book", "airbnb welcome
 guide", "rental welcome book", "welcome book for vacation rental", "airbnb
-guest guide", "short term rental welcome book"), 54 negatives, 2 RSAs
-(strength Average), 4 sitelinks, 6 callouts, structured snippet.
+guest guide", "short term rental welcome book"), 56 negatives (incl. phrase
+"guest book" + "guestbook" added 2 Sep), 2 RSAs (strength Average), 4
+sitelinks, 6 callouts, structured snippet. DEVICE: mobile bid adj −50 %
+(2 Sep). PAUSED keywords: [vacation rental guest book], [vacation rental
+guest book template].
 Advertiser verification still OUTSTANDING (Mario only, needs ID).
 
 ## GOOGLE ADS AUDIT DATA (pulled 2026-09-02, all-time Aug 23 – Sep 2) — USE THIS, DON'T RE-PULL
