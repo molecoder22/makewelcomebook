@@ -720,3 +720,45 @@ NEXT: watch Etsy Stats daily (views/favorites); first review matters most —
 after sale #1, message the buyer politely asking for a review. Consider a
 2nd listing variant (e.g. "WiFi QR sign + welcome book bundle") once the
 first shows views, since Etsy rewards multi-listing shops.
+
+## ★ 2026-09-02 (late) — ETSY SALE LIVE + ADS CLEANUP + AUDIT REPORTS
+ETSY SALE created: 30 % off, Everywhere, whole shop (auto-includes any future
+listing), 2 Sep – 1 Oct 2026, name LAUNCH30. Public listing verified live:
+US buyers see $20.30 (from $29); Mario's Slovak view shows $24.97 struck from
+$35.67 — same thing with Slovak VAT added on display. Reference price is our
+real site price ($29), so no fake-sale problem.
+GOOGLE ADS (campaign 24166614210 only — the account also holds TenderEulogy):
+ * Mobile device bid adjustment set to −50 % (Znížiť 50). The Zvýšiť/Znížiť
+   control is a Material button-menu, not a <select>: click the button, then
+   click the second item in the tiny popup list; form_input will not work.
+   Verified in the Zariadenia table: Mobily = "-50 %".
+   Rationale: mobile all-time 315 impr / 11 clicks / €21.66 / 0 conversions.
+ * Campaign negatives added, phrase match: "guest book", "guestbook"
+   (54 → 56 negatives). Kills ~44 % of all-time spend that went to physical
+   guest-book searches. [guest information book] and [guest welcome book]
+   deliberately survive — no contiguous phrase match.
+ * Paused: [vacation rental guest book] (low-QS flag, 5 clicks, €9.67, 0 conv)
+   and [vacation rental guest book template]. Verified "Pozastavené".
+ * Unchanged on purpose: Maximize Clicks, €2.80 CPC cap, US +50 %, CA/AU on,
+   €16/day budget, AI Max / broad / search partners OFF.
+REPORTS WRITTEN (both in repo root):
+ * ADS-AUDIT-2026-09-02.md — full audit. Key conclusions: campaign was at
+   −€7.94 (CPA €27.33 vs €23.36 net) purely because of the guest-book waste;
+   post-cleanup CPA should land near €15 (≈ +€8/sale). Budget is NOT the
+   constraint (IS lost to budget 2.6 %, to rank 62.4 %). Relevant US demand is
+   ~1,200–1,400 searches/month and the head terms are down 46–64 % YoY, so
+   Google Search caps out at ~5–8 sales/month (≈ €40–70 profit). It is a floor,
+   not a ladder. Kill criterion: next €40 post-cleanup with 0 sales → pause.
+ * REALITY-CHECK-1000-EUR.md — honest answer to "can this make €1,000
+   profit/month". Needs ~50 sales/month (1.7/day) at a blended €20 net; we are
+   at ~4 % of that. Possible in 3–6 months only as a multi-channel build with
+   Etsy as the engine (reviews compound), plus a $49 multi-property tier to
+   lift AOV, plus organic/WiFi-tool traffic. Estimated ~1-in-4 odds within six
+   months; base case €300–600/month. ⚠️ €1,000/month = €13–15k/yr revenue =
+   6× the €2,200 no-živnosť ceiling, crossed in ~10 weeks at that rate —
+   accountant must be consulted BEFORE scaling. Current real revenue ≈ €49
+   (2 genuine Stripe sales; the 3rd payment was Mario's own test).
+NOW PASSIVE for a few days per Mario. Daily checks only: Google Ads with date
+range "Včera" (Google's default ranges hide today/yesterday), Stripe payments,
+Etsy Stats (views/favorites), Clarity. Next active task: mine the search-terms
+report ~4–5 Sep for junk let in by the 11 phrase keywords.
