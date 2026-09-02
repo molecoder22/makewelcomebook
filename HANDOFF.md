@@ -1,111 +1,218 @@
-# MAKE WELCOME BOOK — FULL PROJECT HANDOFF (as of 2026-09-01)
+# MAKE WELCOME BOOK — FULL PROJECT HANDOFF (as of 2026-09-02, ~03:00 CEST)
 
-Paste this into a new Claude session to continue with full context.
-Working folder: ~/makewelcomebook (own git repo). Read PLAN.md there for the
-complete decision log — this is the condensed operational picture.
+Paste this into a new Claude session to continue exactly where the last one
+stopped. Working folder: ~/makewelcomebook (own git repo, GitHub Pages from
+docs/). Read PLAN.md there for the complete decision log — this file is the
+condensed operational picture + the exact resume point.
 
 ## WHO / HOW TO WORK
 - Owner: Mário Otruba (Slovakia, mario.otruba2003@gmail.com). NOT a developer —
-  give him literal click-by-click steps for anything he must do himself;
-  automate everything else. He gave Claude full A–Z authority; only money
-  decisions, deletions and public posting need his OK.
-- This venture is funded by his last savings (€250 budget). Spend carefully.
-- SEPARATE project — never mix with STCKD, Reset Histamine or other ventures.
+  give literal click-by-click steps for anything he must do himself; automate
+  everything else. Full A–Z authority given; only money, deletions and public
+  posting need his OK (he has already approved: Etsy shop/listing edits, Google
+  Ads edits, site deploys, Higgsfield generations).
+- Budget: €250 total, his last savings. Spend carefully.
+- SEPARATE venture — never mix with STCKD / Reset Histamine / TenderEulogy /
+  LOCKD. cwd may be ~/stckd; always use absolute paths into ~/makewelcomebook.
+- Claude drives Mario's Chrome via the claude-in-chrome extension (tabs_context_mcp
+  createIfEmpty → navigate). He is logged in to: Google Ads, Etsy, Higgsfield,
+  Gmail, ImprovMX, Stripe, Clarity, Search Console.
+- Browser-pane (mcp__Claude_Browser) tabs pinned to file:// can't navigate; open
+  live URLs with preview_start {url}.
 
 ## THE PRODUCT
-- makewelcomebook.com — browser-based welcome book generator for Airbnb/VRBO
-  vacation-rental hosts. Host answers ~12 questions → gets print-ready welcome
-  book + WiFi QR sign + house-rules/checkout pack. $29 one-time via Stripe.
-- 62 designs (24 basic + 38 premium art incl. dark-luxury set), 3 formats
-  (complete set / book only / one-page sign), drag-to-move text, fine-tune
-  fonts/colors, "artwork on every page" toggle, auto-fit pages.
-- Architecture: static site, NO backend. GitHub Pages from docs/ in repo
-  github.com/molecoder22/makewelcomebook. Everything client-side; customer
-  books live only in their browser localStorage. Print-CSS → PDF.
-- Unlock: URL param. Stripe buyers → app.html?paid=MWB-UNLOCK-2026 (fires
-  Google Ads conversion). Etsy buyers → app.html?paid=MWB-ETSY-2026 (no
-  conversion event). Codes are client-side ⇒ inherently public; casual
-  protection only. Tiled watermark on preview until unlocked.
+- makewelcomebook.com — browser welcome-book generator for Airbnb/VRBO hosts.
+  ~12 questions → print-ready welcome book + WiFi QR sign + one-page guest sign.
+  $29 one-time via Stripe. 62 designs (24 basic + 38 premium art, 12 dark).
+- Static site, NO backend, GitHub Pages from docs/ (repo molecoder22/
+  makewelcomebook). Deploy = git push origin main (live in ~30-60 s).
+- Unlock codes (client-side, casual protection): Stripe → app.html?paid=
+  MWB-UNLOCK-2026 (fires Google Ads conversion); Etsy → app.html?paid=
+  MWB-ETSY-2026 (NO conversion event).
+- NEW 2026-09-02: docs/wifi-sign.html — FREE WiFi QR sign generator (SEO
+  magnet + upsell). Live, in sitemap, linked from index.html footer. Verified:
+  inputs → live preview, QR renders, print CSS, no console errors. Tracks
+  gtag event wifi_sign_print. 12 designs, localStorage key mwb_wifisign.
 
 ## LIVE ACCOUNTS & IDS
-- Domain: makewelcomebook.com @ GoDaddy (4×A GitHub Pages IPs, www CNAME
-  molecoder22.github.io, MX mx1/mx2.improvmx.com, SPF improvmx).
-- Email: *@makewelcomebook.com → mario.otruba2003@gmail.com via ImprovMX
-  (catch-all, Active). hello@ is the public support address.
-- Stripe: account "MakeWelcomeBook" (acct_1U7LLAEgS66qBLXy), product "Welcome
-  Book Unlock" $29, payment link buy.stripe.com/9B6bJ15ypcBe0hReB36oo00,
-  confirmation URL = the Stripe unlock link above. Statement descriptor
-  MAKEWELCOMEBOOK / MWBOOK (was wrongly STCKD APP — fixed 8/28).
-- Google Ads: account 917-571-4419, campaign WB-Search-Templates
-  (id 24166614210). Google tag AW-18406718312; conversion label
-  AW-18406718312/CvZwCL-C1uYcEOj2gMlE (fires once on Stripe unlock, $29).
-- Microsoft Clarity: project y7j8xs7wx9 (recordings+heatmaps, Mario's IP
-  87.197.89.172 excluded — re-add if his IP changes).
-- Google Search Console: URL-prefix property https://makewelcomebook.com/,
-  verified via meta tag DGiT9xLwGc2ZGHIzvMIWtdzmIsBRBSfOWMrPVwZc_Ns in BOTH
-  index.html and app.html — DO NOT REMOVE. sitemap.xml submitted (5 URLs, OK).
+- Domain makewelcomebook.com @ GoDaddy; email *@makewelcomebook.com →
+  mario.otruba2003@gmail.com via ImprovMX (catch-all). hello@ is public support.
+  NOTE: forwarded mail (Etsy codes etc.) lands in Gmail SPAM — if a code is
+  missing, read it from app.improvmx.com → domain → Logs (subject shows code).
+- Stripe acct_1U7LLAEgS66qBLXy, payment link buy.stripe.com/9B6bJ15ypcBe0hReB36oo00,
+  descriptor MAKEWELCOMEBOOK. 3 payments total (Mario test 8/24, Tarun 8/28,
+  Joyce 8/31). Net ≈ €23.36/sale.
+- Google Ads 917-571-4419, campaign WB-Search-Templates id 24166614210
+  (the account ALSO contains a "TenderEulogy Search" campaign from another
+  venture — always filter by campaignId=24166614210; account-level totals mix
+  both). Tag AW-18406718312, conversion label AW-18406718312/CvZwCL-C1uYcEOj2gMlE.
+- Clarity y7j8xs7wx9 (Mario's IP 87.197.89.172 excluded).
+- Search Console URL-prefix https://makewelcomebook.com/ (meta tag in index+app,
+  DO NOT REMOVE). Sitemap has 6 URLs incl. wifi-sign.html.
+- ETSY (live since 2026-09-02): shop https://www.etsy.com/shop/MakeWelcomeBook,
+  listing https://www.etsy.com/listing/4566989528 . Registered with
+  hello@makewelcomebook.com. Shop: W icon, photo banner, tagline, Slovakia,
+  About story. Listing: title "Airbnb Welcome Book Template Alternative |
+  Answer 12 Questions, Get a Finished Book + WiFi QR Sign | No Canva, 62
+  Designs, VRBO Guest Guide", PRICE $29.00 (raised from $24.99 on purpose — a
+  30% sale is to be applied, see RESUME), qty 999, Digital, category
+  Templates, AI-generator disclosure ticked, 13 tags (airbnb welcome book,
+  welcome book, airbnb host, vacation rental, house manual, airbnb template,
+  guest book, airbnb signs, wifi sign, welcome guide, vrbo welcome book,
+  airbnb guidebook, guest guide), description updated with design styles +
+  "message within 14 days for refund". Files delivered: Your-Welcome-Book-
+  Access.pdf + sample-book.pdf. 8 photos: 4 Higgsfield product photos (marble
+  counter = main, book+framed sign, framed sign on console, bedroom) + light/
+  dark cover grids + what-you-get + typographic headline.
+  Etsy shows EU viewers price incl. VAT (e.g. $29 → ~$35.7); US see $29.
+- Higgsfield: Mario's account (Google SSO, his gmail), model Nano Banana Pro,
+  4 credits per 4K image. Upload our cover/sign as reference so the model
+  renders OUR product. It garbles small text → composite the real sign with
+  scratchpad composite_sign2.py (perspective warp + polynomial lighting).
+  Originals in marketing/etsy/hf-4k/. First run may be falsely flagged NSFW
+  (credits refunded) — just retry. Always verify the reference thumbnail in
+  the prompt bar before generating.
 
-## GOOGLE ADS CAMPAIGN STATE (2026-09-01)
-- Search-only, Maximize Clicks, max CPC €2.80, budget €16/day (rarely spends
-  >€8 — volume-capped, NOT budget-capped: lost-IS-budget = 0%).
-- Geo: US (+50% bid adj), CA, AU. UK REMOVED 8/28 (73% of impressions, 0 sales,
-  "guest book" = paper signing book in UK English — wrong intent).
-- 39 exact-match keywords, 54 negatives, 2 RSAs (strength Average), 4 sitelinks
-  ("See a Finished Example" brought a buyer), 6 callouts, structured snippet.
-  AI Max OFF, broad match OFF, search partners OFF, presence-only targeting.
-- RESULTS TO DATE: spend ≈ €35, 2 SALES (both ad-attributed, conversions=2 in
-  UI): #1 Tarun Inuganti, Manhattan Beach CA, desktop, 8/28 — bought 81s in;
-  #2 joyce@mostlymail.us 8/31, tablet (GoogleApp browser), the 42-min/139-click
-  Clarity session. Net revenue ≈ €46.72 → PROFITABLE (~€12-17 depending on day).
-  CVR ≈ 12.5%. Break-even ≈ CVR 6.8% at current CPCs.
-- Expected daily volume post-UK-cut: only ~15-25 impressions/day, mostly during
-  US daytime (= European evening). Low morning numbers are normal.
-- KILL RULE still active: €120 total spend with zero sales → pause (moot now).
-- OUTSTANDING (Mario only): Google advertiser verification (ID documents),
-  Ads → Odporúčania → "Dokončenie overenia inzerenta". No deadline shown, but
-  Google tightens identity checks; also blocks the in-account "confirm it's
-  you" prompts that interrupt edits (unskippable after 9/1).
+## GOOGLE ADS — CURRENT SETTINGS
+Search-only, Maximize Clicks, max CPC €2.80, budget €16/day (never binding),
+geo US (+50% bid adj) + CA + AU (UK removed 8/28 — "guest book" = paper
+signing book in UK English), presence-only, AI Max / broad / partners OFF,
+39 exact keywords + 11 PHRASE keywords added 2026-09-02 ("welcome book
+template", "airbnb welcome book", "vacation rental welcome book", "airbnb house
+manual", "house manual template", "guest information book", "airbnb welcome
+guide", "rental welcome book", "welcome book for vacation rental", "airbnb
+guest guide", "short term rental welcome book"), 54 negatives, 2 RSAs
+(strength Average), 4 sitelinks, 6 callouts, structured snippet.
+Advertiser verification still OUTSTANDING (Mario only, needs ID).
 
-## FREE-TRAFFIC PLAN (research done 8/31)
-Order: 1) Etsy (proven demand, $24.99 listing) 2) Pinterest (evergreen, 60-90d)
-3) free WiFi-QR-sign tool page (SEO magnet — NOT built yet) 4) SEO articles
-(GATED until sale #3 — currently 2/3) 5) Product Hunt after tool page
-6) Reddit/FB groups only as genuine participation by Mario.
-- LAUNCH KIT READY in ~/makewelcomebook/marketing/ (gitignored, repo public):
-  etsy/Your-Welcome-Book-Access.pdf (delivery file w/ Etsy unlock link),
-  etsy/1-main..6-onepage-sign.jpg (listing images), etsy/sample-book.pdf,
-  pinterest/pin-01..38.jpg + pins.csv (titles/descriptions/links).
-  Listing copy: ETSY-LISTING.md ($24.99, tags, SEO title).
-- WAITING ON MARIO: create Etsy shop + Pinterest business account; then Claude
-  uploads everything via his Chrome. Pinterest: publish 3-5 pins/day max.
+## GOOGLE ADS AUDIT DATA (pulled 2026-09-02, all-time Aug 23 – Sep 2) — USE THIS, DON'T RE-PULL
+Campaign: 429 impr · 24 clicks · CTR 5.59% · €54.66 · avg CPC €2.28 ·
+2 conv · CVR 8.33% · CPA €27.33. Search IS 35.1%, lost to RANK 62.4%, lost to
+budget 2.6%. Exact-match IS 35.1%.
+Keywords with clicks (impr/clicks/cost/conv):
+  [vacation rental guest book] 57/5/€9.67/0 — LOW QUALITY SCORE flag
+  [guest welcome book] 188/5/€9.11/0
+  [vacation rental welcome book template] 25/4/€10.36/1  ← converter
+  [guest information book] 74/3/€6.63/0
+  [short term rental welcome book template] 15/2/€6.91/0
+  [vacation rental guest book template] 1/1/€2.00/0
+  "guest information book" (phrase) 18/1/€2.76/0
+  "rental welcome book" (phrase) 4/1/€2.78/0
+  [guest welcome book template] 32/1/€2.48/0
+  [vacation rental house manual] 2/1/€1.96/1  ← converter
+Search terms: converters = "welcome book template for vacation rental" and the
+house-manual query. WASTE = every "guest book" query (guest book, short term
+rental guest book, accommodation guest book/guestbook, bnb guest book, custom
+guest book for vacation home, event guest book, guest book for home/holiday
+home/guest house, a guest book…): ≈ €24 of €54.66 (44%) with 0 conversions.
+"Other search terms" bucket (privacy-hidden): 14 clicks, €31.91, 1 conv.
+Geo: US 193 impr/14 clicks/€37.03/2 conv (CVR 14.3%, CPA €18.52); CA 35/1/
+€2.48/0; AU 27/1/€2.52/0.
+Device: Desktop 107/11/€28.27/1 conv (CVR 9.1%); Mobile 315/11/€21.66/0 conv;
+Tablet 7/2/€4.73/1 conv.
+Auction insights (impression share): etsy.com 43.6%, us 35.9%, amazon.com
+17.9%, papier.com 15.6%, artifactuprising.com 11.2%, amazon.co.uk 11.2%,
+zazzle, tabellara.com, hostgreeter.com, stayperk.com (<10%). Etsy/Amazon/
+Papier/Artifact Uprising = physical guest-book sellers → confirms the
+guest-book intent mismatch.
+Keyword Planner US monthly volumes (12-mo avg, YoY): airbnb welcome book 390
+(-46%), airbnb welcome book template 260 (-64%), airbnb signs 390, airbnb
+guest book 260, vacation rental guest book 210, airbnb house manual template
+140, airbnb house manual 90, airbnb guidebook template 70, airbnb welcome
+guide 70 (+29%), airbnb welcome letter 70, airbnb wifi sign 50, welcome book
+for airbnb 50, vacation rental welcome book 40, guest welcome book 40, airbnb
+guest guide 20, digital welcome book airbnb 20, airbnb house rules sign 20,
+short term rental welcome book 10, vrbo welcome book 10. Top-of-page bids
+€0.5–1.0 low / €4–9.5 high. Competition "High" everywhere.
+→ Relevant US demand ≈ 1,200–1,400 searches/month. Even at 100% impression
+share and 6% CTR that is ~75 clicks/month ≈ 6 sales ≈ €140 net/month. GOOGLE
+SEARCH ALONE CANNOT REACH €1,000/MONTH. Volume is the ceiling, not budget.
 
-## SITE STATE (all deployed & verified)
-- Mobile: product-first hero, Edit/My-book bottom tabs, sticky CTA, 0 overflow.
-- Landing: design gallery (24 covers), 7 CTAs, sticky mobile CTA (CSS-only).
-- Builder: offer-on-intent dialog ($29 shown on Unlock/Download click; price
-  stays visible in ads+landing — deliberate, don't hide it there), drag
-  tutorial popup, debounced render + QR cache (INP fix), clean PDFs
-  (@page margin 0), one-page sign shows ALL inputs, picker uses 160px thumbs.
-- Tracking on both pages: gtag AW-18406718312 + Clarity y7j8xs7wx9.
-- SEO hygiene: robots.txt, sitemap.xml, canonicals, OG tags + og.jpg, favicon.
+## ETSY RESEARCH (2026-09-02)
+Search "airbnb welcome book template": our listing already shows on PAGE 1
+(new-listing boost). Competitors: Canva templates at $2.45–$18 shown as
+"sale" prices off fake $10–55 references; bundles (500+ items) $18; a few
+"interactive/mobile" guides $21–28. Related searches: canva / lake cabin /
+cabin / beach variants. We are the most expensive item on the page and the
+only non-Canva "finished result". Decision: list at real price $29 (our own
+site price = legitimate reference) and run a 30% Etsy sale → $20.30, still
+premium but inside the page's price band. NO fake reference prices ever.
+
+## RESUME POINT — EXACTLY WHERE THE LAST SESSION STOPPED
+The session ended mid-task (rate limit). Two dialogs were left open in Chrome
+and will be gone; redo them:
+1. ETSY SALE (not created yet): Shop Manager → Marketing → Sales and discounts
+   → "Run a sale" → Set up. Percentage off = 30, Everywhere, duration 30 days
+   from today, sale name e.g. LAUNCH30, apply to the single listing. Verify the
+   public listing shows $20.30 (US) / strike-through $29.
+2. GOOGLE ADS MOBILE BID ADJUSTMENT (not saved): campaign → Štatistiky a
+   reporty → "Kedy a kde sa reklamy zobrazili" → Zariadenia tab (URL
+   ads.google.com/aw/devices?ocid=8492560045&campaignId=24166614210) → Mobily
+   row → Úprava ponuky cell → set DECREASE (Znížiť) 50% → Uložiť. The
+   Zvýšiť/Znížiť dropdown resisted keyboard + ref clicks; try clicking the
+   visible option in the opened menu, or use Google Ads Editor. Rationale:
+   mobile = 315 impr/11 clicks/€21.66/0 conv all-time.
+3. GOOGLE ADS OPTIMIZATIONS STILL TO APPLY (decided, not done):
+   a. Add campaign negatives: phrase "guest book", "guestbook" (kills the 44%
+      waste; keep [guest information book] and "guest welcome book" — they don't
+      contain the contiguous phrase).
+   b. Pause keywords [vacation rental guest book] (low QS, 0 conv), [vacation
+      rental guest book template], and consider pausing [guest welcome book]
+      (188 impr, 1.76% CTR, 0 conv) — or leave one week under the new negatives.
+   c. Keep Max Clicks (only 2 conv — too few for Max Conversions). Keep €2.80
+      cap; US +50%. Keep CA/AU (negligible spend).
+   d. Mine search terms again ~Sep 4–5 (phrase match will add junk).
+4. WRITE THE GOOGLE ADS AUDIT REPORT for Mario (he asked: "can we scale, does
+   it make sense"). Use the data above. Conclusion: campaign is profitable but
+   capped by ~1.3k US searches/month; realistic optimized Google ceiling ≈ 5–8
+   sales/month (~€120–190 net); the "guest book" cleanup should cut CPA from
+   €27 toward ~€15. Deliver as a readable report (markdown in repo, e.g.
+   ADS-AUDIT-2026-09-02.md, or an Artifact page) + chat summary.
+5. ETSY OPTIMIZATION STATUS: title/price/tags/description DONE and published;
+   sale pending (item 1). Optional: second listing later (WiFi sign + book
+   bundle framing), FAQs/shop link skipped (Etsy widgets rejected input).
+   Pictures are final unless Mario objects.
+6. ANSWER MARIO'S QUESTION "can this make €1,000 profit/month?" honestly:
+   needs ~43 sales/month at €23.36 net (fewer if price/AOV rises). Google
+   Search max ≈ 6–8/mo. Etsy at maturity in this niche: plausible 15–40/mo
+   after reviews accumulate (top competitors have 4.6k–8k reviews; takes
+   months). Plus Pinterest (shelved by Mario), SEO articles (start at sale #3),
+   free WiFi-sign tool traffic, Bing Ads (needs his account), multi-property
+   tier ($49). Verdict: €1k/month is possible but only as a multi-channel,
+   3–6 month build, with Etsy as the main engine; not from Google Ads alone.
+   Also: €1k/month blows past his €2,200/year no-živnosť ceiling in ~2.5
+   months — he must settle the živnosť question with his accountant first.
+7. THEN: Mario said "when all done I check, we let it be passive for a few
+   days, then decide what next". So after 1–6: update PLAN.md, commit, give him
+   the summary, and stop. Daily passive checks only (Ads today/yesterday via
+   the "Včera" date range, Stripe payments, Etsy stats, Clarity).
 
 ## HARD RULES / GUARDRAILS
-- NEVER "Airbnb" in brand/domain/ad text (trademark). Keyword use is fine.
-- No fake sale pricing (never sold above $29 — "was $49" would be illegal
-  reference pricing + Google misrepresentation risk).
-- Legal: Mario operates without živnosť up to €2,200/yr revenue (his call,
-  8/24). Track combined Stripe totals; warn well before the threshold.
-- Refunds: 14-day money-back (terms/privacy/refunds pages live; hello@ works).
+- NEVER "Airbnb" in brand/domain/ad text (trademark). Keyword/descriptive use
+  fine (Etsy title uses it descriptively like every competitor).
+- No fake sale pricing: reference price must be a real price we sell at ($29).
+- Legal: Mario operates without živnosť up to €2,200/yr revenue (his call
+  8/24). Track combined Stripe+Etsy totals; warn well before the threshold.
+- Refunds: 14-day money-back (site pages live; Etsy locked to "no returns"
+  preset but we honor refunds manually via Etsy if messaged).
 - Google Ads: never "Apply all" recommendations; harvest keyword ideas as
-  EXACT match; keep AI Max / broad / partners OFF; mine search terms weekly.
-- Etsy caveat: listing delivers a PDF containing the unlock link (grey-zone
-  but common practice for tool access).
+  EXACT/PHRASE manually; keep AI Max / broad / partners OFF; kill rule
+  (€120 spend, 0 sales) is moot now.
+- Etsy delivers a PDF containing the unlock link (grey-zone but common); the
+  sample-book.pdf is included so the download is a real deliverable.
 
-## IMMEDIATE NEXT STEPS
-1. Mario: Etsy shop + Pinterest business account → Claude launches both kits.
-2. Mario: Google advertiser verification (~30 min, ID needed).
-3. Watch ads daily: with UK gone expect small-but-quality volume; if near-zero
-   for 48h, investigate (identity deadline, billing).
-4. At sale #3: start SEO articles + build free WiFi-sign tool page.
-5. Re-check Clarity web vitals (INP was 780ms→fix shipped 8/31) and whether
-   post-fix mobile visitors reach the builder (old baseline: 0 of 5 clicked).
+## FILES
+- PLAN.md — full decision log (long); ADS-CAMPAIGN.md, ETSY-LISTING.md,
+  DO-THIS-MARIO.md, HIGGSFIELD-PROMPTS.md.
+- marketing/etsy/ (gitignored): 1-main.jpg … 8-headline.jpg (live set),
+  src-cover.jpg, src-sign.jpg, hf-4k/ originals, v1/ old images,
+  shop-icon.png, shop-banner.jpg, Your-Welcome-Book-Access.pdf, sample-book.pdf.
+- marketing/pinterest/ pins 01–38 + pins.csv (shelved).
+- Scratchpad scripts (may be gone with the session): build_etsy_assets.py,
+  composite_sign2.py — logic described in PLAN.md if they need recreating.
+
+## OUTSTANDING FOR MARIO (cannot be delegated)
+1. Google advertiser verification (~30 min, ID).
+2. Živnosť decision with accountant before scaling.
+3. Optional: Microsoft Ads account (desktop-heavy, cheaper CPCs) if he wants
+   another paid channel.
