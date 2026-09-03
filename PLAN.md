@@ -787,3 +787,41 @@ AGREED DECISION RULE:
   * 0 sales and cumulative spend over 2–3 Sep ≳ €35 → CUT the daily budget for
     5 days (proposal: €16 → €8) and re-read on ~9 Sep.
 Mario pings when he wants the check; do not run it unprompted.
+
+## ★ 2026-09-03 (morning) — NO SALES → BUDGET CUT €16 → €8/day
+Mario: "no sales". Verified before acting:
+ * Stripe: still 3 payments (Mario test 8/24, Tarun 8/28, Joyce 8/31), 0 refunds,
+   0 disputes. No sale #3.
+ * Etsy all-time (Sep 1 – Sep 3): 0 visits, 0 orders, $0.00, 0 favorites,
+   0 follows, 0 reviews. Shop is 2 days old; stats lag ~5 h.
+ * Ads 2 Sep FULL day: 53 impr · 8 clicks · CTR 15,09 % · €21,75 · avg CPC
+   €2,72 · 0 conv · impression share 18,22 % · lost to RANK 34,20 % ·
+   LOST TO BUDGET 47,58 %.
+ * Ads 3 Sep by 10:00 CEST: 26 impr · 0 clicks · €0,00 (US asleep — normal).
+ * Ads all-time 23 Aug – 2 Sep: 454 impr · 29 clicks · €68,11 · 2 conv ·
+   CPA €34,06.
+ACTION TAKEN (per the decision rule agreed 2 Sep): campaign daily budget
+lowered €16,00 → €8,00. Verified in the campaign row and header ("8,00 €/deň").
+Nothing else touched: Max Clicks, €2,80 CPC cap, US +50 %, mobile −50 %,
+56 negatives, 11 phrase keywords, 2 paused keywords — all unchanged.
+WHY €8: on 2 Sep the campaign spent €21,75 (136 % of a €16 budget — Google
+allows up to 2× on a day) and still lost 47,6 % of impressions to budget. At
+that burn the remaining ≈ €160 of the €250 lasts ~8 days. €8/day gives ~5 days
+of data for ~€40 and keeps the campaign learning instead of pausing it.
+TWO REAL FINDINGS FROM 2 SEP:
+ 1. The negatives WORK on relevance: CTR jumped 4,77 % → 15,09 %.
+ 2. My 2 Sep audit line "budget is not the constraint" is now WRONG for the
+    post-cleanup campaign. Before: lost-to-budget 0–2,6 %. On 2 Sep: 47,58 %.
+    Filtering the junk + the 11 phrase keywords made the eligible pool both
+    smaller and much more relevant, so €16/day genuinely binds. Corrected here
+    and in ADS-AUDIT-2026-09-02.md.
+NEXT REVIEW ~8–9 Sep (5 days at €8). Decision rule for then:
+ * ≥1 sale → keep €8/day, optimise (search terms, bids on the 2 converters).
+ * 0 sales after ~€40 more spend → PAUSE the campaign and move everything to
+   Etsy/organic. That is the kill criterion from ADS-AUDIT-2026-09-02.md.
+⚠ NEW PRIORITY PROBLEM — ETSY 0 VISITS IN 2 DAYS. A listing that showed on
+page 1 for "airbnb welcome book template" on 2 Sep should get *some* views.
+Either the new-listing boost has already passed, or the listing is not being
+surfaced. To check next session: Etsy Shop Manager → "Etsy search visibility",
+and search Etsy in a logged-out/incognito window for the main terms to see
+where (or whether) the listing ranks. This now matters more than the ads.
