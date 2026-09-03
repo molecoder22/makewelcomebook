@@ -1002,3 +1002,11 @@ spend from the Etsy Ads dashboard. Sum must stay ≤ €150. Warn Mario at €12
 FINAL DECISION 30 SEP: Etsy converts → slow side income, keep going at low
 spend. Etsy doesn't → stop all paid spend, leave site + shop live at €0.
 Goal framing agreed as realistic: September is a test, not a €300 month.
+
+## Etsy tags retargeted 2026-09-03 (free, during the 14-day Etsy Ads lock-out)
+REMOVED: "guest book" (wrong intent — paper signing book; the same lesson as
+Google Ads; attracts non-buyers, drags conversion rate, which drags ranking),
+"airbnb host", "vacation rental" (both too generic to be a product query).
+ADDED: "cabin welcome book" (Etsy related-search variant, far less contested),
+"short term rental" (proven buyer phrase), "rental house manual" (house manual
+converted on Google). Still 13/13. Published and live.
