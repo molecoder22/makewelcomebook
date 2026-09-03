@@ -908,3 +908,81 @@ ONE THING TO FIX IN ADS: a paid click (gclid present) landed directly on
 app.html?sample=1 and bounced in 5 s. A sitelink is dropping people straight
 into the sample viewer instead of the landing page. Check the 4 sitelinks next
 time the ads account is open.
+
+## ★★ 2026-09-03 (evening) — ETSY DIAGNOSIS + FIXES APPLIED (Mario: "you choose what's best, do it now")
+
+### THE REAL REASON FOR 0 ETSY VISITS — WE DO NOT RANK ANONYMOUSLY
+Searched Etsy for "airbnb welcome book template" TWICE:
+ * In Mario's logged-in Chrome our listing showed on PAGE 1, position 4.
+   THIS IS AN ILLUSION — Etsy boosts your own shop in your own search results.
+ * In a clean logged-out browser (in-app Browser pane, essential cookies only)
+   our listing does NOT appear in the first ~44 results at all.
+→ The 2 Sep "we're on page 1" reading in this file was wrong for the same
+  logged-in reason. Corrected. The new-listing boost is over (or never applied
+  broadly) and with 0 sales + 0 reviews Etsy has nothing to rank us on.
+
+### COMPETITIVE PICTURE (logged-out, real)
+Every listing above the fold is a PAID Etsy Ad. Organic prices in this query:
+€2.20 · 3.31 · 3.68 · 3.69 · 3.85 · 4.26 · 4.42 · 4.48 · 4.70 · 5.52 · 5.80 ·
+6.06 · 6.55 · 6.73 · 7.46 · 8.19 · 9.94 · 10.19 · 10.59 · 11.06 · 12.35 ·
+14.97 · 15.66 · 16.46 · 16.57 · 16.58 · 18.70 · 19.30 · 22.45 · 24.05 · 28.03 ·
+36.29 · 50.73. MEDIAN ≈ €7–10; we are €24.97 (EU display) / $20.30 US.
+Nearly every competitor is a CANVA template, most carry a "Bestseller" badge
+and hundreds of reviews, and most show a big % off an inflated original price.
+Their thumbnails are text-dense collages shouting "500+ PAGES", "OVER 300
+FIVE-STAR REVIEWS", "PRINT & DIGITAL", "works like an APP".
+
+### FIX 1 — TITLE (Etsy's own recommendation, accepted as-is)
+Etsy search visibility flagged "1 factor risks lowering your search visibility":
+our title. Accepted Etsy's rewrite, which removes the flag and front-loads the
+exact keyword instead of burying it behind the word "Alternative":
+ OLD: Airbnb Welcome Book Template Alternative | Answer 12 Questions, Get a
+      Finished Book + WiFi QR Sign | No Canva, 62 Designs, VRBO Guest Guide
+ NEW: Airbnb Welcome Book Template | 12-Question Guest Guide, WiFi QR Sign
+      (Digital Download)
+Etsy has penalised keyword-stuffed titles since 2024; tags still carry vrbo /
+house manual / guest guide. Search visibility page is now clean.
+
+### FIX 2 — NEW MAIN LISTING IMAGE (built + published)
+Our old thumbnail was a pure lifestyle photo with no text: gorgeous at full
+size, meaningless at 250 px next to collages shouting their offer.
+Rebuilt 1-main.jpg (2000x1500) — script saved as marketing/build_main_image.py
+(needs Pillow + Fraunces/Inter variable fonts from Google Fonts):
+ eyebrow "AIRBNB & VRBO WELCOME BOOK" · headline "Finished in 10 minutes." ·
+ sub "You answer 12 questions. We build the print-ready PDF. No Canva. No
+ design skills." · pills "62 designs / WiFi QR sign / A4 + US Letter" ·
+ the marble book photo as a rounded card · wordmark.
+LAYOUT IS CENTRED ON PURPOSE: Etsy crops the main photo to ~square in the
+search grid. The first version put the text in a left column and the square
+crop cut it off — verified with a rendered crop test before publishing.
+Publishing it needed a workaround: Etsy photo drag-reorder does NOT respond to
+synthetic mouse events. Method that works = upload the full new set (they land
+at the END), then delete the old ones one by one from position 1; the new ones
+shift up into order. Final order 1-main … 8-headline, verified live.
+
+### FIX 3 — SITELINK: NO FIX NEEDED, MY EARLIER CALL WAS WRONG
+The Clarity note said a paid click landed on app.html?sample=1 and bounced in
+5 s, and I flagged the "See a Finished Example" sitelink as waste. Pulled the
+actual sitelink report — the opposite is true:
+  See a Finished Example   173 impr · 9 clicks · €24,52 · CTR 5,20 % · 1 CONV
+  Start Your Book Free     165 impr · 8 clicks · €21,68 · CTR 4,85 % · 0 conv
+  WiFi QR Sign Included    108 impr · 5 clicks · €12,88 · CTR 4,63 % · 1 CONV
+                           ← best CPA of all, €12,88
+  Pricing - $29 One-Time   133 impr · 2 clicks · €5,54  · CTR 1,50 % · 0 conv
+Left all four running. The 5-second bounce was one session, not a pattern.
+
+### THE PATTERN WORTH ACTING ON NEXT — "SHOW ME PROOF FIRST"
+Two independent sources now say the same thing:
+ * Landing-page heatmap: "See a finished example" got 3 of 5 total clicks,
+   beating the primary "Build my welcome book" CTA (2).
+ * Google Ads sitelinks: "See a Finished Example" is the top click-getter and
+   converted; "Start Your Book Free" got fewer clicks and converted nothing.
+→ NEXT SUGGESTION (not done, wants Mario's eye first): rework the landing hero
+  to lead with the finished example — real inside pages above the fold rather
+  than three stylised covers — and make "See a finished example" the primary
+  action. Build a mockup for Mario before touching the live site.
+
+### STILL TRUE / UNCHANGED
+Ads budget €8/day, next review ~8–9 Sep. Stripe 3 payments, 0 refunds.
+Etsy 0 visits / 0 orders / 0 reviews. Ads all-time 514 impr · 30 clicks ·
+€71,10 · 2 conv.
