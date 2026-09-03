@@ -825,3 +825,36 @@ Either the new-listing boost has already passed, or the listing is not being
 surfaced. To check next session: Etsy Shop Manager → "Etsy search visibility",
 and search Etsy in a logged-out/incognito window for the main terms to see
 where (or whether) the listing ranks. This now matters more than the ads.
+
+## Daily check 2026-09-03 21:10 CEST — stats table (overall / 24 h / 48 h)
+ADS (campaign 24166614210 only):
+  Overall 23 Aug – 3 Sep: 514 impr · 30 clicks · CTR 5,84 % · €71,10 ·
+    avg CPC €2,37 · 2 conv · CPA €35,55
+  2 Sep (full): 53 impr · 8 clicks · CTR 15,09 % · €21,75 · CPC €2,72 · 0 conv ·
+    IS 18,22 % · lost rank 34,20 % · lost BUDGET 47,58 %
+  3 Sep (to 21:10): 60 impr · 1 click · CTR 1,67 % · €2,99 · CPC €2,99 ·
+    0 conv · IS 27,87 % · lost rank 72,13 % · lost budget 0,00 %
+  Devices 2 Sep: desktop 10/2/€5,54 · mobile 41/6/€16,21 · tablet 2/0
+  Devices 3 Sep: desktop 50/1/€2,99 · mobile 10/0/€0 · tablet 0/0
+  → MOBILE −50 % IS WORKING: mobile share of impressions 77 % → 17 %.
+  → €8 budget NOT binding today (spent €2,99 of €8, 0 % lost to budget).
+    Yesterday's 47,58 % budget loss was a one-day spike, not a new baseline.
+  → CTR swing 15,09 % → 1,67 % is on 53 and 60 impressions — both samples are
+    far too small to conclude anything. Do not act on it.
+CLARITY:
+  Overall (last 30 d = lifetime): ~146 sessions (141 new + 5 returning) ·
+    131 unique users · 1,19 pages/session · 49,57 % scroll · 2,0 min active
+    (of 2,7 total) · rage 0,68 % (1) · dead clicks 9,59 % (14) ·
+    quick backs 1,37 % (2)
+  2 Sep: 12 sessions (7 bots excluded) · 11 users · 1,33 pages · 51,50 % scroll ·
+    1,9 min active · dead clicks 8,33 % (1) · rage 0 · quick backs 0
+  3 Sep: 2 sessions (1 bot excluded) · 2 users · 1,50 pages · 54,33 % scroll ·
+    36 s active · all insight metrics 0
+ETSY: all-time / 2 Sep / 3 Sep all ZERO — 0 visits, 0 orders, $0,00,
+  0 favorites, 0 follows, 0 reviews. Stats 4 h stale. Day 3 of the shop.
+STRIPE: 3 payments (2 real + Mario's test), all $29, 0 refunds, 0 disputes.
+  Nothing new in 48 h.
+MONEY: €71,10 ad spend vs ~€46,72 net from 2 real sales → ≈ −€24.
+NO ACTION TAKEN. Budget stays €8/day. Next review ~8–9 Sep per the agreed rule.
+STILL THE #1 PROBLEM: Etsy 0 visits in 3 days. Investigate search visibility
+next — this outranks anything left to tune in Google Ads.
