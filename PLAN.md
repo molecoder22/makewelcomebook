@@ -1010,3 +1010,17 @@ Google Ads; attracts non-buyers, drags conversion rate, which drags ranking),
 ADDED: "cabin welcome book" (Etsy related-search variant, far less contested),
 "short term rental" (proven buyer phrase), "rental house manual" (house manual
 converted on Google). Still 13/13. Published and live.
+
+## Etsy Ads 15-day lock-out — checked for workarounds 2026-09-03
+Official (help.etsy.com 360033701174): "After opening your Etsy shop, there is
+a 15 day waiting period before you can begin an Etsy Ads campaign." Automated
+countdown; support does not lift it; community threads only show people
+waiting. Aged/second shop = TOS violation, rejected. NO WORKAROUND.
+Offsite Ads: shop is ALREADY ENROLLED (dashboard offers opt-out). 0 clicks so
+far; Etsy chooses which listings to push and rarely picks a 0-sale listing.
+Free, passive, leave on. 15 % fee only on attributed sales.
+Only real lever = send our own traffic to the Etsy listing to seed sales and
+reviews. Numbers: our site nets ~€23,36/sale at a proven ~7 % click conversion;
+Etsy nets ~€14–15 at an unknown, likely lower rate. RECOMMENDED AGAINST for
+now; Mario can override (his margin, his call). Plan unchanged: Google stays
+on our site, Etsy Ads $5/day from ~17 Sep, cap €150.
