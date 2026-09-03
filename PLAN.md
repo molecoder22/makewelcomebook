@@ -986,3 +986,19 @@ Two independent sources now say the same thing:
 Ads budget €8/day, next review ~8–9 Sep. Stripe 3 payments, 0 refunds.
 Etsy 0 visits / 0 orders / 0 reviews. Ads all-time 514 impr · 30 clicks ·
 €71,10 · 2 conv.
+
+## ★ DECISION 2026-09-03 — SEPTEMBER TEST APPROVED, HARD CAP €150
+Mario: "okay lets do it, cap is at 150 euro."
+SCOPE OF THE €150 (counted from 4 Sep, on top of the €71,10 Google has spent
+all-time through 3 Sep):
+ * Google Ads WB-Search-Templates at €8/day → checkpoint 8–9 Sep:
+   no sale → PAUSE; sale → keep running inside the cap.
+ * Etsy Ads at $5/day from the eligibility date (~17 Sep, "14 days left" on
+   3 Sep) to 30 Sep. Promote the single listing. Etsy Ads is the ONE open
+   question: does an Etsy shopper pay $20 for a finished book on a $7 shelf?
+ * Nothing else paid. No Etsy Ads budget above $5/day, no Google budget raise.
+HOW TO TRACK: Google spend since 4 Sep = (all-time cost) − €71,10. Etsy Ads
+spend from the Etsy Ads dashboard. Sum must stay ≤ €150. Warn Mario at €120.
+FINAL DECISION 30 SEP: Etsy converts → slow side income, keep going at low
+spend. Etsy doesn't → stop all paid spend, leave site + shop live at €0.
+Goal framing agreed as realistic: September is a test, not a €300 month.
