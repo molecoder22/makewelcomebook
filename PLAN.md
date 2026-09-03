@@ -858,3 +858,53 @@ MONEY: €71,10 ad spend vs ~€46,72 net from 2 real sales → ≈ −€24.
 NO ACTION TAKEN. Budget stays €8/day. Next review ~8–9 Sep per the agreed rule.
 STILL THE #1 PROBLEM: Etsy 0 visits in 3 days. Investigate search visibility
 next — this outranks anything left to tune in Google Ads.
+
+## ★ CLARITY DEEP-DIVE 2026-09-03 — WHAT VISITORS ACTUALLY DO
+Read all 55 recordings for the last 7 days (Aug 28 – Sep 3) plus the desktop
+landing-page click heatmap. Findings:
+
+SESSION MIX. Of the 55 sessions, roughly a third are the TWO EXISTING BUYERS
+re-opening their book via app.html?paid=MWB-UNLOCK-2026 — long, healthy
+sessions (1 h 22 m / 42 m / 31 m / 24 m, 76 / 139 / 36 clicks). They appear as
+~9 different Clarity user IDs because Clarity issues one ID per browser+device
+and the delivery is an emailed link opened on phone, tablet, Safari, GoogleApp
+etc. CHECKED FOR A LEAK: `site:makewelcomebook.com` on Google returns ONLY the
+homepage — the unlock URL is NOT indexed. No evidence the code is leaking.
+Product usage by buyers is genuinely deep. That is the good news.
+
+REAL PROSPECTS (~34 non-buyer sessions in 7 days):
+ * ~20 bounced in under 30 s with ZERO clicks (many at 1–5 s).
+ * ~6 engaged properly (>1 min with clicks); almost ALL of them Chrome on PC.
+ * ~5 reached app.html or the sample.
+ * The mobile sessions bounce at close to 100 %: MobileSafari / ChromeMobile
+   entries lasting 0:01–0:29 with 0 clicks, over and over.
+ * The one converter in the window (Aug 28, user hdsjwy, Chrome PC) spent
+   8:30, 57 clicks, 5 pages → that is what a buyer session looks like.
+→ This is independent confirmation that the mobile −50 % bid adjustment was
+  correct. Desktop visitors engage; mobile visitors leave instantly.
+
+LANDING-PAGE CLICK HEATMAP (desktop, 7 days): 22 page views → only 5 CLICKS in
+total, on just two elements:
+   A.btn.btn-ghost "See a finished example" — 3 clicks (60 %)
+   A.btn.btn-primary "Build my welcome book" — 2 clicks (40 %)
+→ THE SECONDARY BUTTON OUT-PULLS THE PRIMARY CTA. People want proof before
+  they will start. Worth testing: lead with the example/sample, or put a real
+  finished book above the fold instead of the three stylised covers.
+
+DEAD CLICKS (14,55 %, 8 sessions) are NOT a landing-page problem — every one
+is inside app.html / the sample viewer, and 6 of the 8 are the two buyers.
+People click things in the builder/sample that do not respond. Low priority
+but a real polish item; likely the sample pages (someone clicked 139 times in
+42 minutes on app.html?sample=1).
+
+FALSE ALARM CHECKED: the Clarity heatmap screenshot renders the hero as
+"finished in □□ minutes" and "□□ designs". Loaded the LIVE site — it correctly
+shows "finished in 10 minutes" and "62 designs · 38 premium art designs FREE".
+Clarity is masking numerals for privacy. The page is fine. Mobile layout also
+verified at 375×812: headline, both CTAs and the sticky bottom bar are all
+above the fold. The mobile bounces are NOT a broken layout.
+
+ONE THING TO FIX IN ADS: a paid click (gclid present) landed directly on
+app.html?sample=1 and bounced in 5 s. A sitelink is dropping people straight
+into the sample viewer instead of the landing page. Check the 4 sitelinks next
+time the ads account is open.
