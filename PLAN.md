@@ -1024,3 +1024,63 @@ reviews. Numbers: our site nets ~€23,36/sale at a proven ~7 % click conversion
 Etsy nets ~€14–15 at an unknown, likely lower rate. RECOMMENDED AGAINST for
 now; Mario can override (his margin, his call). Plan unchanged: Google stays
 on our site, Etsy Ads $5/day from ~17 Sep, cap €150.
+
+## ★ 2026-09-04 — SEARCH-TERM MINING + CLARITY-DRIVEN FIXES
+⚠️⚠️ BLOCKING BANNER IN GOOGLE ADS: "Dokončite overenie inzerenta – Ak chcete
+naďalej zobrazovať reklamy, dokončite overenie inzerenta." (Complete advertiser
+verification to KEEP SHOWING ADS.) This has escalated from a background nag to
+a stated condition of continued delivery. ONLY MARIO CAN DO IT (needs ID,
+~30 min). Highest-priority outstanding item.
+
+ADS DATA (28 Aug – 3 Sep): 422 impr · 24 clicks · €63,16 · 2 conv.
+ * Named search terms: 227 impr · 6 clicks · €16,98 · 1 conv
+ * "Ostatné hľadané výrazy" (privacy-hidden): 195 impr · 17 clicks · €43,42 ·
+   1 conv → 69 % OF SPEND IS IN A BUCKET GOOGLE WILL NOT SHOW US. Hard ceiling
+   on how much search-term optimisation is even possible.
+ * 4 Sep to 13:30: 17 impr · 1 click · €1,88.
+Full 79-term report read. The "guest book" negatives ARE working — "guest book"
+(38 impr) and "guestbook" (15 impr) both show Vylúčené. BUT a second family
+survived them because the words are not contiguous: visitors book (7),
+visitor guest book (4), visitors guest book (4), guest register book (3),
+guest registry book (2), guest comments book (2), guest check in book (2),
+guest message book (1), visitors signing in book (2), holiday home visitors
+book (2), visitor logbook template (2), guest information folder (2+1),
+hotel guest information folder (1). ≈28 junk impressions/week still leaking.
+ACTIONS TAKEN:
+ * 11 NEW PHRASE NEGATIVES (56 → 67): "visitors book", "visitor book",
+   "logbook", "register book", "registry book", "check in book",
+   "comments book", "message book", "signing", "hotel", "information folder".
+   All verified as Frázová zhoda. Deliberately NOT added: "booklet" (would kill
+   "welcome booklet", a real buyer term) and "guest booklet" (too close to our
+   own product).
+ * PAUSED [guest welcome book] — 151 impr, 1,32 % CTR, 2 clicks, €5,30, 0 conv
+   all-time. Worst CTR in the account; CTR feeds Quality Score feeds Ad Rank,
+   and rank (not budget) is our binding constraint. Verified "Pozastavené".
+   NOTE: the bulk Upraviť → Pozastaviť menu silently fails on this page; use
+   the per-row status dot (green circle) → Pozastaviť instead.
+KEYWORD STATE (7-day): "rental welcome book" phrase 20/5/€12,42/0 conv (25 %
+CTR — best CTR, biggest spender, WATCH); [vacation rental welcome book
+template] 23/4/€10,36/1 conv ✓ our converter; "guest information book" phrase
+48/3/€9,30/0; [short term rental welcome book template] 14/2/€6,91/0;
+[vacation rental guest book] + [vacation rental guest book template] +
+[guest welcome book] paused. NOTE: keyword-level bids do nothing under
+Maximize Clicks — only the campaign CPC cap applies. No bid changes possible.
+
+CLARITY (last 3 days): 21 sessions · 17 users · 1,24 pages · 51,2 % scroll ·
+1,9 min active · dead clicks 14,29 % (3) · RAGE CLICKS 9,52 % (2) ← NEW.
+Both rage sessions are the SAME PAYING CUSTOMER (user ws8pri, MobileSafari,
+TABLET) entering via app.html?paid=MWB-UNLOCK-2026 at 01:41 and 02:27 on
+4 Sep — 7:14 with 66 clicks and 7:57 with 48 clicks, one page, no exit.
+DIAGNOSIS (probable, NOT proven): #btnPrint calls window.print() for unlocked
+users (app.html ~line 1060). window.print() can fail SILENTLY in iOS Safari /
+in-app WebViews. A buyer tapping "Download PDF" and getting nothing would click
+exactly like this. Could not confirm directly — the sandboxed preview browser
+suppresses print dialogs too, so absence of a dialog there proves nothing.
+FIX SHIPPED (additive, cannot break the existing path): a dismissible
+.printhint bar appears 1,2 s after Download PDF with manual instructions
+(iPad/iPhone: Share → Print → pinch out → Save to Files; desktop: choose
+Save as PDF). Added to the print-hide selector list so it never prints.
+Verified live on makewelcomebook.com/app.html.
+FOLLOW-UP: if rage clicks persist on tablets after this, replace window.print()
+with real client-side PDF generation. Also still open: dead clicks ~14 % inside
+the builder/sample.
