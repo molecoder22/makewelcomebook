@@ -247,13 +247,17 @@
   .offerfine{font-size:.76rem;color:var(--muted);margin-top:12px}
   .offerfine a{color:inherit}
   .offerx{position:absolute;top:8px;right:12px;background:none;border:0;font-size:1.6rem;line-height:1;color:var(--muted);cursor:pointer}
+  .printhint{display:none;position:fixed;left:12px;right:12px;bottom:12px;max-width:640px;margin:0 auto;background:#2A2320;color:#fff;padding:14px 16px;border-radius:12px;z-index:120;font-size:.92rem;line-height:1.45;box-shadow:0 10px 30px rgba(0,0,0,.28)}
+  .printhint.show{display:block}
+  .printhint b{display:block;margin-bottom:4px}
+  .printhint button{margin-top:10px;background:#fff;color:#2A2320;border:0;border-radius:8px;padding:7px 14px;font-weight:700;cursor:pointer}
   .unlockedbar{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--ok);color:#fff;padding:12px 22px;text-align:center;z-index:60;font-weight:600}
   body.unlocked .unlockedbar{display:block}
 
   /* ---------- print ---------- */
   @page{margin:0}
   @media print{
-    header.topbar,.formcol,.prevhead,.pagenav,#thumbs,.paybar,.unlockedbar,.tipPop,.offerwrap,.mtabs{display:none!important}
+    header.topbar,.formcol,.prevhead,.pagenav,#thumbs,.paybar,.unlockedbar,.tipPop,.offerwrap,.mtabs,.printhint{display:none!important}
     .prevbody{display:block}
     body{background:#fff}
     main.layout{display:block}
@@ -517,6 +521,12 @@ Leave keys in the lockbox"></textarea>
   <button type="button" id="mtPrev">&#128214; My book<span class="dot"></span></button>
 </nav>
 <div class="unlockedbar">✓ Unlocked — thank you! Edit any time; your book stays yours.</div>
+<div class="printhint" id="printHint">
+  <b>No print dialog?</b>
+  On iPad or iPhone: tap the <strong>Share</strong> icon, choose <strong>Print</strong>, then pinch outwards on the preview and use <strong>Save to Files</strong>.
+  On a computer: choose <strong>Save as PDF</strong> as the printer.
+  <button type="button" id="printHintClose">Got it</button>
+</div>
 
 <script>
 "use strict";
@@ -1058,7 +1068,13 @@ document.getElementById("btnPrint").addEventListener("click",()=>{
     return;
   }
   window.print();
+  const hint=document.getElementById("printHint");
+  if(hint) setTimeout(()=>hint.classList.add("show"),1200);
 });
+(function(){
+  const c=document.getElementById("printHintClose");
+  if(c) c.addEventListener("click",()=>document.getElementById("printHint").classList.remove("show"));
+})();
 function applySample(){
   state={
     propname:"The Hummingbird House",tagline:"Kick off your shoes, pour something cold — the desert does the rest.",
