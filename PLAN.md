@@ -1161,3 +1161,41 @@ FREE WORK QUEUED (do regardless of price answer): more listings (we have 1,
 SparkBranding has 105); a downloadable extras pack (WiFi sign / house rules /
 checkout card PDFs) to make "what you get" concrete and seed listing #2;
 landing page to lead with the finished example.
+
+## ★★ 2026-09-05 (late) — GOOGLE OFF, ETSY REBUILT (Mario: "do what you think is best")
+1. GOOGLE ADS CAMPAIGN PAUSED. Final: ~€90,90 spend, 2 conversions, net −€44,18.
+   Campaign intact, restartable in one click.
+2. PRICE CUT (my call, Mario delegated): listing price $29 → $19. With the
+   LAUNCH30 30 % sale that is $13,30 for US buyers ($16,36 incl. VAT in
+   Mario's Slovak view). Etsy's own "estimated earnings" at $19 = $16,45; at
+   the $13,30 sale price ≈ $11,3 net. RATIONALE: at $20,30 with 0 reviews we
+   were the most expensive listing on a page whose median is €7–10, i.e. the
+   biggest risk a stranger could take. The first ten reviews are worth more
+   than the margin on the first ten sales. REVERT TO $29 ONCE ~10 REVIEWS
+   EXIST — this is a temporary launch price, not the new position.
+3. LISTING #2 CREATED (was 1 listing, now 2). "Cabin Welcome Book Template |
+   Lake House & Chalet Guest Guide, WiFi QR Sign (Digital Download)", $19,
+   same digital files (Your-Welcome-Book-Access.pdf + sample-book.pdf).
+   Built by Etsy's Copy function so files/policies carry over.
+   * New main image marketing/etsy/cabin-1-main.jpg — built with
+     scratchpad/build_cabin.py: synthesises three real cabin covers (06-mountain
+     "The Pine Lodge", 14-lakeside "Lakeside Cabin", 37-duskpeaks "Dusk Peaks
+     Chalet") from our actual art files, fanned under the same centred,
+     crop-safe headline layout as listing #1.
+   * Tags (13): welcome book, house manual, wifi sign, welcome guide, guest
+     guide, cabin welcome book, short term rental, rental house manual, lake
+     house welcome, chalet welcome book, cottage welcome book, cabin guest
+     guide, cabin house manual.
+   * Description prepended with an accurate cabin lead. HONEST: we really do
+     have mountain / lakeside / duskpeaks / winter designs, so the listing is
+     not a false niche claim.
+   * Photo order forced the same way as before (upload all, delete the
+     inherited ones) — Etsy drag-reorder still ignores synthetic mouse input.
+4. DECIDED **AGAINST** adding blank fill-in printable signs as extra downloads.
+   Reasoning: the builder already produces filled-in WiFi / rules / check-out
+   pages, and the WiFi sign generator is free on the site. A blank PDF the host
+   fills in by hand would be strictly WORSE than what the buyer already gets and
+   would muddy the offer. We already ship 2 real PDFs, which matches what the
+   category leader ships (SparkBranding: "4 PDF"). Not adding filler.
+NEXT: Etsy Ads $5/day from ~17 Sep (~€60–70 of the €150 cap). Hard stop 30 Sep:
+<3 sales → all paid spend ends, site + shop stay live at €0.
