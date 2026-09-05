@@ -1238,3 +1238,30 @@ about 0,3–0,4 expected sales. This is a decisive last look, not a positive-EV
 bet. AFTER THIS DAY GOOGLE ADS IS DONE either way.
 NEXT: check tomorrow (6 Sep) with date range "Včera". Sale → reconsider.
 No sale → pause permanently and all focus goes to Etsy Ads from ~17 Sep.
+
+## 2026-09-05 (night, addendum) — BUDGET €20 BLOCKED BY GOOGLE IDENTITY CHECK
+Mario overrode the €8 recommendation: "do 20 idc we will see". Accepted — his
+call, he was told about the 2× rule (a €20/day budget can cost up to €40 in one
+day).
+ATTEMPTED: campaign settings → Rozpočet → 20 €. The value entered fine and
+Google's own estimate showed "+20 clicks, +€81,07" for the change. On Uložiť,
+Google threw "Potvrdenie, že ste to vy" (Confirm it's you) — an account
+identity re-verification. This is a Google sign-in challenge; I do not drive
+authentication flows, so I cancelled it. Second time this exact wall appeared
+(also blocked the €10 attempt earlier).
+STATE LEFT RUNNING AND SAFE: campaign Aktívne · Vhodné · **8,00 €/deň** ·
+mobile −100 % · Ad 2 paused (Ad 1, the converter, gets 100 %) · 67 negatives ·
+5 keywords paused · Max Clicks · €2,80 cap · US +50 %.
+So the final test IS live tonight at €8/day (≈€11 typical, €16 max). If Mario
+completes the verification and sets 20 €, it simply runs bigger.
+CLICK-BY-CLICK GIVEN TO MARIO (he must do it himself — needs his Google login):
+ 1. Google Ads tab left open on the campaign.
+ 2. Top bar → "Nastavenia kampane".
+ 3. Click the "Rozpočet" row (8,00 € denne).
+ 4. Clear the box, type 20.
+ 5. "Uložiť" → "Potvrdiť" → complete Google's identity check (phone prompt or
+    password — his own credentials).
+ 6. Header should then read "Rozpočet: 20,00 €/deň".
+NOTE FOR NEXT SESSION: any CAMPAIGN SETTINGS change (budget, bidding, geo) now
+triggers this verification. Keyword pauses, ad pauses, device bid adjustments
+and campaign on/off did NOT trigger it.
