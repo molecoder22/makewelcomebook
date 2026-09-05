@@ -1125,3 +1125,39 @@ CLARITY:
   tiny (4 sessions) — do not call it fixed yet, re-check ~8 Sep.
 SALES: Stripe still 3 payments (last 31 Aug), 0 refunds, 0 disputes. Etsy
 all-time still 0 visits / 0 orders / $0.00 / 0 favourites. No sale since 31 Aug.
+
+## ★ 2026-09-05 (evening) — GOOGLE ADS PAUSED + FULL ETSY RESEARCH
+GOOGLE ADS CAMPAIGN PAUSED (Mario's instruction "stop google ads"). Header and
+row both read "Pozastavené". Final all-time: ~€90,90 spend · 514+ impr ·
+33 clicks · 2 conversions. Campaign left intact (not deleted) so it can be
+restarted in one click. Reason: market answered — ~1 300 US searches/month,
+head terms −46 to −64 % YoY, 12 impr/day, >90 % lost to RANK. Too small to
+sell and too small to learn from. Net position on ads: €90,90 spent vs €46,72
+net revenue = −€44,18.
+FULL ETSY RESEARCH written to ETSY-RESEARCH-2026-09-05.md. Headlines:
+ * Listing VIEWS all-time = 0 (not low — zero). Etsy search = 0 % of visits.
+ * NOT broken, just outranked. Logged-out tests: "welcome book no canva" → we
+   do NOT appear; "12 question welcome book wifi qr" → we DO appear. Indexed
+   and eligible, but only for phrasing that repeats our own title.
+   ⚠ CORRECTION TO 2 SEP NOTE: the "we're on page 1" reading was WRONG — that
+   was Mario's logged-in owner view, which Etsy boosts. Always check logged out.
+ * Competition: SparkBranding 7,2k shop sales / 552 reviews / 3 yrs / 105
+   listings / €14,98 from €37,47, top item 158 reviews and "2 bought in the
+   last 24 h" (~60 sales/month from ONE listing). Templates4branding €8,19,
+   62 reviews, "in 19 carts". Category band €2,20–€19, median ~€7–10.
+   We are at $20,30 with 0 reviews = highest price + zero social proof.
+ * DELIVERY METHOD IS FINE: SparkBranding's bestseller also ships "4 PDF" files
+   containing Canva links. A PDF that links onward is the category norm.
+   Our real unclaimed differentiator: every page-1 competitor REQUIRES Canva,
+   we don't. But nobody searches "no canva" — it sells once seen, it cannot
+   create the view.
+ * VERDICT: worth ONE ~€60 Etsy Ads test from ~17 Sep, not for the return
+   (expected 1–5 sales ≈ €14–75 back on €60) but because it is the only way to
+   buy the first reviews and break the sales↔ranking deadlock.
+DECISION NEEDED FROM MARIO (money): temporary launch price. Recommended option
+B — drop to ~$12–14 until 10 reviews exist, then revert to $29. Rationale: the
+first ten reviews are worth more than the margin on the first ten sales.
+FREE WORK QUEUED (do regardless of price answer): more listings (we have 1,
+SparkBranding has 105); a downloadable extras pack (WiFi sign / house rules /
+checkout card PDFs) to make "what you get" concrete and seed listing #2;
+landing page to lead with the finished example.
