@@ -1199,3 +1199,42 @@ landing page to lead with the finished example.
    category leader ships (SparkBranding: "4 PDF"). Not adding filler.
 NEXT: Etsy Ads $5/day from ~17 Sep (~€60–70 of the €150 cap). Hard stop 30 Sep:
 <3 sales → all paid spend ends, site + shop stay live at €0.
+
+## ★★ 2026-09-05 (night) — FINAL GOOGLE ADS TEST, 1 DAY (Mario's call)
+Mario: "1 day 20 euro cap, take all you know, only working words, negatives,
+last hit then google ads are done, make best ad from previous data."
+CAMPAIGN RE-ACTIVATED. Verified header: Aktívne · Stav Vhodné · 8,00 €/deň.
+CONFIGURATION FOR THE FINAL DAY:
+ * BUDGET LEFT AT €8/day, NOT raised to €20. Google may spend up to 2× the
+   daily budget in a single day, so €20/day could have cost €40 and broken
+   Mario's cap. €8/day = max €16, typical ~€11. Honours the €20 cap.
+   (I tried to set €10 first; Google demanded an identity re-verification
+   "Potvrdenie, že ste to vy" for the budget change. I did NOT drive an auth
+   flow. Not needed anyway — €8 already fits the cap.)
+ * MOBILE BID ADJUSTMENT −50 % → **−100 %** (mobile excluded entirely).
+   Justification: 239 impr / 11 clicks / €28,31 / **0 conversions** in 7 days;
+   294 impr / 0 conv all-time. Both all-time conversions came from desktop and
+   tablet. Verified "-100 %" in the Zariadenia table.
+ * AD 2 PAUSED. The two RSAs: Ad 1 "Vacation Rental Welcome Book | Welcome Book
+   Done For You | No Canva, No Design Skills" = 16 clicks, 6,25 % CTR, €45,74,
+   **1 conversion**. Ad 2 "Makewelcomebook | Welcome Book Done In 10 Min…" =
+   10 clicks, 6,76 % CTR, €25,12, **0 conversions**. Ad 2 paused so 100 % of a
+   ~6-click day goes to the ad that has actually sold.
+   DELIBERATE DECISION: did NOT write a new RSA. With ~6 clicks available a new
+   ad cannot be evaluated, and splitting a tiny budget across ads destroys the
+   test. "Best ad from the data" = the one that converted. Note Ad 2 had the
+   BETTER strength rating ("Dobrá" vs "Priemerná") and zero sales — ad strength
+   is not performance.
+ * Keywords: 5 already paused ([vacation rental guest book], [… template],
+   [guest welcome book], [airbnb guest book], [airbnb guest book template]).
+   Decided to KEEP "guest information book" (48 impr, 6,25 % CTR, 3 clicks) —
+   it is a genuine host term, the "guest book"/"guestbook" negatives already
+   block the paper-signing variants, and volume is now the scarce resource.
+ * 67 negatives all retained. Max Clicks, €2,80 CPC cap, US +50 %, CA/AU on.
+ * NOT changed: geo (campaign-settings change → would hit the same identity
+   re-verification wall).
+EXPECTATION, HONESTLY: ~€11–16 spend, ~4–6 clicks, ~6,7 % historical CVR →
+about 0,3–0,4 expected sales. This is a decisive last look, not a positive-EV
+bet. AFTER THIS DAY GOOGLE ADS IS DONE either way.
+NEXT: check tomorrow (6 Sep) with date range "Včera". Sale → reconsider.
+No sale → pause permanently and all focus goes to Etsy Ads from ~17 Sep.
