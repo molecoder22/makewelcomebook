@@ -1084,3 +1084,44 @@ Verified live on makewelcomebook.com/app.html.
 FOLLOW-UP: if rage clicks persist on tablets after this, replace window.print()
 with real client-side PDF generation. Also still open: dead clicks ~14 % inside
 the builder/sample.
+
+## Daily check 2026-09-05 (19:53)
+GOOD: the blocking advertiser-verification banner from 4 Sep is GONE. Campaign
+diagnostic now reads "Kampaň nemá žiadne problémy so zobrazovaním reklám".
+Verification is still NOT done (it remains as a +3,7 % recommendation about ad
+logos) but Google is no longer stating it as a condition of delivery.
+ADS by day (campaign 24166614210):
+  29.8  65 impr /2 clk /3,08 % /€4,00  /0 conv
+  30.8  61 /2 /3,28 % /€6,20  /0
+  31.8  76 /4 /5,26 % /€10,51 /1 conv
+  1.9   56 /4 /7,14 % /€11,07 /0
+  2.9   53 /8 /15,09 %/€21,75 /0   (lost to budget 47,45 %)
+  3.9   60 /2 /3,33 % /€5,72  /0
+  4.9   33 /4 /12,12 %/€11,61 /0
+  5.9 (to 19:53) 12 /3 /25,00 %/€8,19 /0  — IS <10 %, lost to RANK >90 %
+  7-day (29.8–4.9): 404 impr · 26 clk · 6,44 % · €70,86 · 1 conv · CPA €70,86
+ALL-TIME SPEND now ≈ €90 (was €71,10 through 3 Sep).
+READ: the cleanup is working on QUALITY — CTR 3 % → 12 % → 25 %. But VOLUME has
+collapsed: 65 impr/day at the start of the window, 12 today. Lost-to-rank is
+>90 %. We are now buying a handful of very relevant clicks per day and nothing
+else. Budget is no longer the constraint (0–4,8 % lost to budget since 3 Sep).
+ACTIONS TAKEN TODAY:
+ * Google flagged "Konfliktné vylučujúce kľúčové slová" and offered to fix it.
+   INSPECTED BEFORE TOUCHING: the blocked keywords are [airbnb guest book] and
+   [airbnb guest book template] — i.e. Google wanted us to DELETE the "guest
+   book" negative that is the whole point of the cleanup. Did NOT click Použiť.
+   Instead PAUSED both keywords (verified "Pozastavené"). Conflict resolved
+   without weakening the negative. LESSON: never apply this recommendation.
+ * Paused keyword count now: [vacation rental guest book], [vacation rental
+   guest book template], [guest welcome book], [airbnb guest book],
+   [airbnb guest book template].
+CLARITY:
+  4.9 (full): 8 sessions /6 users /1,25 pages /58,80 % scroll /2,2 min active ·
+      rage 25 % (2) · dead 25 % (2) · quick backs 12,5 % (1)
+  5.9 (to 19:53): 4 sessions /3 users /1,50 pages /56,83 % scroll /5,3 min ·
+      RAGE CLICKS 0 % · dead 25 % (1) · quick backs 0 %
+  The two 4 Sep rage sessions were at 01:41 and 02:27 — BEFORE the print-hint
+  fix shipped (~14:30 on 4 Sep). Since the fix: zero rage clicks. Sample is
+  tiny (4 sessions) — do not call it fixed yet, re-check ~8 Sep.
+SALES: Stripe still 3 payments (last 31 Aug), 0 refunds, 0 disputes. Etsy
+all-time still 0 visits / 0 orders / $0.00 / 0 favourites. No sale since 31 Aug.
